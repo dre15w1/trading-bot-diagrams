@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 820" font-family="'Segoe UI',system-ui,-apple-system,sans-serif">
+  <defs>
+    <!-- Stream gradients: three timeframes converging -->
+    <linearGradient id="s1" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#a78bfa" stop-opacity="0.25"/>
+      <stop offset="1" stop-color="#a78bfa"/>
+    </linearGradient>
+    <linearGradient id="s2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#38bdf8" stop-opacity="0.25"/>
+      <stop offset="1" stop-color="#38bdf8"/>
+    </linearGradient>
+    <linearGradient id="s3" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#2dd4bf" stop-opacity="0.25"/>
+      <stop offset="1" stop-color="#2dd4bf"/>
+    </linearGradient>
+    <linearGradient id="up" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#16a34a"/>
+      <stop offset="1" stop-color="#4ade80"/>
+    </linearGradient>
+    <radialGradient id="node" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#fde68a"/>
+      <stop offset="0.5" stop-color="#facc15"/>
+      <stop offset="1" stop-color="#f59e0b" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <linearGradient id="ink" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#e6edf3"/>
+      <stop offset="1" stop-color="#9fb3c8"/>
+    </linearGradient>
+  </defs>
+
+  <!-- backdrop -->
+  <rect width="1200" height="820" rx="28" fill="#0d1117"/>
+  <rect x="1" y="1" width="1198" height="818" rx="27" fill="none" stroke="#1f2937" stroke-width="2"/>
+
+  <text x="600" y="70" text-anchor="middle" fill="#6b7280" font-size="22" letter-spacing="6">B R A N D   M A R K</text>
+
+  <!-- ================= PRIMARY ICON (the confluence mark) ================= -->
+  <g transform="translate(340,120)">
+    <rect x="0" y="0" width="520" height="360" rx="24" fill="#0b0f14" stroke="#1f2937"/>
+    <!-- three streams flowing left -> converging at node -->
+    <g fill="none" stroke-width="14" stroke-linecap="round">
+      <path d="M60,90  C 190,90 210,180 300,180" stroke="url(#s1)"/>
+      <path d="M60,180 C 190,180 210,180 300,180" stroke="url(#s2)"/>
+      <path d="M60,270 C 190,270 210,180 300,180" stroke="url(#s3)"/>
+    </g>
+    <!-- confluence node glow -->
+    <circle cx="300" cy="180" r="70" fill="url(#node)" opacity="0.9"/>
+    <circle cx="300" cy="180" r="13" fill="#fde68a" filter="url(#glow)"/>
+    <!-- breakout: single strong current rises out of the node -->
+    <path d="M300,180 C 360,180 380,120 420,70" fill="none" stroke="url(#up)" stroke-width="16" stroke-linecap="round" filter="url(#glow)"/>
+    <path d="M420,70 l -4,34 l 34,-10 z" fill="#4ade80"/>
+    <!-- timeframe tick labels -->
+    <text x="46" y="96"  text-anchor="end" fill="#a78bfa" font-size="18" font-weight="700">D</text>
+    <text x="46" y="186" text-anchor="end" fill="#38bdf8" font-size="18" font-weight="700">4H</text>
+    <text x="46" y="276" text-anchor="end" fill="#2dd4bf" font-size="18" font-weight="700">1H</text>
+  </g>
+
+  <!-- ================= HORIZONTAL LOCKUP ================= -->
+  <g transform="translate(120,540)">
+    <!-- compact mark -->
+    <g transform="translate(0,0)">
+      <rect x="0" y="0" width="150" height="150" rx="30" fill="#0b0f14" stroke="#1f2937"/>
+      <g fill="none" stroke-width="9" stroke-linecap="round">
+        <path d="M28,45  C 78,45 82,75 105,75" stroke="url(#s1)"/>
+        <path d="M28,75  C 78,75 82,75 105,75" stroke="url(#s2)"/>
+        <path d="M28,105 C 78,105 82,75 105,75" stroke="url(#s3)"/>
+      </g>
+      <circle cx="105" cy="75" r="30" fill="url(#node)"/>
+      <path d="M105,75 C 122,75 126,52 138,34" fill="none" stroke="url(#up)" stroke-width="9" stroke-linecap="round"/>
+      <path d="M138,34 l -3,18 l 18,-6 z" fill="#4ade80"/>
+    </g>
+    <!-- wordmark -->
+    <text x="185" y="82" fill="url(#ink)" font-size="72" font-weight="800" letter-spacing="1">CONFLUENCE</text>
+    <text x="188" y="120" fill="#6b7280" font-size="21" letter-spacing="7">AUTONOMOUS TRADING ENGINE</text>
+    <text x="188" y="148" fill="#475569" font-size="17" letter-spacing="1">by Walkers Software LLC</text>
+  </g>
+
+  <!-- monochrome + tagline chips -->
+  <g transform="translate(870,545)">
+    <text x="0" y="0" fill="#6b7280" font-size="15" letter-spacing="3">WHERE SIGNALS AGREE</text>
+    <g transform="translate(0,20)">
+      <rect x="0" y="0" width="210" height="60" rx="14" fill="#0b0f14" stroke="#1f2937"/>
+      <g transform="translate(18,12)" fill="none" stroke="#e6edf3" stroke-width="5" stroke-linecap="round">
+        <path d="M4,10 C 26,10 28,24 40,24"/>
+        <path d="M4,24 C 26,24 28,24 40,24"/>
+        <path d="M4,38 C 26,38 28,24 40,24"/>
+        <circle cx="40" cy="24" r="7" fill="#e6edf3" stroke="none"/>
+        <path d="M40,24 C 52,24 54,12 62,4"/>
+      </g>
+      <text x="92" y="37" fill="#e6edf3" font-size="22" font-weight="800">CONFLUENCE</text>
+    </g>
+    <text x="0" y="120" fill="#475569" font-size="13">Mono / reversed — for favicons, embeds, dark UI</text>
+  </g>
+
+  <text x="600" y="800" text-anchor="middle" fill="#374151" font-size="14">© 2026 Andre Walker · Walkers Software LLC — proprietary &amp; confidential</text>
+</svg>
