@@ -253,7 +253,7 @@
 <rect class="bx" x="940" y="44" width="156" height="60" rx="8"/><text x="1018" y="70" text-anchor="middle" class="t">Earnings gate</text><text x="1018" y="88" text-anchor="middle" class="s">swing only</text>
 <line x1="560" y1="140" x2="560" y2="164" class="fw" marker-end="url(#g1)"/>
 <rect class="bxg" x="360" y="164" width="400" height="46" rx="9"/><text x="560" y="192" text-anchor="middle" class="t">Pass all → position sizing</text>
-<text x="24" y="250" class="lbl">Kill switch = drawdown / loss-streak circuit breaker; when engaged, nothing new opens (paper AND live) until manually cleared.</text>
+<text x="24" y="250" class="lbl">Kill switch = circuit breaker on EQUITY drawdown (cash + open positions — not cash alone, so deploying capital isn't mistaken for a loss) or a losing streak; when engaged, nothing new opens (paper AND live) until manually cleared.</text>
 <text x="24" y="270" class="lbl">Macro filter can also half-size or warn instead of block, depending on the event window.</text>
 </svg>
 </div>
@@ -299,22 +299,23 @@
 </div>
 
 <!-- MANAGE → scaling -->
-<div class="view" data-id="scaling" data-parent="overall" data-title="Scale-in / out &amp; take-profit" data-desc="Three per-tick gates: add on a winning pullback → bank half → exit by mode.">
+<div class="view" data-id="scaling" data-parent="overall" data-title="Scale-in / out &amp; take-profit" data-desc="Per-tick gates: add on a winning pullback (sized by confidence) → bank half → trail the remainder → exit by mode.">
 <svg viewBox="0 0 1120 560" xmlns="http://www.w3.org/2000/svg">
 <defs><marker id="sc" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#58a6ff"/></marker></defs>
 <text x="24" y="22" class="ph">P&amp;L ladder (premium %)</text>
 <line x1="60" y1="52" x2="60" y2="500" stroke="#30363d" stroke-width="2"/>
 <circle cx="60" cy="72" r="4" fill="#3fb950"/><text x="74" y="76" class="tick">Target (TP)</text>
 <circle cx="60" cy="140" r="4" fill="#3fb950"/><text x="74" y="144" class="tick">+60% → SCALE-OUT (sell half)</text>
+<circle cx="60" cy="185" r="4" fill="#d29922"/><text x="74" y="189" class="tick" style="fill:#d29922">post-scale-out TRAIL (≥30% off peak → close remainder)</text>
 <circle cx="60" cy="240" r="4" fill="#58a6ff"/><text x="74" y="244" class="tick">+20% → arm scale-in / runner</text>
 <circle cx="60" cy="340" r="4" fill="#8b949e"/><text x="74" y="344" class="tick">0% — entry</text>
 <circle cx="60" cy="470" r="4" fill="#f85149"/><text x="74" y="474" class="tick">−stop% → STOP-LOSS</text>
 <rect class="bxb" x="360" y="52" width="720" height="42" rx="9"/><text x="720" y="72" text-anchor="middle" class="t">Monitor loop — every ~30s: reprice, compute P&amp;L %, track running PEAK</text><text x="720" y="88" text-anchor="middle" class="s">gates below checked in order each tick</text>
-<rect class="bxb" x="360" y="108" width="720" height="88" rx="10"/><text x="376" y="130" class="ph">A · SCALE-IN (add on a pullback, once)</text><text x="376" y="150" class="s">IF enabled · not yet scaled-in · P&amp;L &gt; 0 · PEAK ≥ +20% · pulled back ≥ 5% from peak · cash available</text><rect class="bxg" x="376" y="160" width="330" height="28" rx="7"/><text x="386" y="179" class="s">→ buy +1 unit, average up</text><rect class="bxa" x="718" y="160" width="346" height="28" rx="7"/><text x="728" y="179" class="s">→ move STOP to original entry (breakeven)</text>
-<rect class="bxg" x="360" y="208" width="720" height="76" rx="10"/><text x="376" y="230" class="ph">B · SCALE-OUT (bank half at target, once)</text><text x="376" y="250" class="s">IF enabled · not yet scaled-out · P&amp;L ≥ +60%</text><rect class="bxg" x="376" y="258" width="330" height="22" rx="7"/><text x="386" y="274" class="s">→ sell half, realize partial profit</text><rect class="bx" x="718" y="258" width="346" height="22" rx="7"/><text x="728" y="274" class="s">→ if 0 left → fully closed, else let it run</text>
+<rect class="bxb" x="360" y="108" width="720" height="88" rx="10"/><text x="376" y="130" class="ph">A · SCALE-IN (add on a pullback, once)</text><text x="376" y="150" class="s">IF enabled · not yet scaled-in · confidence ≠ LOW · P&amp;L &gt; 0 · PEAK ≥ +20% · pulled back ≥ 5% · cash available</text><rect class="bxg" x="376" y="160" width="330" height="28" rx="7"/><text x="386" y="179" class="s">→ add by confidence: HIGH 1× base · MED 0.5× · LOW skip</text><rect class="bxa" x="718" y="160" width="346" height="28" rx="7"/><text x="728" y="179" class="s">→ move STOP to original entry (breakeven)</text>
+<rect class="bxg" x="360" y="208" width="720" height="76" rx="10"/><text x="376" y="230" class="ph">B · SCALE-OUT (bank half at target, once)</text><text x="376" y="250" class="s">IF enabled · not yet scaled-out · P&amp;L ≥ +60%</text><rect class="bxg" x="376" y="258" width="330" height="22" rx="7"/><text x="386" y="274" class="s">→ sell half, realize partial profit</text><rect class="bx" x="718" y="258" width="346" height="22" rx="7"/><text x="728" y="274" class="s">→ 0 left → closed; else TRAIL remainder (≥30% peak giveback)</text>
 <g class="clk" data-nav="exitmodes"><rect class="bxr" x="360" y="296" width="720" height="70" rx="10"/><text x="376" y="318" class="ph">C · EXIT / TAKE-PROFIT (by exit mode) ◆</text><text x="376" y="338" class="s">STANDARD (full TP / structure break) · QUICK (60% of TP) · RUNNER (trailing stop)</text><text x="376" y="356" class="s" style="fill:#f85149">always on: hard STOP · EOD force-close · overnight theta-lock</text></g>
 <line x1="720" y1="94" x2="720" y2="108" class="fw" marker-end="url(#sc)"/><line x1="720" y1="196" x2="720" y2="208" class="fw" marker-end="url(#sc)"/><line x1="720" y1="284" x2="720" y2="296" class="fw" marker-end="url(#sc)"/>
-<text x="360" y="400" class="lbl">Scale-in buys the dip in a winner (peak-then-pullback), not the high. Scale-out banks half at +60%; the remainder rides the exit rules with the stop at breakeven.</text>
+<text x="360" y="400" class="lbl">Scale-in adds by confidence (HIGH 1× / MED 0.5× base; LOW skipped). Scale-out banks half at +60%, then TRAILS the remainder — closing it if it gives back ≥30% of peak (any exit mode), so a scaled-out winner can't round-trip to breakeven.</text>
 </svg>
 </div>
 
@@ -324,7 +325,7 @@
 <rect class="bxg" x="24" y="34" width="1072" height="48" rx="9"/><text x="44" y="55" class="t">STANDARD</text><text x="140" y="55" class="s">take profit at the full target; else exit on a structure break (andre / orb higher-low or lower-high lost)</text><text x="140" y="73" class="s">— the default for most positions</text>
 <rect class="bxa" x="24" y="94" width="1072" height="44" rx="9"/><text x="44" y="113" class="t">QUICK</text><text x="140" y="113" class="s">take profit early at 60% of the configured target — for lower-conviction (LOW confidence) entries</text>
 <rect class="bxb" x="24" y="150" width="1072" height="60" rx="9"/><text x="44" y="171" class="t">RUNNER</text><text x="140" y="171" class="s">no fixed take-profit; a trailing stop arms once the position reaches +20% (runner_min_pct)</text><text x="140" y="189" class="s">and closes if it gives back 30% of its PEAK gain — lets HIGH-confidence winners run</text>
-<rect class="bxr" x="24" y="222" width="1072" height="60" rx="9"/><text x="44" y="243" class="t" style="fill:#f85149">ALWAYS ON (any mode)</text><text x="260" y="243" class="s">hard STOP at −stop% · EOD force-close (scalps, ~15:55 ET)</text><text x="260" y="261" class="s">· overnight theta-lock (profitable option that would bleed ≥15% of premium held overnight)</text>
+<rect class="bxr" x="24" y="222" width="1072" height="80" rx="9"/><text x="44" y="243" class="t" style="fill:#f85149">ALWAYS ON (any mode)</text><text x="260" y="243" class="s">hard STOP at −stop% · EOD force-close (scalps, ~15:55 ET)</text><text x="260" y="261" class="s">· overnight theta-lock (profitable option that would bleed ≥15% of premium held overnight)</text><text x="260" y="279" class="s" style="fill:#d29922">· post-scale-out trail — once half is banked, close the remainder on ≥30% giveback of peak</text>
 <text x="24" y="312" class="lbl">Exit mode is chosen at signal time from the ML confidence (RUNNER ≥65% · QUICK &lt;60% · else STANDARD).</text>
 </svg>
 </div>
@@ -339,7 +340,7 @@
 <rect class="bx" x="716" y="44" width="180" height="56" rx="8"/><text x="806" y="68" text-anchor="middle" class="t">Discord alert</text><text x="806" y="86" text-anchor="middle" class="s">send_trade_closed</text>
 <rect class="bxg" x="920" y="44" width="176" height="56" rx="8"/><text x="1008" y="68" text-anchor="middle" class="t">Live SELL</text><text x="1008" y="86" text-anchor="middle" class="s">if it was live</text>
 <line x1="224" y1="72" x2="246" y2="72" class="fw" marker-end="url(#cl)"/><line x1="458" y1="72" x2="480" y2="72" class="fw" marker-end="url(#cl)"/><line x1="692" y1="72" x2="714" y2="72" class="fw" marker-end="url(#cl)"/><line x1="896" y1="72" x2="918" y2="72" class="fw" marker-end="url(#cl)"/>
-<rect class="bxr" x="330" y="150" width="460" height="56" rx="9"/><text x="560" y="174" text-anchor="middle" class="t">Circuit-breaker check</text><text x="560" y="192" text-anchor="middle" class="s">drawdown ≥ threshold OR N losing trades → engage kill switch → halt new entries</text>
+<rect class="bxr" x="330" y="150" width="460" height="56" rx="9"/><text x="560" y="174" text-anchor="middle" class="t">Circuit-breaker check</text><text x="560" y="192" text-anchor="middle" class="s">EQUITY drawdown ≥ threshold (cash + open positions) OR N consecutive losses → kill switch → halt</text>
 <line x1="353" y1="100" x2="480" y2="148" class="fw" marker-end="url(#cl)"/>
 <text x="24" y="250" class="lbl">Recorded trades feed the nightly Kelly sizing recommendation and the model's prediction log (self-tuning accuracy).</text>
 </svg>
