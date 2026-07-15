@@ -7,6 +7,10 @@
 <meta name="copyright" content="© 2026 Andre Walker · Walkers Software LLC. All rights reserved.">
 <!-- © 2026 Andre Walker · Walkers Software LLC. All rights reserved. Proprietary and confidential. -->
 <title>Confluence — Interactive Architecture Explorer</title>
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="apple-touch-icon" href="confluence_avatar.png">
+<meta name="theme-color" content="#0d1117">
+<meta name="mobile-web-app-capable" content="yes">
 <style>
  :root{--bg:#0d1117;--card:#161b22;--border:#30363d;--tx:#e6edf3;--mut:#8b949e;--dim:#484f58;--blue:#58a6ff;--green:#3fb950;--red:#f85149;--amber:#d29922;--purple:#bc8cff;}
  *{box-sizing:border-box;} html,body{margin:0;height:100%;}
@@ -50,6 +54,33 @@
  .copyr{margin-left:auto;color:#6e7681;font-size:11px;white-space:nowrap;}
  footer.legal{padding:9px 20px;border-top:1px solid var(--border);color:#57606a;font-size:11px;text-align:center;flex-shrink:0;}
  footer.legal b{color:#8b949e;font-weight:600;}
+ /* mobile drawer + hamburger (hidden on desktop) */
+ .menuBtn{display:none;background:#21262d;border:1px solid var(--border);color:#c9d1d9;font-size:17px;line-height:1;padding:6px 12px;border-radius:6px;cursor:pointer;}
+ .scrim{position:fixed;inset:0;background:rgba(1,4,9,.62);z-index:40;opacity:0;pointer-events:none;transition:opacity .2s;}
+ .scrim.on{opacity:1;pointer-events:auto;}
+ .mobtip{display:none;}
+ @media (max-width:820px){
+   header{padding:10px 14px;gap:8px;}
+   header h1{font-size:15px;}
+   header h1 span:last-child{display:none;}   /* drop "— Architecture Explorer" on phones */
+   header .hint{display:none;}
+   header .copyr{display:none;}
+   .side{position:fixed;top:0;left:0;bottom:0;width:82vw;max-width:300px;z-index:50;
+         transform:translateX(-100%);transition:transform .22s ease;box-shadow:2px 0 20px rgba(0,0,0,.55);padding-top:14px;}
+   .side.open{transform:none;}
+   .side .grp:first-child{margin-top:2px;}
+   .main{padding:12px 12px 52px;}
+   .menuBtn{display:inline-block;}
+   .mobtip{display:block;color:var(--dim);font-size:11px;margin:0 0 10px;line-height:1.5;}
+   .canvas{padding:10px;}
+   svg{min-width:860px;}          /* keep dense diagram text legible — pan sideways */
+   h2{font-size:16px;} .desc{font-size:12px;}
+   .bar{gap:6px;}
+   .btn{padding:8px 13px;}        /* larger tap targets */
+   .side a{padding:10px 10px;font-size:13px;}
+   .drillnote{font-size:12px;line-height:1.9;}
+ }
+ @media (max-width:420px){ svg{min-width:720px;} }
 </style>
 </head>
 <body>
@@ -81,13 +112,16 @@
   <nav class="side" id="side"></nav>
   <div class="main">
     <div class="bar">
+      <button class="menuBtn" id="menuBtn" onclick="toggleSide()" aria-label="Open menu">☰</button>
       <button class="btn" id="backBtn" onclick="goBack()">↑ Back</button>
       <button class="btn" onclick="nav('overall')">⌂ Home</button>
       <span class="crumbs" id="crumbs"></span>
     </div>
+    <div class="mobtip">Swipe a diagram sideways to pan · pinch to zoom · tap ☰ for the map · tap any ◆ box to dig in.</div>
     <div id="stage"></div>
   </div>
 </div>
+<div class="scrim" id="scrim" onclick="closeSide()"></div>
 
 <!-- ================= VIEWS ================= -->
 <div id="views" style="display:none">
@@ -405,8 +439,15 @@
   }
   window.nav = id => render(id, true);
   window.goBack = ()=>{ if(histStack.length){ render(histStack.pop(), false); } else if(META[current].parent){ render(META[current].parent, false); } };
-  // delegated clicks
-  document.addEventListener('click', e=>{ const el = e.target.closest('[data-nav]'); if(el){ e.preventDefault(); render(el.dataset.nav, true); } });
+  // mobile drawer
+  const scrim = document.getElementById('scrim');
+  window.toggleSide = ()=>{ const open = !side.classList.contains('open'); side.classList.toggle('open', open); scrim.classList.toggle('on', open); };
+  window.closeSide  = ()=>{ side.classList.remove('open'); scrim.classList.remove('on'); };
+  // delegated clicks — navigate, then collapse the drawer (no-op on desktop)
+  document.addEventListener('click', e=>{ const el = e.target.closest('[data-nav]'); if(el){ e.preventDefault(); render(el.dataset.nav, true); closeSide(); } });
+  // close drawer on Escape / when rotating to a wide viewport
+  document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeSide(); });
+  window.addEventListener('resize', ()=>{ if(window.innerWidth>820) closeSide(); });
   render('overall', false);
 })();
 </script>
