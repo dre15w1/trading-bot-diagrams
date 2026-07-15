@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trading Bot — Architecture Diagrams</title>
+<style>
+  :root{
+    --bg:#0d1117; --card:#161b22; --border:#30363d; --line:#21262d;
+    --tx:#e6edf3; --mut:#8b949e; --dim:#484f58;
+    --blue:#58a6ff; --green:#3fb950; --red:#f85149; --amber:#d29922; --purple:#bc8cff;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--tx);font-family:'Segoe UI',system-ui,sans-serif;}
+  header{padding:26px 32px 10px;border-bottom:1px solid var(--border);}
+  header h1{margin:0;font-size:22px;font-weight:800;}
+  header p{margin:6px 0 0;color:var(--mut);font-size:13px;}
+  .toc{display:flex;gap:8px;flex-wrap:wrap;padding:14px 32px;border-bottom:1px solid var(--border);}
+  .toc a{color:var(--blue);text-decoration:none;font-size:12px;border:1px solid var(--border);border-radius:6px;padding:5px 12px;}
+  .toc a:hover{background:var(--card);}
+  section{padding:26px 32px 8px;}
+  h2{font-size:17px;font-weight:700;margin:0 0 2px;}
+  .sub{color:var(--mut);font-size:13px;margin:0 0 14px;}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;overflow-x:auto;}
+  svg{display:block;width:100%;height:auto;min-width:820px;}
+  .foot{color:var(--dim);font-size:11px;padding:18px 32px 40px;}
+  /* SVG element classes */
+  .bx{fill:#0d1117;stroke:#30363d;stroke-width:1.2;}
+  .bxb{fill:#0d1117;stroke:#1f6feb;stroke-width:1.4;}
+  .bxg{fill:#0d1117;stroke:#238636;stroke-width:1.4;}
+  .bxr{fill:#0d1117;stroke:#6e2f2f;stroke-width:1.4;}
+  .bxa{fill:#0d1117;stroke:#9e7b1f;stroke-width:1.4;}
+  .bxp{fill:#0d1117;stroke:#6f42c1;stroke-width:1.4;}
+  .band{fill:#12161c;stroke:#21262d;stroke-width:1;}
+  .t{fill:#e6edf3;font-size:12.5px;font-weight:700;font-family:'Segoe UI',sans-serif;}
+  .s{fill:#8b949e;font-size:9.6px;font-family:'Segoe UI',sans-serif;}
+  .ph{fill:#58a6ff;font-size:12px;font-weight:700;font-family:'Segoe UI',sans-serif;}
+  .rej{fill:#f85149;font-size:9px;font-weight:600;font-family:'Segoe UI',sans-serif;}
+  .fw{stroke:#58a6ff;stroke-width:2;fill:none;}
+  .fg{stroke:#3fb950;stroke-width:2;fill:none;}
+  .fa{stroke:#d29922;stroke-width:2;fill:none;}
+  .fb{stroke:#58a6ff;stroke-width:1.6;fill:none;stroke-dasharray:5 4;}
+  .lbl{fill:#8b949e;font-size:10px;font-family:'Segoe UI',sans-serif;}
+</style>
+</head>
+<body>
+<header>
+  <h1>Trading Bot — Architecture Diagrams</h1>
+  <p>Five views of the system, from the full lifecycle down to individual subsystems. Grounded in the live code.</p>
+</header>
+<div class="toc">
+  <a href="#overall">1 · Overall process</a>
+  <a href="#strategies">2 · Strategies</a>
+  <a href="#ai">3 · AI confidence score</a>
+  <a href="#brokers">4 · Order routing to brokers</a>
+  <a href="#retrain">5 · Nightly retrain</a>
+  <a href="#scaling">6 · Scale-in / out &amp; take-profit</a>
+  <a href="#candidates">7 · Picking new candidates</a>
+</div>
+
+<!-- ================= 1 · OVERALL ================= -->
+<section id="overall">
+  <h2>1 · Overall process</h2>
+  <p class="sub">The trading loop: find a candidate, generate a signal, gate it, size and route it, manage the position, close it, and feed the result back into the nightly retrain.</p>
+  <div class="card">
+  <svg viewBox="0 0 1120 470" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Overall trading process">
+    <defs>
+      <marker id="a1" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#58a6ff"/></marker>
+      <marker id="a1r" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#f85149"/></marker>
+      <marker id="a1b" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#58a6ff"/></marker>
+    </defs>
+    <!-- row 1 -->
+    <rect class="bx" x="24" y="30" width="200" height="66" rx="9"/><text x="124" y="58" text-anchor="middle" class="t">① Find</text><text x="124" y="76" text-anchor="middle" class="s">scan 74-symbol watchlist</text>
+    <rect class="bxb" x="256" y="30" width="200" height="66" rx="9"/><text x="356" y="53" text-anchor="middle" class="t">② Strategy signal</text><text x="356" y="70" text-anchor="middle" class="s">Andre MTF (L1–L4)</text><text x="356" y="84" text-anchor="middle" class="s">R:R ≥ 2:1 hard gate</text>
+    <rect class="bxp" x="488" y="30" width="200" height="66" rx="9"/><text x="588" y="53" text-anchor="middle" class="t">③ AI confirm</text><text x="588" y="70" text-anchor="middle" class="s">GBM model agrees /</text><text x="588" y="84" text-anchor="middle" class="s">vetoes the setup</text>
+    <rect class="bxa" x="720" y="30" width="200" height="66" rx="9"/><text x="820" y="53" text-anchor="middle" class="t">④ Pre-entry gates</text><text x="820" y="70" text-anchor="middle" class="s">kill switch · macro ·</text><text x="820" y="84" text-anchor="middle" class="s">earnings · spread · caps</text>
+    <line x1="224" y1="63" x2="254" y2="63" class="fw" marker-end="url(#a1)"/>
+    <line x1="456" y1="63" x2="486" y2="63" class="fw" marker-end="url(#a1)"/>
+    <line x1="688" y1="63" x2="718" y2="63" class="fw" marker-end="url(#a1)"/>
+    <text x="952" y="60" class="rej">fail →</text><text x="952" y="74" class="rej">skip</text>
+    <!-- down -->
+    <path d="M820,96 L820,120 L124,120 L124,144" class="fw" marker-end="url(#a1)"/>
+    <!-- row 2 -->
+    <rect class="bxg" x="24" y="146" width="200" height="66" rx="9"/><text x="124" y="169" text-anchor="middle" class="t">⑤ Enter &amp; size</text><text x="124" y="186" text-anchor="middle" class="s">Kelly / dynamic size</text><text x="124" y="200" text-anchor="middle" class="s">paper + (live if routed)</text>
+    <rect class="bxg" x="256" y="146" width="200" height="66" rx="9"/><text x="356" y="169" text-anchor="middle" class="t">⑥ Route order</text><text x="356" y="186" text-anchor="middle" class="s">Schwab live acct(s)</text><text x="356" y="200" text-anchor="middle" class="s">+ audit log</text>
+    <rect class="bx" x="488" y="146" width="200" height="66" rx="9"/><text x="588" y="169" text-anchor="middle" class="t">⑦ Manage</text><text x="588" y="186" text-anchor="middle" class="s">monitor · scale-in/out</text><text x="588" y="200" text-anchor="middle" class="s">TP / stop / trail / EOD</text>
+    <rect class="bx" x="720" y="146" width="200" height="66" rx="9"/><text x="820" y="169" text-anchor="middle" class="t">⑧ Close</text><text x="820" y="186" text-anchor="middle" class="s">realize P&amp;L · Discord</text><text x="820" y="200" text-anchor="middle" class="s">circuit-breaker check</text>
+    <line x1="224" y1="179" x2="254" y2="179" class="fg" marker-end="url(#a1)"/>
+    <line x1="456" y1="179" x2="486" y2="179" class="fg" marker-end="url(#a1)"/>
+    <line x1="688" y1="179" x2="718" y2="179" class="fw" marker-end="url(#a1)"/>
+    <!-- to retrain -->
+    <path d="M820,212 L820,250 L570,250 L570,286" class="fw" marker-end="url(#a1)"/>
+    <!-- retrain band -->
+    <rect class="band" x="120" y="288" width="900" height="86" rx="10"/>
+    <text x="140" y="310" class="ph">⑨ Nightly retrain — 17:00 ET (swap → train)</text>
+    <rect class="bx" x="140" y="320" width="200" height="42" rx="8"/><text x="240" y="345" text-anchor="middle" class="s">watchlist swaps + score</text>
+    <rect class="bx" x="360" y="320" width="220" height="42" rx="8"/><text x="470" y="345" text-anchor="middle" class="s">train GBM on 74 + contention</text>
+    <rect class="bx" x="600" y="320" width="200" height="42" rx="8"/><text x="700" y="345" text-anchor="middle" class="s">Kelly + ATR recs</text>
+    <rect class="bx" x="820" y="320" width="180" height="42" rx="8"/><text x="910" y="345" text-anchor="middle" class="s">publish models</text>
+    <line x1="340" y1="341" x2="358" y2="341" class="fw" marker-end="url(#a1)"/>
+    <line x1="580" y1="341" x2="598" y2="341" class="fw" marker-end="url(#a1)"/>
+    <line x1="800" y1="341" x2="818" y2="341" class="fw" marker-end="url(#a1)"/>
+    <!-- feedback loop -->
+    <path d="M120,331 L60,331 L60,63 L22,63" class="fb" marker-end="url(#a1b)"/>
+    <text x="70" y="200" class="lbl" transform="rotate(-90 70 200)">fresh models feed tomorrow's signals</text>
+  </svg>
+  </div>
+</section>
+
+<!-- ================= 2 · STRATEGIES ================= -->
+<section id="strategies">
+  <h2>2 · Strategies</h2>
+  <p class="sub">Andre's multi-timeframe strategy is the live signal engine. Others exist as backtested/optional engines. Every signal is then checked by the AI confirm layer.</p>
+  <div class="card">
+  <svg viewBox="0 0 1120 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Strategies">
+    <defs><marker id="a2" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#58a6ff"/></marker>
+    <marker id="a2r" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#f85149"/></marker></defs>
+    <!-- LEFT: Andre layers -->
+    <text x="24" y="24" class="ph">Andre's Strategy — analyze_ticker_mtf() (LIVE)</text>
+    <rect class="bxr" x="24" y="36" width="470" height="52" rx="8"/><text x="40" y="58" class="t">L1 · Bias alignment</text><text x="40" y="76" class="s">1H+4H (scalp) / Daily+4H (swing) must agree — else skip</text>
+    <rect class="bx" x="24" y="96" width="470" height="52" rx="8"/><text x="40" y="118" class="t">L2 · Setup at key level</text><text x="40" y="136" class="s">price at a 1H or 4H swing S/R zone</text>
+    <rect class="bxr" x="24" y="156" width="470" height="52" rx="8"/><text x="40" y="178" class="t">L3 · Confirm (hard gate)</text><text x="40" y="196" class="s">recent CHoCH / BOS on the confirm timeframe</text>
+    <rect class="bx" x="24" y="216" width="470" height="52" rx="8"/><text x="40" y="238" class="t">L4 · Entry trigger</text><text x="40" y="256" class="s">ORB retest (scalp) / pullback-resume (swing)</text>
+    <rect class="bxr" x="24" y="276" width="470" height="52" rx="8"/><text x="40" y="298" class="t">Risk gates</text><text x="40" y="316" class="s">R:R ≥ 2:1 · stop ≥ 15% (not inside spread) · EMA aligned</text>
+    <rect class="bxb" x="24" y="336" width="470" height="52" rx="8"/><text x="40" y="358" class="t">Score /6 → confidence &amp; size</text><text x="40" y="376" class="s">bias · level · confirm · entry · EMA · VWAP → HIGH/MED/LOW</text>
+    <line x1="259" y1="88" x2="259" y2="96" class="fw" marker-end="url(#a2)"/>
+    <line x1="259" y1="148" x2="259" y2="156" class="fw" marker-end="url(#a2)"/>
+    <line x1="259" y1="208" x2="259" y2="216" class="fw" marker-end="url(#a2)"/>
+    <line x1="259" y1="268" x2="259" y2="276" class="fw" marker-end="url(#a2)"/>
+    <line x1="259" y1="328" x2="259" y2="336" class="fw" marker-end="url(#a2)"/>
+    <!-- RIGHT: roster + confirm -->
+    <text x="540" y="24" class="ph">Strategy roster</text>
+    <rect class="bxg" x="540" y="36" width="250" height="40" rx="8"/><text x="556" y="61" class="t" style="font-size:11.5px">Andre MTF · LIVE (signal_strategy)</text>
+    <rect class="bx" x="800" y="36" width="296" height="40" rx="8"/><text x="816" y="61" class="s">Crypto RSI/vol — live (ETH/BTC)</text>
+    <rect class="bx" x="540" y="84" width="556" height="40" rx="8"/><text x="556" y="109" class="s">ORB · Mean-Reversion 0DTE · LuxAlgo SMC · Wyckoff · Price-Action · Strict — backtested / optional</text>
+    <rect class="bx" x="540" y="132" width="556" height="40" rx="8"/><text x="556" y="157" class="s">AI-adaptive (GBM) — used as the confirm/veto brain (see diagram 3)</text>
+    <text x="540" y="196" class="ph">Every fired signal →</text>
+    <rect class="bxp" x="540" y="208" width="556" height="60" rx="9"/><text x="818" y="232" text-anchor="middle" class="t">AI confirm layer</text><text x="818" y="250" text-anchor="middle" class="s">GBM agrees → pass · disagrees w/ conf ≥ veto → block</text>
+    <line x1="494" y1="362" x2="538" y2="238" class="fw" marker-end="url(#a2)"/>
+    <rect class="bxg" x="620" y="300" width="396" height="52" rx="9"/><text x="818" y="324" text-anchor="middle" class="t">→ to pre-entry gates &amp; sizing</text><text x="818" y="342" text-anchor="middle" class="s">only signals that pass every gate reach the broker</text>
+    <line x1="818" y1="268" x2="818" y2="300" class="fw" marker-end="url(#a2)"/>
+    <text x="540" y="392" class="s">Note: earnings gate is swing-only; scalps are intraday and force-closed by EOD.</text>
+    <text x="540" y="410" class="s">A scalp can be PROMOTED to a swing at EOD if structure holds, bias agrees, and R:R from the current stop ≥ 2:1.</text>
+    <text x="540" y="428" class="s">Overnight theta-lock closes a profitable option if it would bleed ≥ 15% of premium held overnight.</text>
+  </svg>
+  </div>
+</section>
+
+<!-- ================= 3 · AI CONFIDENCE ================= -->
+<section id="ai">
+  <h2>3 · How the AI confidence score is calculated</h2>
+  <p class="sub">A per-symbol Gradient Boosting model turns ~46 engineered features into a bull/bear probability, which becomes the confidence label, size, and exit style.</p>
+  <div class="card">
+  <svg viewBox="0 0 1120 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="AI confidence score">
+    <defs><marker id="a3" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#bc8cff"/></marker>
+    <marker id="a3b" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#58a6ff"/></marker></defs>
+    <!-- feature groups -->
+    <text x="24" y="24" class="ph">Feature groups (~46)</text>
+    <rect class="bx" x="24" y="34" width="250" height="46" rx="8"/><text x="40" y="55" class="t" style="font-size:11.5px">24 core technicals</text><text x="40" y="71" class="s">returns, EMAs, RSI, MACD, Boll, ATR</text>
+    <rect class="bx" x="24" y="88" width="250" height="46" rx="8"/><text x="40" y="109" class="t" style="font-size:11.5px">4 calendar</text><text x="40" y="125" class="s">day/month cycles (free from index)</text>
+    <rect class="bx" x="24" y="142" width="250" height="46" rx="8"/><text x="40" y="163" class="t" style="font-size:11.5px">8 extended technical</text><text x="40" y="179" class="s">volatility, structure, volume shape</text>
+    <rect class="bx" x="24" y="196" width="250" height="46" rx="8"/><text x="40" y="217" class="t" style="font-size:11.5px">9 external context</text><text x="40" y="233" class="s">VIX, SPY regime, days-to-earnings</text>
+    <rect class="bx" x="24" y="250" width="250" height="46" rx="8"/><text x="40" y="271" class="t" style="font-size:11.5px">5 L2 order-book *</text><text x="40" y="287" class="s">real-time only (imputed in training)</text>
+    <!-- model -->
+    <rect class="bxp" x="330" y="120" width="220" height="120" rx="10"/><text x="440" y="160" text-anchor="middle" class="t">GradientBoosting</text><text x="440" y="178" text-anchor="middle" class="t">Classifier</text><text x="440" y="200" text-anchor="middle" class="s">per symbol · recency-weighted</text><text x="440" y="216" text-anchor="middle" class="s">newest bars weigh ~12× more</text>
+    <path d="M274,57 L300,57 L300,150 L328,150" class="fb" marker-end="url(#a3)"/>
+    <path d="M274,111 L300,111 L300,165 L328,165" class="fb" marker-end="url(#a3)"/>
+    <line x1="274" y1="165" x2="328" y2="172" class="fb" marker-end="url(#a3)"/>
+    <path d="M274,219 L300,219 L300,185 L328,185" class="fb" marker-end="url(#a3)"/>
+    <path d="M274,273 L300,273 L300,200 L328,200" class="fb" marker-end="url(#a3)"/>
+    <!-- proba -->
+    <rect class="bx" x="590" y="140" width="200" height="80" rx="9"/><text x="690" y="168" text-anchor="middle" class="t">predict_proba</text><text x="690" y="188" text-anchor="middle" class="s">bull vs bear probability</text><text x="690" y="204" text-anchor="middle" class="s">confidence = max class %</text>
+    <line x1="550" y1="180" x2="588" y2="180" class="fw" marker-end="url(#a3b)" style="stroke:#bc8cff"/>
+    <!-- thresholds -->
+    <text x="830" y="128" class="ph">Thresholds</text>
+    <rect class="bxr" x="830" y="138" width="266" height="34" rx="7"/><text x="846" y="160" class="s">&lt; 55% → LOW → no signal (self-tuning ↑ if accuracy drops)</text>
+    <rect class="bxa" x="830" y="178" width="266" height="34" rx="7"/><text x="846" y="200" class="s">55–65% → MEDIUM</text>
+    <rect class="bxg" x="830" y="218" width="266" height="34" rx="7"/><text x="846" y="240" class="s">≥ 65% → HIGH</text>
+    <line x1="790" y1="180" x2="828" y2="180" class="fw" marker-end="url(#a3b)"/>
+    <!-- outputs -->
+    <text x="330" y="300" class="ph">The confidence then drives:</text>
+    <rect class="bx" x="330" y="312" width="250" height="52" rx="8"/><text x="346" y="334" class="t" style="font-size:11.5px">Size multiplier</text><text x="346" y="352" class="s">55%→1×…65%+→up (frozen 1× pending calibration)</text>
+    <rect class="bx" x="596" y="312" width="250" height="52" rx="8"/><text x="612" y="334" class="t" style="font-size:11.5px">Exit mode</text><text x="612" y="352" class="s">RUNNER ≥65% · STANDARD · QUICK &lt;60%</text>
+    <rect class="bxp" x="862" y="312" width="234" height="52" rx="8"/><text x="878" y="334" class="t" style="font-size:11.5px">L2 wall upgrade</text><text x="878" y="352" class="s">bid/ask wall can bump MED→HIGH</text>
+    <line x1="690" y1="252" x2="690" y2="310" class="fw" marker-end="url(#a3b)"/>
+    <rect class="bxp" x="330" y="386" width="766" height="46" rx="9"/><text x="713" y="414" text-anchor="middle" class="t">Confidence + direction → the signal the AI-confirm layer uses to pass or veto a strategy setup</text>
+    <text x="24" y="470" class="s">* L2 features exist only at inference; during training they're imputed to a neutral value. Every prediction is logged for the self-tuning accuracy tracker.</text>
+  </svg>
+  </div>
+</section>
+
+<!-- ================= 4 · BROKERS ================= -->
+<section id="brokers">
+  <h2>4 · Order routing to the brokers</h2>
+  <p class="sub">Market data has a broker toggle; execution is always Schwab. Every signal opens a paper position, and (if routed live) real orders on each linked Schwab account, sized independently.</p>
+  <div class="card">
+  <svg viewBox="0 0 1120 470" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Broker routing">
+    <defs><marker id="a4" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#58a6ff"/></marker>
+    <marker id="a4g" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#3fb950"/></marker></defs>
+    <!-- data path -->
+    <text x="24" y="24" class="ph">Market data (broker_router — live toggle)</text>
+    <rect class="bx" x="24" y="34" width="220" height="52" rx="8"/><text x="134" y="56" text-anchor="middle" class="t">broker toggle</text><text x="134" y="74" text-anchor="middle" class="s">schwab ↔ robinhood</text>
+    <rect class="bx" x="286" y="34" width="200" height="52" rx="8"/><text x="386" y="56" text-anchor="middle" class="t">quotes · bars</text><text x="386" y="74" text-anchor="middle" class="s">route to selected data src</text>
+    <line x1="244" y1="60" x2="284" y2="60" class="fw" marker-end="url(#a4)"/>
+    <text x="516" y="64" class="s">(data only — never affects execution)</text>
+    <!-- signal to open -->
+    <rect class="bxb" x="24" y="120" width="240" height="56" rx="9"/><text x="144" y="144" text-anchor="middle" class="t">Approved signal</text><text x="144" y="162" text-anchor="middle" class="s">passed all gates + AI confirm</text>
+    <!-- paper -->
+    <rect class="bx" x="330" y="104" width="240" height="44" rx="8"/><text x="450" y="131" text-anchor="middle" class="t">paper_open()  ·  always</text>
+    <!-- live gate -->
+    <rect class="bxa" x="330" y="164" width="240" height="44" rx="8"/><text x="450" y="185" text-anchor="middle" class="t">live routed?</text><text x="450" y="200" text-anchor="middle" class="s">live_route_options / _stocks</text>
+    <line x1="264" y1="140" x2="328" y2="126" class="fw" marker-end="url(#a4)"/>
+    <line x1="264" y1="150" x2="328" y2="186" class="fa" marker-end="url(#a4)" style="stroke:#d29922"/>
+    <!-- execution = schwab -->
+    <rect class="bxg" x="630" y="120" width="180" height="56" rx="9"/><text x="720" y="144" text-anchor="middle" class="t">Schwab (execution)</text><text x="720" y="162" text-anchor="middle" class="s">always — never robinhood</text>
+    <line x1="570" y1="186" x2="628" y2="150" class="fg" marker-end="url(#a4g)"/>
+    <!-- accounts -->
+    <rect class="bxg" x="860" y="86" width="236" height="60" rx="9"/><text x="978" y="110" text-anchor="middle" class="t">Cash account</text><text x="978" y="128" text-anchor="middle" class="s">sized to SETTLED cash</text>
+    <rect class="bx" x="860" y="158" width="236" height="60" rx="9"/><text x="978" y="182" text-anchor="middle" class="t">Margin account</text><text x="978" y="200" text-anchor="middle" class="s">sized to buying power</text>
+    <line x1="810" y1="140" x2="858" y2="116" class="fg" marker-end="url(#a4g)"/>
+    <line x1="810" y1="150" x2="858" y2="188" class="fg" marker-end="url(#a4g)"/>
+    <!-- audit + close -->
+    <rect class="bx" x="330" y="250" width="480" height="52" rx="9"/><text x="570" y="272" text-anchor="middle" class="t">Every live request → live_orders.jsonl audit log</text><text x="570" y="290" text-anchor="middle" class="s">open (BUY) · cancel · modify · close (SELL_TO_CLOSE)</text>
+    <line x1="720" y1="176" x2="720" y2="248" class="fg" marker-end="url(#a4g)"/>
+    <rect class="bxr" x="860" y="250" width="236" height="52" rx="9"/><text x="978" y="272" text-anchor="middle" class="t">Live close path</text><text x="978" y="290" text-anchor="middle" class="s">real SELL on every exit trigger</text>
+    <line x1="810" y1="276" x2="858" y2="276" class="fw" marker-end="url(#a4)"/>
+    <text x="24" y="350" class="s">Sizing on a CASH account uses cashAvailableForWithdrawal (settled) — unsettled same-day sale proceeds can't be spent, and restore on T+1 settlement.</text>
+    <text x="24" y="370" class="s">Kill switch (drawdown / loss-streak circuit breaker) blocks ALL new entries — paper and live — until manually cleared.</text>
+  </svg>
+  </div>
+</section>
+
+<!-- ================= 5 · RETRAIN ================= -->
+<section id="retrain">
+  <h2>5 · Nightly retrain</h2>
+  <p class="sub">At ~17:00 ET the manager swaps the watchlist first, then the trainer builds a fresh model per symbol across the full universe plus swap-contention candidates.</p>
+  <div class="card">
+  <svg viewBox="0 0 1120 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Nightly retrain">
+    <defs><marker id="a5" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#58a6ff"/></marker>
+    <marker id="a5b" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#58a6ff"/></marker></defs>
+    <!-- step 1 swap -->
+    <text x="24" y="24" class="ph">Step 1 — Watchlist manager (SWAP BEFORE TRAIN)</text>
+    <rect class="bx" x="24" y="34" width="210" height="58" rx="8"/><text x="129" y="58" text-anchor="middle" class="t">Score members</text><text x="129" y="76" text-anchor="middle" class="s">+ ~540 candidate pool</text>
+    <rect class="bx" x="256" y="34" width="210" height="58" rx="8"/><text x="361" y="58" text-anchor="middle" class="t">Decide swaps</text><text x="361" y="76" text-anchor="middle" class="s">beat weakest +15% × 3 nights</text>
+    <rect class="bx" x="488" y="34" width="210" height="58" rx="8"/><text x="593" y="58" text-anchor="middle" class="t">Update list + streaks</text><text x="593" y="76" text-anchor="middle" class="s">contention = streak &gt; 0</text>
+    <line x1="234" y1="63" x2="254" y2="63" class="fw" marker-end="url(#a5)"/>
+    <line x1="466" y1="63" x2="486" y2="63" class="fw" marker-end="url(#a5)"/>
+    <!-- step 2 universe -->
+    <text x="24" y="132" class="ph">Step 2 — Build training universe</text>
+    <rect class="bxb" x="24" y="142" width="674" height="52" rx="9"/><text x="361" y="164" text-anchor="middle" class="t">config.WATCHLIST (74, incl. manual adds) ∪ dynamic active ∪ contention candidates ∪ core</text><text x="361" y="182" text-anchor="middle" class="s">so a swapped-in or manually-added symbol already has a model — no 24-hour blind spot</text>
+    <line x1="361" y1="92" x2="361" y2="142" class="fw" marker-end="url(#a5)"/>
+    <!-- step 3 train -->
+    <text x="24" y="228" class="ph">Step 3 — Train per symbol</text>
+    <rect class="bxp" x="24" y="238" width="210" height="58" rx="8"/><text x="129" y="262" text-anchor="middle" class="t">Fetch bars + context</text><text x="129" y="280" text-anchor="middle" class="s">730 days · VIX/SPY once</text>
+    <rect class="bxp" x="256" y="238" width="210" height="58" rx="8"/><text x="361" y="262" text-anchor="middle" class="t">Train GBM</text><text x="361" y="280" text-anchor="middle" class="s">features + recency weight</text>
+    <rect class="bx" x="488" y="238" width="210" height="58" rx="8"/><text x="593" y="262" text-anchor="middle" class="t">Kelly + ATR recs</text><text x="593" y="280" text-anchor="middle" class="s">sizing &amp; stop tuning</text>
+    <line x1="234" y1="267" x2="254" y2="267" class="fw" marker-end="url(#a5)"/>
+    <line x1="466" y1="267" x2="486" y2="267" class="fw" marker-end="url(#a5)"/>
+    <line x1="361" y1="194" x2="361" y2="238" class="fw" marker-end="url(#a5)"/>
+    <!-- publish -->
+    <rect class="bxg" x="760" y="140" width="336" height="158" rx="10"/><text x="928" y="168" text-anchor="middle" class="t">Publish</text>
+    <rect class="bx" x="782" y="184" width="292" height="34" rx="7"/><text x="928" y="206" text-anchor="middle" class="s">per-symbol models → ai_models/</text>
+    <rect class="bx" x="782" y="224" width="292" height="34" rx="7"/><text x="928" y="246" text-anchor="middle" class="s">Kelly risk % + ATR stops → config</text>
+    <rect class="bx" x="782" y="264" width="292" height="26" rx="7"/><text x="928" y="282" text-anchor="middle" class="s">updated watchlist</text>
+    <line x1="698" y1="267" x2="758" y2="240" class="fw" marker-end="url(#a5)"/>
+    <!-- feedback -->
+    <path d="M928,298 L928,340 L361,340 L361,318" class="fb" marker-end="url(#a5b)"/>
+    <text x="560" y="336" class="lbl">feeds the next trading day's signals, confidence &amp; sizing</text>
+    <rect class="bx" x="24" y="312" width="300" height="34" rx="7"/><text x="174" y="334" text-anchor="middle" class="s">runs as its own scheduled process (17:00 ET)</text>
+  </svg>
+  </div>
+</section>
+
+<!-- ================= 6 · SCALING ================= -->
+<section id="scaling">
+  <h2>6 · Scale-in / scale-out &amp; take-profit</h2>
+  <p class="sub">On each monitor tick the position is checked, in order, against three gates: add on a winning pullback, bank half at target, then exit by mode.</p>
+  <div class="card">
+  <svg viewBox="0 0 1120 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Scaling and take-profit logic">
+  <defs>
+  <marker id="s6" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#58a6ff"/></marker>
+  </defs>
+  <text x="24" y="24" class="ph">P&amp;L ladder (option premium %)</text>
+  <line x1="70" y1="60" x2="70" y2="540" stroke="#30363d" stroke-width="2"/>
+  <circle cx="70" cy="80" r="4" fill="#3fb950"/><text x="84" y="84" class="t" style="font-size:10px">Target (TP)</text><text x="84" y="97" class="s">scalp ~70% · swing ~75%</text>
+  <circle cx="70" cy="150" r="4" fill="#3fb950"/><text x="84" y="154" class="t" style="font-size:10px">+60% → SCALE-OUT</text><text x="84" y="167" class="s">sell half, bank profit</text>
+  <circle cx="70" cy="250" r="4" fill="#58a6ff"/><text x="84" y="254" class="t" style="font-size:10px">+20% → arm scale-in / runner</text><text x="84" y="267" class="s">peak must reach here first</text>
+  <circle cx="70" cy="360" r="4" fill="#8b949e"/><text x="84" y="364" class="t" style="font-size:10px">0% — entry</text>
+  <circle cx="70" cy="500" r="4" fill="#f85149"/><text x="84" y="504" class="t" style="font-size:10px">−stop% → STOP-LOSS</text><text x="84" y="517" class="s">hard exit, any mode</text>
+  <rect class="bxb" x="360" y="60" width="720" height="46" rx="9"/><text x="720" y="80" text-anchor="middle" class="t">Monitor loop — every ~30s: reprice, compute P&amp;L %, track running PEAK</text><text x="720" y="96" text-anchor="middle" class="s">the three gates below are checked in order on each tick</text>
+  <rect class="bxb" x="360" y="122" width="720" height="96" rx="10"/>
+  <text x="376" y="144" class="ph">A · SCALE-IN  (add on a pullback, once)</text>
+  <text x="376" y="164" class="s">IF  scale-in enabled · not yet scaled-in · P&amp;L &gt; 0 · PEAK ≥ +20% · pulled back ≥ 5% from peak · cash available</text>
+  <rect class="bxg" x="376" y="176" width="330" height="32" rx="7"/><text x="386" y="196" class="s">→ buy +1 unit, average the entry up</text>
+  <rect class="bxa" x="718" y="176" width="346" height="32" rx="7"/><text x="728" y="196" class="s">→ move STOP to original entry (breakeven on lot 1)</text>
+  <rect class="bxg" x="360" y="234" width="720" height="86" rx="10"/>
+  <text x="376" y="256" class="ph">B · SCALE-OUT  (bank half at target, once)</text>
+  <text x="376" y="276" class="s">IF  scale-out enabled · not yet scaled-out · P&amp;L ≥ +60%</text>
+  <rect class="bxg" x="376" y="288" width="330" height="26" rx="7"/><text x="386" y="305" class="s">→ sell half the contracts, realize partial profit</text>
+  <rect class="bx" x="718" y="288" width="346" height="26" rx="7"/><text x="728" y="305" class="s">→ mark scaled-out; if 0 left → fully closed, else let it run</text>
+  <rect class="bxr" x="360" y="336" width="720" height="188" rx="10"/>
+  <text x="376" y="358" class="ph">C · EXIT / TAKE-PROFIT  (by exit mode — first trigger wins)</text>
+  <rect class="bx" x="376" y="368" width="688" height="30" rx="7"/><text x="386" y="387" class="s"><tspan fill="#3fb950" font-weight="700">STANDARD</tspan>  → take profit at full Target; else exit on structure break (andre / orb)</text>
+  <rect class="bx" x="376" y="404" width="688" height="30" rx="7"/><text x="386" y="423" class="s"><tspan fill="#d29922" font-weight="700">QUICK</tspan>  → take profit early at 60% of Target</text>
+  <rect class="bx" x="376" y="440" width="688" height="30" rx="7"/><text x="386" y="459" class="s"><tspan fill="#58a6ff" font-weight="700">RUNNER</tspan>  → no fixed TP; trailing stop arms at +20% peak, exits if it gives back 30% of the peak gain</text>
+  <rect class="bxr" x="376" y="476" width="688" height="38" rx="7"/><text x="386" y="492" class="s"><tspan fill="#f85149" font-weight="700">Always on:</tspan>  hard STOP at −stop%  ·  EOD force-close (scalps)  ·  overnight theta-lock (profitable + heavy decay)</text>
+  <line x1="720" y1="106" x2="720" y2="122" class="fw" marker-end="url(#s6)"/>
+  <line x1="720" y1="218" x2="720" y2="234" class="fw" marker-end="url(#s6)"/>
+  <line x1="720" y1="320" x2="720" y2="336" class="fw" marker-end="url(#s6)"/>
+  <text x="360" y="556" class="lbl">Scale-in needs a peak-then-pullback (buy the dip in a winner, not the high); scale-out banks half at +60%; the remainder rides the exit-mode rules with the stop already at breakeven.</text>
+  </svg>
+  </div>
+</section>
+
+<!-- ================= 7 · CANDIDATES ================= -->
+<section id="candidates">
+  <h2>7 · Picking new watchlist candidates</h2>
+  <p class="sub">Each night the S&amp;P-500 pool is scored on two axes, gated for tradability, and admitted via a fast-track (breakout) or a 3-night interest streak.</p>
+  <div class="card">
+  <svg viewBox="0 0 1120 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Candidate selection logic">
+  <defs>
+  <marker id="c7" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#58a6ff"/></marker>
+  <marker id="c7g" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#3fb950"/></marker>
+  </defs>
+  <rect class="bx" x="24" y="40" width="250" height="70" rx="9"/><text x="149" y="66" text-anchor="middle" class="t">① Universe</text><text x="149" y="84" text-anchor="middle" class="s">S&amp;P 500 pool (~540)</text><text x="149" y="98" text-anchor="middle" class="s">minus current members</text>
+  <text x="330" y="30" class="ph">② Score every candidate (0–100 each)</text>
+  <rect class="bxb" x="330" y="40" width="360" height="86" rx="9"/><text x="346" y="60" class="t">Interest score</text>
+  <text x="346" y="78" class="s">40% volume trend (20d ÷ 60d)  ·  30% $ liquidity</text>
+  <text x="346" y="94" class="s">20% ATR / volatility  ·  10% sector strength vs SPY</text>
+  <text x="346" y="114" class="s" style="fill:#58a6ff">→ "is this name heating up?"</text>
+  <rect class="bxa" x="710" y="40" width="386" height="86" rx="9"/><text x="726" y="60" class="t">Setup score</text>
+  <text x="726" y="78" class="s">40% compression (BB width vs 6mo)  ·  25% quiet accumulation</text>
+  <text x="726" y="94" class="s">20% catalyst (earnings ≤10d)  ·  15% options flow (vol/OI, IV jump)</text>
+  <text x="726" y="114" class="s" style="fill:#d29922">→ "is this name coiled to break out?" (extras: top-10 only)</text>
+  <line x1="274" y1="75" x2="328" y2="80" class="fw" marker-end="url(#c7)"/>
+  <rect class="bxr" x="330" y="150" width="766" height="44" rx="9"/><text x="346" y="170" class="t">③ Admissibility gate</text><text x="470" y="170" class="s">— fails here → not eligible</text>
+  <text x="346" y="186" class="s">price ≥ min  ·  avg volume ≥ min  ·  option-chain liquidity OK (checked only on would-be admissions)</text>
+  <line x1="713" y1="126" x2="713" y2="150" class="fw" marker-end="url(#c7)"/>
+  <rect class="bx" x="330" y="216" width="766" height="52" rx="9"/><text x="346" y="238" class="t">④ Compare to the weakest swappable member</text><text x="700" y="238" class="s">— core is never swapped</text>
+  <text x="346" y="256" class="s">swappable = bottom quartile of the list · not core · held ≥ 10 days (tenure-protected)</text>
+  <line x1="713" y1="194" x2="713" y2="216" class="fw" marker-end="url(#c7)"/>
+  <text x="330" y="298" class="ph">⑤ Two lanes into the list (budget: up to bottom-quartile turnover per night)</text>
+  <rect class="bxa" x="330" y="308" width="360" height="86" rx="9"/><text x="346" y="330" class="t">FAST-TRACK  (coiled breakout)</text>
+  <text x="346" y="350" class="s">setup score ≥ fast-track threshold</text>
+  <text x="346" y="366" class="s">→ swap in after just 1 qualifying night</text>
+  <text x="346" y="384" class="s" style="fill:#d29922">jumps the streak queue — a breakout is stale by night 3</text>
+  <rect class="bxb" x="710" y="308" width="386" height="86" rx="9"/><text x="726" y="330" class="t">INTEREST STREAK  (steady climber)</text>
+  <text x="726" y="350" class="s">candidate interest &gt; weakest × 1.15 (15% margin)</text>
+  <text x="726" y="366" class="s">for 3 consecutive nights (streak) → swap in</text>
+  <text x="726" y="384" class="s" style="fill:#58a6ff">the streak stops churn on one-off volume spikes</text>
+  <line x1="510" y1="268" x2="510" y2="308" class="fw" marker-end="url(#c7)"/>
+  <line x1="900" y1="268" x2="900" y2="308" class="fw" marker-end="url(#c7)"/>
+  <rect class="bxg" x="330" y="418" width="470" height="52" rx="9"/><text x="565" y="440" text-anchor="middle" class="t">✓ Swap IN — replaces the weakest member</text><text x="565" y="458" text-anchor="middle" class="s">and is trained that same night (swap-before-train)</text>
+  <rect class="bx" x="820" y="418" width="276" height="52" rx="9"/><text x="958" y="440" text-anchor="middle" class="t">Not yet → hold as contention</text><text x="958" y="458" text-anchor="middle" class="s">streak carries to tomorrow</text>
+  <line x1="510" y1="394" x2="530" y2="416" class="fg" marker-end="url(#c7g)"/>
+  <line x1="900" y1="394" x2="905" y2="416" class="fw" marker-end="url(#c7)"/>
+  <text x="24" y="512" class="lbl">Interest = momentum/liquidity (heating up now).  Setup = compression + accumulation + catalyst + options anomaly (about to move).</text>
+  <text x="24" y="530" class="lbl">Guardrails: core pinned, 10-day tenure protection, bottom-quartile-only replacement, per-night turnover budget, and either a 3-night streak or a fast-track breakout.</text>
+  <text x="24" y="548" class="lbl">Contention candidates (an active streak) are pre-trained each night so an incoming swap already has a model.</text>
+  </svg>
+  </div>
+</section>
+
+<div class="foot">Generated for Andre · grounded in the live code (andre_strategy_signals.py, ai_adaptive_strategy.py, broker_router.py, main.py, ai_daily_trainer.py, watchlist_manager.py). Diagrams are conceptual; exact thresholds are read from bot_mode.json at runtime.</div>
+</body>
+</html>
