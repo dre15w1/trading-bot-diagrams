@@ -36,7 +36,8 @@
  .desc{color:var(--mut);font-size:13px;margin:0 0 10px;}
  .canvas{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px;overflow-x:auto;}
  .view{display:none;} .view.on{display:block;}
- svg{display:block;width:100%;height:auto;min-width:760px;}
+ .canvas svg{display:block;width:100%;height:auto;min-width:760px;}
+ header h1 svg{width:30px;height:30px;min-width:0;flex:0 0 auto;}
  .drillnote{margin-top:10px;color:var(--dim);font-size:11px;}
  /* SVG element classes */
  .bx{fill:#0d1117;stroke:#30363d;stroke-width:1.2;} .bxb{fill:#0d1117;stroke:#1f6feb;stroke-width:1.4;}
@@ -73,14 +74,15 @@
    .menuBtn{display:inline-block;}
    .mobtip{display:block;color:var(--dim);font-size:11px;margin:0 0 10px;line-height:1.5;}
    .canvas{padding:10px;}
-   svg{min-width:860px;}          /* keep dense diagram text legible — pan sideways */
+   .canvas svg{min-width:860px;}  /* keep dense diagram text legible — pan sideways */
+   header h1 svg{width:26px;height:26px;}
    h2{font-size:16px;} .desc{font-size:12px;}
    .bar{gap:6px;}
    .btn{padding:8px 13px;}        /* larger tap targets */
    .side a{padding:10px 10px;font-size:13px;}
    .drillnote{font-size:12px;line-height:1.9;}
  }
- @media (max-width:420px){ svg{min-width:720px;} }
+ @media (max-width:420px){ .canvas svg{min-width:720px;} }
 </style>
 </head>
 <body>
