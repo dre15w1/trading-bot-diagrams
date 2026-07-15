@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Andre Walker">
+<meta name="copyright" content="© 2026 Andre Walker · Walkers Software LLC. All rights reserved.">
+<!-- © 2026 Andre Walker · Walkers Software LLC. All rights reserved. Proprietary and confidential. -->
 <title>Trading Bot — Interactive Architecture Explorer</title>
 <style>
  :root{--bg:#0d1117;--card:#161b22;--border:#30363d;--tx:#e6edf3;--mut:#8b949e;--dim:#484f58;--blue:#58a6ff;--green:#3fb950;--red:#f85149;--amber:#d29922;--purple:#bc8cff;}
@@ -44,12 +47,16 @@
  /* clickable drill nodes */
  .clk{cursor:pointer;} .clk rect{transition:stroke .12s;} .clk:hover rect{stroke:#58a6ff;stroke-width:2.4;}
  .clk .cue{fill:#58a6ff;font-size:8.5px;font-weight:700;}
+ .copyr{margin-left:auto;color:#6e7681;font-size:11px;white-space:nowrap;}
+ footer.legal{padding:9px 20px;border-top:1px solid var(--border);color:#57606a;font-size:11px;text-align:center;flex-shrink:0;}
+ footer.legal b{color:#8b949e;font-weight:600;}
 </style>
 </head>
 <body>
 <header>
   <h1>🧭 Trading Bot — Architecture Explorer</h1>
   <span class="hint">Click any <span style="color:#58a6ff">◆ blue-cued</span> box to dig down · use Back / breadcrumb / the sidebar to move around.</span>
+  <span class="copyr">© 2026 Andre Walker · Walkers Software LLC</span>
 </header>
 <div class="wrap">
   <nav class="side" id="side"></nav>
@@ -320,6 +327,8 @@
 </div>
 
 </div><!-- /views -->
+
+<footer class="legal">© 2026 <b>Andre Walker</b> · <b>Walkers Software LLC</b>. All rights reserved. Proprietary &amp; confidential — unauthorized use, reproduction, or distribution is prohibited.</footer>
 
 <script>
 (function(){
