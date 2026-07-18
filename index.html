@@ -186,14 +186,14 @@
 <rect class="bxr" x="24" y="250" width="470" height="46" rx="8"/><text x="40" y="270" class="t">Risk gates</text><text x="40" y="287" class="s">R:R ≥ 2:1 · stop ≥ 15% (not inside spread) · EMA aligned</text>
 <g class="clk" data-nav="scoring"><rect class="bxb" x="24" y="304" width="470" height="46" rx="8"/><text x="40" y="324" class="t">Score /6 → confidence &amp; size</text><text x="40" y="341" class="s">bias·level·confirm·entry·EMA·VWAP → HIGH/MED/LOW</text><text x="484" y="316" text-anchor="end" class="cue">◆</text></g>
 <line x1="259" y1="80" x2="259" y2="88" class="fw" marker-end="url(#st)"/><line x1="259" y1="134" x2="259" y2="142" class="fw" marker-end="url(#st)"/><line x1="259" y1="188" x2="259" y2="196" class="fw" marker-end="url(#st)"/><line x1="259" y1="242" x2="259" y2="250" class="fw" marker-end="url(#st)"/><line x1="259" y1="296" x2="259" y2="304" class="fw" marker-end="url(#st)"/>
-<text x="540" y="22" class="ph">Strategy roster</text>
-<rect class="bxg" x="540" y="34" width="556" height="36" rx="8"/><text x="556" y="57" class="s"><tspan class="t" style="font-size:11px">Andre MTF · LIVE</tspan>  (signal_strategy) — the only live equity/options signal source</text>
-<rect class="bx" x="540" y="78" width="556" height="36" rx="8"/><text x="556" y="101" class="s">Crypto RSI/vol — live (ETH/BTC, separate monitor)</text>
-<rect class="bx" x="540" y="122" width="556" height="36" rx="8"/><text x="556" y="145" class="s">ORB · Mean-Rev 0DTE · LuxAlgo · Wyckoff · Price-Action · Strict — backtested / optional</text>
-<g class="clk" data-nav="ai"><rect class="bxp" x="540" y="166" width="556" height="40" rx="8"/><text x="556" y="190" class="s"><tspan class="t" style="font-size:11px">AI-adaptive (GBM)</tspan> — the confirm/veto brain</text><text x="1086" y="180" text-anchor="end" class="cue">◆</text></g>
-<text x="540" y="240" class="s">Every fired signal is checked by the AI confirm layer, then the pre-entry gates, before it can reach the broker.</text>
-<text x="540" y="262" class="s">Earnings gate is swing-only; scalps force-close by EOD. A scalp can be promoted to a swing at EOD if structure</text>
-<text x="540" y="278" class="s">holds, bias agrees and R:R from the current stop ≥ 2:1. Overnight theta-lock banks a profitable option facing heavy decay.</text>
+<text x="540" y="22" class="ph">Strategy roster — signal_strategy (all selectable)</text>
+<rect class="bxg" x="540" y="34" width="556" height="38" rx="8"/><text x="556" y="58" class="s"><tspan class="t" style="font-size:11px">★ ORDER FLOW / CVD</tspan> — backtest-validated (order_flow): +21%/tr, walk-forward confirmed</text>
+<rect class="bx" x="540" y="80" width="556" height="34" rx="8"/><text x="556" y="102" class="s">Andre MTF (left) · VWAP Trend · Price Action · 0DTE Mean-Reversion</text>
+<rect class="bx" x="540" y="122" width="556" height="34" rx="8"/><text x="556" y="144" class="s">LuxAlgo SMC · Wyckoff · Strict · Relaxed — all selectable signal_strategy</text>
+<g class="clk" data-nav="ai"><rect class="bxp" x="540" y="164" width="268" height="40" rx="8"/><text x="556" y="188" class="s"><tspan class="t" style="font-size:11px">AI-Adaptive (GBM)</tspan> — strat + confirm brain</text><text x="800" y="178" text-anchor="end" class="cue">◆</text></g>
+<g class="clk" data-nav="contracts"><rect class="bxb" x="820" y="164" width="276" height="40" rx="8"/><text x="836" y="188" class="s"><tspan class="t" style="font-size:11px">Contract engine</tspan> — scalp / swing paths</text><text x="1086" y="178" text-anchor="end" class="cue">◆</text></g>
+<text x="540" y="230" class="s">Every fired signal → AI confirm/veto → pre-entry gates → the CONTRACT ENGINE picks the option → sized → broker.</text>
+<text x="540" y="252" class="s">Crypto RSI/vol runs as a separate live monitor (ETH/BTC). Scalps force-close by EOD; a swing can be promoted at EOD.</text>
 </svg>
 </div>
 
@@ -379,6 +379,30 @@
 <text x="24" y="170" class="s">The self-tuning confidence threshold rises automatically if the model's rolling live accuracy drops, so a weak model emits fewer signals.</text>
 <text x="24" y="192" class="s">L2 order-book features are imputed to neutral during training (they only exist live at inference).</text>
 <text x="24" y="230" class="lbl">Output feeds the “AI confidence score” view — that model IS what this training produces, per symbol, every night.</text>
+</svg>
+</div>
+
+<!-- CONTRACT ENGINE -->
+<div class="view" data-id="contracts" data-parent="overall" data-title="Contract Engine (scalp / swing)" data-desc="Every strategy's signal runs through the contract engine before an option is chosen — independent scalp and swing settings, each with three modes.">
+<svg viewBox="0 0 1120 470" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="ce" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#58a6ff"/></marker></defs>
+<rect class="bxp" x="360" y="14" width="400" height="48" rx="9"/><text x="560" y="38" text-anchor="middle" class="t">Signal from ANY strategy</text><text x="560" y="55" text-anchor="middle" class="s">Order Flow · Andre · VWAP Trend · … — scalp or swing</text>
+<line x1="560" y1="62" x2="560" y2="84" class="fw" marker-end="url(#ce)"/>
+<rect class="bxb" x="360" y="84" width="400" height="48" rx="9"/><text x="560" y="108" text-anchor="middle" class="t">Contract Engine — resolve by horizon</text><text x="560" y="125" text-anchor="middle" class="s">_resolve_contract_target(mode_tag) · scalp vs swing</text>
+<line x1="480" y1="132" x2="290" y2="176" class="fw" marker-end="url(#ce)"/>
+<line x1="640" y1="132" x2="830" y2="176" class="fw" marker-end="url(#ce)"/>
+<text x="40" y="176" class="ph">SCALP config</text>
+<rect class="bxg" x="40" y="186" width="500" height="40" rx="8"/><text x="56" y="211" class="s"><tspan class="t" style="font-size:11px">Dynamic</tspan> — engine picks ~ATM (50Δ), weekly expiry  ·  +5.7%/tr</text>
+<rect class="bx" x="40" y="232" width="500" height="40" rx="8"/><text x="56" y="257" class="s"><tspan class="t" style="font-size:11px">Static</tspan> — Target DTE + strike · default 1DTE / 1-OTM  ·  +21%/tr</text>
+<rect class="bxr" x="40" y="278" width="500" height="40" rx="8"/><text x="56" y="303" class="s"><tspan class="t" style="font-size:11px">High risk</tspan> — 0DTE ATM before 1pm ET, 1DTE 1-OTM after</text>
+<text x="580" y="176" class="ph">SWING config</text>
+<rect class="bxg" x="580" y="186" width="500" height="40" rx="8"/><text x="596" y="211" class="s"><tspan class="t" style="font-size:11px">Dynamic</tspan> — engine picks ~ATM (50Δ), weeks-out expiry</text>
+<rect class="bx" x="580" y="232" width="500" height="40" rx="8"/><text x="596" y="257" class="s"><tspan class="t" style="font-size:11px">Static</tspan> — Target DTE (e.g. 30 ≈ monthly) + strike offset</text>
+<rect class="bxr" x="580" y="278" width="500" height="40" rx="8"/><text x="596" y="303" class="s"><tspan class="t" style="font-size:11px">High risk</tspan> — 0DTE ATM before 1pm ET, 1DTE 1-OTM after</text>
+<line x1="290" y1="318" x2="500" y2="356" class="fw" marker-end="url(#ce)"/>
+<line x1="830" y1="318" x2="620" y2="356" class="fw" marker-end="url(#ce)"/>
+<rect class="bxb" x="360" y="356" width="400" height="48" rx="9"/><text x="560" y="380" text-anchor="middle" class="t">find_best_contract → closest listed option</text><text x="560" y="397" text-anchor="middle" class="s">real chain · bid/ask · then sizing → broker</text>
+<text x="40" y="440" class="lbl">Set independently on the dashboard → Contract Selection. Dynamic = today's default for every strategy; Static is Order Flow's backtest-validated 1DTE / 1-OTM.</text>
 </svg>
 </div>
 
