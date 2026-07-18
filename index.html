@@ -175,30 +175,47 @@
 </div>
 
 <!-- SIGNAL → strategies -->
-<div class="view" data-id="strategies" data-parent="overall" data-title="Strategies (Andre L1–L4)" data-desc="The live multi-timeframe signal engine and the strategy roster.">
-<svg viewBox="0 0 1120 430" xmlns="http://www.w3.org/2000/svg">
+<div class="view" data-id="strategies" data-parent="overall" data-title="Strategies (10 engines)" data-desc="All ten selectable signal engines. Order Flow / CVD is the backtest-validated one. Click Andre or AI-Adaptive to drill in.">
+<svg viewBox="0 0 1120 448" xmlns="http://www.w3.org/2000/svg">
 <defs><marker id="st" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#58a6ff"/></marker></defs>
-<text x="24" y="22" class="ph">Andre's Strategy — analyze_ticker_mtf() (LIVE)</text>
+<text x="24" y="24" class="ph">Strategies — 10 selectable signal engines (signal_strategy)</text>
+<rect class="bxg" x="24" y="40" width="524" height="58" rx="8"/><text x="40" y="65" class="t" style="font-size:11.5px">★ Order Flow / CVD  (order_flow)</text><text x="40" y="84" class="s">aggressor delta → session CVD → fresh imbalance · validated +21%/tr</text>
+<g class="clk" data-nav="andre"><rect class="bx" x="24" y="106" width="524" height="58" rx="8"/><text x="40" y="131" class="t" style="font-size:11.5px">Andre MTF  (andre_strategy)</text><text x="40" y="150" class="s">HTF BOS + fresh zone + LTF confirm + VWAP pullback · 8-pt score</text><text x="532" y="120" text-anchor="end" class="cue">◆</text></g>
+<rect class="bx" x="24" y="172" width="524" height="58" rx="8"/><text x="40" y="197" class="t" style="font-size:11.5px">VWAP Trend  (vwap_trend)</text><text x="40" y="216" class="s">fresh cross of intraday VWAP (Zarattini &amp; Aziz) · stop-and-reverse</text>
+<rect class="bx" x="24" y="238" width="524" height="58" rx="8"/><text x="40" y="263" class="t" style="font-size:11.5px">Price Action  (price_action)</text><text x="40" y="282" class="s">market structure BOS/CHoCH + supply/demand zones · dynamic 3:1</text>
+<rect class="bx" x="24" y="304" width="524" height="58" rx="8"/><text x="40" y="329" class="t" style="font-size:11.5px">0DTE Mean Reversion  (mean_reversion_0dte)</text><text x="40" y="348" class="s">fade RSI extremes stretched from VWAP · snap-back to VWAP</text>
+<rect class="bx" x="572" y="40" width="524" height="58" rx="8"/><text x="588" y="65" class="t" style="font-size:11.5px">LuxAlgo SMC  (luxalgo_smc)</text><text x="588" y="84" class="s">smart-money concepts — order blocks, liquidity sweeps</text>
+<rect class="bx" x="572" y="106" width="524" height="58" rx="8"/><text x="588" y="131" class="t" style="font-size:11.5px">Wyckoff  (wyckoff)</text><text x="588" y="150" class="s">spring / upthrust / sign-of-strength / sign-of-weakness</text>
+<rect class="bx" x="572" y="172" width="524" height="58" rx="8"/><text x="588" y="197" class="t" style="font-size:11.5px">Strict  (strict)</text><text x="588" y="216" class="s">RSI thresholds + VWAP confluence — tight entries</text>
+<rect class="bx" x="572" y="238" width="524" height="58" rx="8"/><text x="588" y="263" class="t" style="font-size:11.5px">Relaxed  (relaxed)</text><text x="588" y="282" class="s">RSI + VWAP — looser thresholds, more entries</text>
+<g class="clk" data-nav="ai"><rect class="bxp" x="572" y="304" width="524" height="58" rx="8"/><text x="588" y="329" class="t" style="font-size:11.5px">AI Adaptive  (ai_adaptive)</text><text x="588" y="348" class="s">per-symbol GradientBoosting — also the confirm/veto brain</text><text x="1080" y="318" text-anchor="end" class="cue">◆</text></g>
+<text x="24" y="392" class="s">Every fired signal → AI confirm/veto → pre-entry gates → the CONTRACT ENGINE picks the option → sized → broker.</text>
+<g class="clk" data-nav="contracts"><rect class="bxb" x="24" y="404" width="290" height="30" rx="7"/><text x="40" y="424" class="s"><tspan class="t" style="font-size:10.5px">Contract engine</tspan> — scalp / swing ◆</text></g>
+<text x="330" y="424" class="s">Crypto RSI/vol is a separate live monitor (ETH/BTC). Scalps force-close by EOD.</text>
+</svg>
+</div>
+
+<!-- ANDRE detail (child of strategies) -->
+<div class="view" data-id="andre" data-parent="strategies" data-title="Andre MTF (L1–L4)" data-desc="Andre's multi-timeframe strategy — a worked example of the 4-layer AND-gate + 6-point score. One of the ten selectable engines.">
+<svg viewBox="0 0 1120 372" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="st2" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#58a6ff"/></marker></defs>
+<text x="24" y="22" class="ph">Andre's Strategy — analyze_ticker_mtf()  ·  signal_strategy = andre_strategy</text>
 <rect class="bxr" x="24" y="34" width="470" height="46" rx="8"/><text x="40" y="54" class="t">L1 · Bias alignment</text><text x="40" y="71" class="s">1H+4H (scalp) / Daily+4H (swing) must agree — else skip</text>
 <rect class="bx" x="24" y="88" width="470" height="46" rx="8"/><text x="40" y="108" class="t">L2 · Setup at key level</text><text x="40" y="125" class="s">price at a 1H or 4H swing S/R zone</text>
 <rect class="bxr" x="24" y="142" width="470" height="46" rx="8"/><text x="40" y="162" class="t">L3 · Confirm (hard gate)</text><text x="40" y="179" class="s">recent CHoCH / BOS on confirm timeframe</text>
 <rect class="bx" x="24" y="196" width="470" height="46" rx="8"/><text x="40" y="216" class="t">L4 · Entry trigger</text><text x="40" y="233" class="s">ORB retest (scalp) / pullback-resume (swing)</text>
 <rect class="bxr" x="24" y="250" width="470" height="46" rx="8"/><text x="40" y="270" class="t">Risk gates</text><text x="40" y="287" class="s">R:R ≥ 2:1 · stop ≥ 15% (not inside spread) · EMA aligned</text>
 <g class="clk" data-nav="scoring"><rect class="bxb" x="24" y="304" width="470" height="46" rx="8"/><text x="40" y="324" class="t">Score /6 → confidence &amp; size</text><text x="40" y="341" class="s">bias·level·confirm·entry·EMA·VWAP → HIGH/MED/LOW</text><text x="484" y="316" text-anchor="end" class="cue">◆</text></g>
-<line x1="259" y1="80" x2="259" y2="88" class="fw" marker-end="url(#st)"/><line x1="259" y1="134" x2="259" y2="142" class="fw" marker-end="url(#st)"/><line x1="259" y1="188" x2="259" y2="196" class="fw" marker-end="url(#st)"/><line x1="259" y1="242" x2="259" y2="250" class="fw" marker-end="url(#st)"/><line x1="259" y1="296" x2="259" y2="304" class="fw" marker-end="url(#st)"/>
-<text x="540" y="22" class="ph">Strategy roster — signal_strategy (all selectable)</text>
-<rect class="bxg" x="540" y="34" width="556" height="38" rx="8"/><text x="556" y="58" class="s"><tspan class="t" style="font-size:11px">★ ORDER FLOW / CVD</tspan> — backtest-validated (order_flow): +21%/tr, walk-forward confirmed</text>
-<rect class="bx" x="540" y="80" width="556" height="34" rx="8"/><text x="556" y="102" class="s">Andre MTF (left) · VWAP Trend · Price Action · 0DTE Mean-Reversion</text>
-<rect class="bx" x="540" y="122" width="556" height="34" rx="8"/><text x="556" y="144" class="s">LuxAlgo SMC · Wyckoff · Strict · Relaxed — all selectable signal_strategy</text>
-<g class="clk" data-nav="ai"><rect class="bxp" x="540" y="164" width="268" height="40" rx="8"/><text x="556" y="188" class="s"><tspan class="t" style="font-size:11px">AI-Adaptive (GBM)</tspan> — strat + confirm brain</text><text x="800" y="178" text-anchor="end" class="cue">◆</text></g>
-<g class="clk" data-nav="contracts"><rect class="bxb" x="820" y="164" width="276" height="40" rx="8"/><text x="836" y="188" class="s"><tspan class="t" style="font-size:11px">Contract engine</tspan> — scalp / swing paths</text><text x="1086" y="178" text-anchor="end" class="cue">◆</text></g>
-<text x="540" y="230" class="s">Every fired signal → AI confirm/veto → pre-entry gates → the CONTRACT ENGINE picks the option → sized → broker.</text>
-<text x="540" y="252" class="s">Crypto RSI/vol runs as a separate live monitor (ETH/BTC). Scalps force-close by EOD; a swing can be promoted at EOD.</text>
+<line x1="259" y1="80" x2="259" y2="88" class="fw" marker-end="url(#st2)"/><line x1="259" y1="134" x2="259" y2="142" class="fw" marker-end="url(#st2)"/><line x1="259" y1="188" x2="259" y2="196" class="fw" marker-end="url(#st2)"/><line x1="259" y1="242" x2="259" y2="250" class="fw" marker-end="url(#st2)"/><line x1="259" y1="296" x2="259" y2="304" class="fw" marker-end="url(#st2)"/>
+<text x="540" y="52" class="s">Andre is a mean-reversion multi-timeframe engine — the four layers are an AND-gate:</text>
+<text x="540" y="74" class="s">all must line up or the trade is skipped. Shown as a worked example; the other nine</text>
+<text x="540" y="96" class="s">strategies each have their own trigger logic but share this same downstream pipeline</text>
+<text x="540" y="118" class="s">(AI confirm → gates → contract engine → sizing → broker).</text>
 </svg>
 </div>
 
-<!-- scoring leaf (child of strategies) -->
-<div class="view" data-id="scoring" data-parent="strategies" data-title="Confidence score /6" data-desc="How the 6-condition score maps to confidence and size.">
+<!-- scoring leaf (child of andre) -->
+<div class="view" data-id="scoring" data-parent="andre" data-title="Confidence score /6" data-desc="How the 6-condition score maps to confidence and size.">
 <svg viewBox="0 0 1120 320" xmlns="http://www.w3.org/2000/svg">
 <text x="24" y="26" class="ph">6 scored conditions (each +1)</text>
 <rect class="bx" x="24" y="40" width="1072" height="70" rx="9"/>
