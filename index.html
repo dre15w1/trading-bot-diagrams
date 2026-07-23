@@ -133,7 +133,7 @@
 <svg viewBox="0 0 1120 470" xmlns="http://www.w3.org/2000/svg">
 <defs><marker id="o1" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#58a6ff"/></marker></defs>
 <g class="clk" data-nav="candidates"><rect class="bx" x="24" y="30" width="200" height="66" rx="9"/><text x="124" y="56" text-anchor="middle" class="t">① Find</text><text x="124" y="73" text-anchor="middle" class="s">scan 74-symbol watchlist</text><text x="214" y="42" text-anchor="end" class="cue">◆</text></g>
-<g class="clk" data-nav="strategies"><rect class="bxb" x="256" y="30" width="200" height="66" rx="9"/><text x="356" y="53" text-anchor="middle" class="t">② Strategy signal</text><text x="356" y="70" text-anchor="middle" class="s">10 strategies · Order Flow ★</text><text x="356" y="84" text-anchor="middle" class="s">selectable signal_strategy</text><text x="446" y="42" text-anchor="end" class="cue">◆</text></g>
+<g class="clk" data-nav="strategies"><rect class="bxb" x="256" y="30" width="200" height="66" rx="9"/><text x="356" y="53" text-anchor="middle" class="t">② Strategy signal</text><text x="356" y="70" text-anchor="middle" class="s">12 strategies · Order Flow ★</text><text x="356" y="84" text-anchor="middle" class="s">single or MULTI-strategy roster</text><text x="446" y="42" text-anchor="end" class="cue">◆</text></g>
 <g class="clk" data-nav="ai"><rect class="bxp" x="488" y="30" width="200" height="66" rx="9"/><text x="588" y="56" text-anchor="middle" class="t">③ AI confirm</text><text x="588" y="73" text-anchor="middle" class="s">GBM agrees / vetoes</text><text x="678" y="42" text-anchor="end" class="cue">◆</text></g>
 <g class="clk" data-nav="gates"><rect class="bxa" x="720" y="30" width="200" height="66" rx="9"/><text x="820" y="53" text-anchor="middle" class="t">④ Pre-entry gates</text><text x="820" y="70" text-anchor="middle" class="s">kill switch · macro ·</text><text x="820" y="84" text-anchor="middle" class="s">earnings · spread · caps</text><text x="910" y="42" text-anchor="end" class="cue">◆</text></g>
 <line x1="224" y1="63" x2="254" y2="63" class="fw" marker-end="url(#o1)"/><line x1="456" y1="63" x2="486" y2="63" class="fw" marker-end="url(#o1)"/><line x1="688" y1="63" x2="718" y2="63" class="fw" marker-end="url(#o1)"/>
@@ -148,6 +148,59 @@
 <g class="clk" data-nav="retrain"><rect class="band" x="120" y="288" width="900" height="70" rx="10"/><text x="140" y="312" class="ph">⑨ Nightly retrain — 17:00 ET (swap → train)  ◆</text><text x="140" y="336" class="s">watchlist swaps + score  →  train GBM on 74 + contention  →  Kelly / ATR recs  →  publish models</text></g>
 <path d="M120,323 L60,323 L60,63 L22,63" class="fb" marker-end="url(#o1)"/>
 <text x="70" y="205" class="lbl" transform="rotate(-90 70 205)">fresh models feed tomorrow</text>
+<g class="clk" data-nav="system_context"><rect class="band" x="120" y="382" width="900" height="52" rx="10"/><text x="140" y="404" class="ph">🌐 System context — everything OUTSIDE the bot  ◆</text><text x="140" y="422" class="s">Schwab (data + the ONLY order broker) · Robinhood (data toggle) · Yahoo fallback · Discord · email · Task Scheduler · GitHub Pages · your browser</text></g>
+</svg>
+</div>
+
+<!-- OVERALL → system context (external systems) -->
+<div class="view" data-id="system_context" data-parent="overall" data-title="System context — outside systems" data-desc="Everything Confluence talks to beyond its own process. Schwab is the ONLY broker that ever places real orders — the Robinhood toggle is market data only.">
+<svg viewBox="0 0 1120 560" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<marker id="sc1" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#58a6ff"/></marker>
+<marker id="sca" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#d29922"/></marker>
+</defs>
+<text x="24" y="24" class="ph">DATA &amp; BROKER</text>
+<text x="345" y="24" class="ph">CONFLUENCE — one Windows machine</text>
+<text x="830" y="24" class="ph">NOTIFY &amp; OPERATE</text>
+
+<!-- center container -->
+<rect x="330" y="32" width="400" height="470" rx="12" fill="#12161c" stroke="#21262d"/>
+
+<!-- edges -->
+<path d="M274,82 C 310,86 314,95 348,100" class="fw" marker-end="url(#sc1)"/>
+<path d="M348,118 C 314,114 310,96 276,90" class="fw" marker-end="url(#sc1)"/>
+<path d="M274,181 C 312,178 314,138 348,132" class="fb" marker-end="url(#sc1)"/>
+<path d="M274,269 C 314,264 314,150 348,144" class="fb" marker-end="url(#sc1)"/>
+<path d="M274,286 C 316,296 314,306 348,312" class="fb" marker-end="url(#sc1)"/>
+<path d="M274,104 C 318,130 316,280 348,298" class="fb" marker-end="url(#sc1)"/>
+<path d="M710,100 C 780,96 784,76 828,70" class="fw" marker-end="url(#sc1)"/>
+<path d="M710,306 C 790,302 792,92 828,84" class="fb" marker-end="url(#sc1)"/>
+<path d="M710,120 C 784,128 786,152 828,156" class="fw" marker-end="url(#sc1)"/>
+<path d="M828,242 C 780,246 784,306 712,314" class="fa" marker-end="url(#sca)"/>
+<path d="M828,322 C 780,318 784,224 710,218" class="fw" marker-end="url(#sc1)"/>
+<line x1="962" y1="354" x2="962" y2="370" class="fb"/>
+
+<!-- LEFT: data / broker -->
+<g class="clk" data-nav="brokers"><rect class="bxb" x="24" y="40" width="250" height="88" rx="9"/><text x="40" y="62" class="t">Charles Schwab — Trader API</text><text x="40" y="80" class="s">bars · quotes · option chains · L2 stream · accounts</text><text x="40" y="96" class="s" style="fill:#3fb950;font-weight:700">★ the ONLY broker that places real orders</text><text x="40" y="112" class="s">120 req/min cap — two-tier polling protects it</text><text x="264" y="52" text-anchor="end" class="cue">◆</text></g>
+<rect class="bx" x="24" y="150" width="250" height="62" rx="9"/><text x="40" y="172" class="t">Robinhood (unofficial)</text><text x="40" y="190" class="s">market DATA only, via the dashboard broker toggle</text><text x="40" y="204" class="s" style="fill:#f85149">never places orders</text>
+<rect class="bx" x="24" y="238" width="250" height="62" rx="9"/><text x="40" y="260" class="t">Yahoo Finance (yfinance)</text><text x="40" y="278" class="s">fallback bars (hourly swing history)</text><text x="40" y="292" class="s">VIX / SPY market-context features</text>
+
+<!-- CENTER: the machine -->
+<g class="clk" data-nav="strategies"><rect class="bxg" x="350" y="46" width="360" height="98" rx="9"/><text x="366" y="68" class="t">main.py — bot engine</text><text x="366" y="86" class="s">scan loop · single or MULTI-strategy roster</text><text x="366" y="100" class="s">AI veto → gates → contract engine → execution</text><text x="366" y="114" class="s">position monitor · live-sync with Schwab</text><text x="366" y="132" class="s" style="fill:#8b949e">polling: fast in market hours · slow after-hours (minutes)</text><text x="700" y="58" text-anchor="end" class="cue">◆</text></g>
+<rect class="bx" x="350" y="170" width="360" height="70" rx="9"/><text x="366" y="192" class="t">Flask dashboard :5000</text><text x="366" y="210" class="s">admin · positions · manual orders · Deeper Dive</text><text x="366" y="226" class="s" style="fill:#f85149">no auth — LAN only, never port-forward (SECURITY_PLAN)</text>
+<g class="clk" data-nav="retrain"><rect class="bxp" x="350" y="266" width="360" height="80" rx="9"/><text x="366" y="288" class="t">run_nightly.py — nightly pipeline</text><text x="366" y="306" class="s">AI trainer (74 symbols) · parallel Deeper Dives (12h cap)</text><text x="366" y="322" class="s">bars_store 5-min archive collection</text><text x="366" y="338" class="s">auto-adopts walk-forward-VALIDATED settings only</text><text x="700" y="278" text-anchor="end" class="cue">◆</text></g>
+<rect class="band" x="350" y="372" width="360" height="56" rx="9"/><text x="366" y="394" class="t">Local state (no cloud)</text><text x="366" y="412" class="s">bot_mode.json · admin_settings · SQLite · bars_store · ai_models/</text>
+<line x1="530" y1="144" x2="530" y2="168" class="fb"/><line x1="530" y1="240" x2="530" y2="264" class="fb"/><line x1="530" y1="346" x2="530" y2="370" class="fb"/>
+<text x="366" y="452" class="lbl">bot ⇄ dashboard ⇄ nightly all share the same local state files.</text>
+
+<!-- RIGHT: notify / operate -->
+<rect class="bx" x="830" y="40" width="266" height="70" rx="9"/><text x="846" y="62" class="t">Discord (webhooks)</text><text x="846" y="80" class="s">trade open/close · 30-min position summary</text><text x="846" y="94" class="s">roster lineup changes · retrain + optimizer reports</text>
+<rect class="bx" x="830" y="130" width="266" height="56" rx="9"/><text x="846" y="152" class="t">Email (SMTP)</text><text x="846" y="170" class="s">nightly / periodic summaries</text>
+<rect class="bxa" x="830" y="206" width="266" height="70" rx="9"/><text x="846" y="228" class="t">Windows Task Scheduler</text><text x="846" y="246" class="s">launches run_nightly on schedule</text><text x="846" y="260" class="s" style="fill:#d29922">stop-limit must be 12h (parallel Deeper Dives)</text>
+<rect class="bx" x="830" y="296" width="266" height="56" rx="9"/><text x="846" y="318" class="t">Your browser (LAN)</text><text x="846" y="336" class="s">operates the dashboard · applies settings</text>
+<rect class="band" x="830" y="372" width="266" height="60" rx="9"/><text x="846" y="394" class="t">GitHub Pages</text><text x="846" y="410" class="s">this diagrams site — served from MASTER branch</text><text x="846" y="424" class="s" style="fill:#484f58">reference only · published manually</text>
+
+<text x="24" y="540" class="lbl">Solid blue = live trading-hours traffic · dashed = data/fallback &amp; nightly-only · amber = scheduler trigger. Click Schwab, the bot engine or the nightly box to drill in.</text>
 </svg>
 </div>
 
@@ -175,12 +228,12 @@
 </div>
 
 <!-- SIGNAL → strategies -->
-<div class="view" data-id="strategies" data-parent="overall" data-title="Strategies (10 engines)" data-desc="All ten selectable signal engines. Order Flow / CVD is the backtest-validated one. Click Andre or AI-Adaptive to drill in.">
-<svg viewBox="0 0 1120 448" xmlns="http://www.w3.org/2000/svg">
+<div class="view" data-id="strategies" data-parent="overall" data-title="Strategies (13 configs)" data-desc="All selectable signal engines — Andre listed twice because 1.0 and 2.0 are materially different configs. Order Flow / CVD is the backtest-validated one. Click any engine to drill in.">
+<svg viewBox="0 0 1120 648" xmlns="http://www.w3.org/2000/svg">
 <defs><marker id="st" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#58a6ff"/></marker></defs>
-<text x="24" y="24" class="ph">Strategies — 10 selectable signal engines (signal_strategy)</text>
+<text x="24" y="24" class="ph">Strategies — 12 engines · 13 configs (Andre 1.0 and 2.0 differ materially)</text>
 <g class="clk" data-nav="order_flow"><rect class="bxg" x="24" y="40" width="524" height="58" rx="8"/><text x="40" y="65" class="t" style="font-size:11.5px">★ Order Flow / CVD  (order_flow)</text><text x="40" y="84" class="s">aggressor delta → session CVD → fresh imbalance · validated +21%/tr</text><text x="540" y="56" text-anchor="end" class="cue">◆</text></g>
-<g class="clk" data-nav="andre"><rect class="bx" x="24" y="106" width="524" height="58" rx="8"/><text x="40" y="131" class="t" style="font-size:11.5px">Andre MTF  (andre_strategy)</text><text x="40" y="150" class="s">HTF BOS + fresh zone + LTF confirm + VWAP pullback · 8-pt score</text><text x="540" y="122" text-anchor="end" class="cue">◆</text></g>
+<g class="clk" data-nav="andre"><rect class="bx" x="24" y="106" width="524" height="58" rx="8"/><text x="40" y="131" class="t" style="font-size:11.5px">Andre MTF 2.0  (andre_strategy) · LIVE config</text><text x="40" y="150" class="s">close-through bias · ORB retest or zone-bounce · intraday clearance · VWAP pullback</text><text x="540" y="122" text-anchor="end" class="cue">◆</text></g>
 <g class="clk" data-nav="vwap_trend"><rect class="bx" x="24" y="172" width="524" height="58" rx="8"/><text x="40" y="197" class="t" style="font-size:11.5px">VWAP Trend  (vwap_trend)</text><text x="40" y="216" class="s">fresh cross of intraday VWAP (Zarattini &amp; Aziz) · stop-and-reverse</text><text x="540" y="188" text-anchor="end" class="cue">◆</text></g>
 <g class="clk" data-nav="price_action"><rect class="bx" x="24" y="238" width="524" height="58" rx="8"/><text x="40" y="263" class="t" style="font-size:11.5px">Price Action  (price_action)</text><text x="40" y="282" class="s">market structure BOS/CHoCH + supply/demand zones · dynamic 3:1</text><text x="540" y="254" text-anchor="end" class="cue">◆</text></g>
 <g class="clk" data-nav="mean_rev0dte"><rect class="bx" x="24" y="304" width="524" height="58" rx="8"/><text x="40" y="329" class="t" style="font-size:11.5px">0DTE Mean Reversion  (mean_reversion_0dte)</text><text x="40" y="348" class="s">fade RSI extremes stretched from VWAP · snap-back to VWAP</text><text x="540" y="320" text-anchor="end" class="cue">◆</text></g>
@@ -189,28 +242,38 @@
 <g class="clk" data-nav="rsivwap"><rect class="bx" x="572" y="172" width="524" height="58" rx="8"/><text x="588" y="197" class="t" style="font-size:11.5px">Strict  (strict)</text><text x="588" y="216" class="s">RSI thresholds + VWAP confluence — tight entries</text><text x="1088" y="188" text-anchor="end" class="cue">◆</text></g>
 <g class="clk" data-nav="rsivwap"><rect class="bx" x="572" y="238" width="524" height="58" rx="8"/><text x="588" y="263" class="t" style="font-size:11.5px">Relaxed  (relaxed)</text><text x="588" y="282" class="s">RSI + VWAP — looser thresholds, more entries</text><text x="1088" y="254" text-anchor="end" class="cue">◆</text></g>
 <g class="clk" data-nav="ai"><rect class="bxp" x="572" y="304" width="524" height="58" rx="8"/><text x="588" y="329" class="t" style="font-size:11.5px">AI Adaptive  (ai_adaptive)</text><text x="588" y="348" class="s">per-symbol GradientBoosting — also the confirm/veto brain</text><text x="1088" y="320" text-anchor="end" class="cue">◆</text></g>
-<text x="24" y="392" class="s">Every fired signal → AI confirm/veto → pre-entry gates → the CONTRACT ENGINE picks the option → sized → broker.</text>
-<g class="clk" data-nav="contracts"><rect class="bxb" x="24" y="404" width="290" height="30" rx="7"/><text x="40" y="424" class="s"><tspan class="t" style="font-size:10.5px">Contract engine</tspan> — scalp / swing ◆</text></g>
-<text x="330" y="424" class="s">Crypto RSI/vol is a separate live monitor (ETH/BTC). Scalps force-close by EOD.</text>
+<g class="clk" data-nav="levels_view"><rect class="bx" x="24" y="370" width="524" height="58" rx="8"/><text x="40" y="395" class="t" style="font-size:11.5px">Levels  (levels)</text><text x="40" y="414" class="s">intraday level map — PDH/PDL/PDC · opening range · rejection / breakout-retest</text><text x="540" y="386" text-anchor="end" class="cue">◆</text></g>
+<g class="clk" data-nav="andre10"><rect class="bx" x="24" y="436" width="524" height="58" rx="8"/><text x="40" y="461" class="t" style="font-size:11.5px">Andre MTF 1.0  (andre_strategy · original config)</text><text x="40" y="480" class="s">swing-confirmed bias · strict ORB breakout + tight VWAP · HTF clearance — six andre_* settings</text><text x="540" y="452" text-anchor="end" class="cue">◆</text></g>
+<g class="clk" data-nav="choch_fvg"><rect class="bx" x="572" y="370" width="524" height="58" rx="8"/><text x="588" y="395" class="t" style="font-size:11.5px">CHoCH / FVG  (choch_fvg)</text><text x="588" y="414" class="s">change-of-character + FVG retrace · morning-only edge (09:30–11:00)</text><text x="1088" y="386" text-anchor="end" class="cue">◆</text></g>
+<text x="24" y="524" class="s">Every fired signal → AI confirm/veto → pre-entry gates → the CONTRACT ENGINE picks the option → sized → broker.</text>
+<g class="clk" data-nav="contracts"><rect class="bxb" x="24" y="536" width="290" height="30" rx="7"/><text x="40" y="556" class="s"><tspan class="t" style="font-size:10.5px">Contract engine</tspan> — scalp / swing ◆</text></g>
+<text x="330" y="556" class="s">Crypto RSI/vol is a separate live monitor (ETH/BTC). Scalps force-close by EOD.</text>
+<text x="24" y="594" class="s" style="fill:#3fb950">MULTI-STRATEGY ROSTER (2026-07-22): run MANY engines at once, each in its own ET window, per horizon — signals dedupe per symbol by</text>
+<text x="24" y="614" class="s" style="fill:#3fb950">roster order. Default (21-session validated): scalp = Order Flow 09:30–11:00 + Andre 2.0 09:45–16:00 · swing = Andre 2.0 09:45–16:00.</text>
+<text x="24" y="634" class="s" style="fill:#6e7681">Admin → Multi-Strategy Roster (toggle + editable tables). OFF = classic single signal_strategy, byte-identical behavior.</text>
 </svg>
 </div>
 
 <!-- ANDRE detail (child of strategies) -->
-<div class="view" data-id="andre" data-parent="strategies" data-title="Andre MTF (L1–L4)" data-desc="Andre's multi-timeframe strategy — a worked example of the 4-layer AND-gate + 6-point score. One of the ten selectable engines.">
+<div class="view" data-id="andre" data-parent="strategies" data-title="Andre MTF 2.0 (L1–L4)" data-desc="Andre's multi-timeframe strategy — 2.0 config (close_through bias · zone bounce · intraday clearance) — a worked example of the 4-layer AND-gate + 6-point score. One of the twelve selectable engines.">
 <svg viewBox="0 0 1120 372" xmlns="http://www.w3.org/2000/svg">
 <defs><marker id="st2" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#58a6ff"/></marker></defs>
-<text x="24" y="22" class="ph">Andre's Strategy — analyze_ticker_mtf()  ·  signal_strategy = andre_strategy</text>
-<rect class="bxr" x="24" y="34" width="470" height="46" rx="8"/><text x="40" y="54" class="t">L1 · Bias alignment</text><text x="40" y="71" class="s">1H+4H (scalp) / Daily+4H (swing) must agree — else skip</text>
+<text x="24" y="22" class="ph">Andre's Strategy 2.0 — analyze_ticker_mtf()  ·  signal_strategy = andre_strategy  ·  revert to 1.0: six andre_* settings</text>
+<rect class="bxr" x="24" y="34" width="470" height="46" rx="8"/><text x="40" y="54" class="t">L1 · Bias alignment</text><text x="40" y="71" class="s">30m+1H (scalp) / Daily+4H (swing) agree · bias flips on CLOSE through last swing (close_through)</text>
 <rect class="bx" x="24" y="88" width="470" height="46" rx="8"/><text x="40" y="108" class="t">L2 · Setup at key level</text><text x="40" y="125" class="s">price at a 1H or 4H swing S/R zone</text>
 <rect class="bxr" x="24" y="142" width="470" height="46" rx="8"/><text x="40" y="162" class="t">L3 · Confirm (hard gate)</text><text x="40" y="179" class="s">recent CHoCH / BOS on confirm timeframe</text>
-<rect class="bx" x="24" y="196" width="470" height="46" rx="8"/><text x="40" y="216" class="t">L4 · Entry trigger</text><text x="40" y="233" class="s">ORB retest (scalp) / pullback-resume (swing)</text>
-<rect class="bxr" x="24" y="250" width="470" height="46" rx="8"/><text x="40" y="270" class="t">Risk gates</text><text x="40" y="287" class="s">R:R ≥ 2:1 · stop ≥ 15% (not inside spread) · EMA aligned</text>
+<rect class="bx" x="24" y="196" width="470" height="46" rx="8"/><text x="40" y="216" class="t">L4 · Entry trigger</text><text x="40" y="233" class="s">ORB retest OR premarket zone-bounce reclaim (scalp) / pullback-resume (swing)</text>
+<rect class="bxr" x="24" y="250" width="470" height="46" rx="8"/><text x="40" y="270" class="t">Risk gates</text><text x="40" y="287" class="s">R:R ≥ 2:1 · stop floor = live spread ×1.25 (min 2%) · EMA aligned · clearance to target</text>
 <g class="clk" data-nav="scoring"><rect class="bxb" x="24" y="304" width="470" height="46" rx="8"/><text x="40" y="324" class="t">Score /6 → confidence &amp; size</text><text x="40" y="341" class="s">bias·level·confirm·entry·EMA·VWAP → HIGH/MED/LOW</text><text x="484" y="316" text-anchor="end" class="cue">◆</text></g>
 <line x1="259" y1="80" x2="259" y2="88" class="fw" marker-end="url(#st2)"/><line x1="259" y1="134" x2="259" y2="142" class="fw" marker-end="url(#st2)"/><line x1="259" y1="188" x2="259" y2="196" class="fw" marker-end="url(#st2)"/><line x1="259" y1="242" x2="259" y2="250" class="fw" marker-end="url(#st2)"/><line x1="259" y1="296" x2="259" y2="304" class="fw" marker-end="url(#st2)"/>
 <text x="540" y="52" class="s">Andre is a mean-reversion multi-timeframe engine — the four layers are an AND-gate:</text>
-<text x="540" y="74" class="s">all must line up or the trade is skipped. Shown as a worked example; the other nine</text>
+<text x="540" y="74" class="s">all must line up or the trade is skipped. Shown as a worked example; the other eleven</text>
 <text x="540" y="96" class="s">strategies each have their own trigger logic but share this same downstream pipeline</text>
 <text x="540" y="118" class="s">(AI confirm → gates → contract engine → sizing → broker).</text>
+<text x="540" y="156" class="s" style="fill:#3fb950">Andre 2.0 (2026-07): zone-bounce scalp entry off premarket demand/supply bands ·</text>
+<text x="540" y="176" class="s" style="fill:#3fb950">scalp clearance vs INTRADAY levels (PDH/PDL/PDC · opening range · premkt H/L) ·</text>
+<text x="540" y="196" class="s" style="fill:#3fb950">VWAP dist 0.4% · NO signals before 09:31 ET (options can&apos;t trade premarket).</text>
+<text x="540" y="232" class="s" style="fill:#d29922">Andre 1.0 (original, stricter config) is its own roster entry — see Andre MTF 1.0.</text>
 </svg>
 </div>
 
@@ -317,36 +380,123 @@
 </svg>
 </div>
 
+
+
+<!-- ANDRE 1.0 detail (child of strategies) -->
+<div class="view" data-id="andre10" data-parent="strategies" data-title="Andre MTF 1.0 (original)" data-desc="The original, stricter Andre config — same engine as 2.0, six andre_* settings reverted. Trend-continuation only; refuses the reversal setups 2.0 takes.">
+<svg viewBox="0 0 1120 372" xmlns="http://www.w3.org/2000/svg">
+<text x="24" y="22" class="ph">Andre 1.0 — same analyze_ticker_mtf(), six settings reverted · trend-continuation only</text>
+<rect class="bxr" x="24" y="34" width="470" height="46" rx="8"/><text x="40" y="54" class="t">L1 · Bias (swing_confirmed)</text><text x="40" y="71" class="s">flips only on a CONFIRMED swing event — can freeze for weeks in a trend (AAPL +19.6% case)</text>
+<rect class="bx" x="24" y="88" width="470" height="46" rx="8"/><text x="40" y="108" class="t">L2 · Setup at key level</text><text x="40" y="125" class="s">price at a 1H or 4H swing S/R zone (same as 2.0)</text>
+<rect class="bxr" x="24" y="142" width="470" height="46" rx="8"/><text x="40" y="162" class="t">L3 · Confirm (hard gate)</text><text x="40" y="179" class="s">recent CHoCH / BOS on confirm timeframe (same as 2.0)</text>
+<rect class="bx" x="24" y="196" width="470" height="46" rx="8"/><text x="40" y="216" class="t">L4 · Entry — STRICT</text><text x="40" y="233" class="s">with-trend ORB BREAKOUT only + VWAP within 0.3% — NO zone-bounce reversals</text>
+<rect class="bxr" x="24" y="250" width="470" height="46" rx="8"/><text x="40" y="270" class="t">Risk gates</text><text x="40" y="287" class="s">static stop ≥ 15% · VWAP stop floor 5% · clearance vs 1H/4H/daily-weekly zones only</text>
+<g class="clk" data-nav="scoring"><rect class="bxb" x="24" y="304" width="470" height="46" rx="8"/><text x="40" y="324" class="t">Score /6 → confidence &amp; size</text><text x="40" y="341" class="s">same scoring as 2.0 → HIGH/MED/LOW</text><text x="484" y="316" text-anchor="end" class="cue">◆</text></g>
+<text x="540" y="52" class="s">The six settings that separate 1.0 from 2.0 (andre_* in bot_mode.json):</text>
+<text x="540" y="78" class="s">bias_mode = swing_confirmed · clearance_intraday = false · zone_bounce = false</text>
+<text x="540" y="98" class="s">vwap_max_dist = 0.003 · vwap_stop_floor = 0.05 · min_stop_live_spread = false</text>
+<text x="540" y="134" class="s" style="fill:#d29922">Character: pure trend-continuation. It structurally refuses fade-into-band reversals —</text>
+<text x="540" y="154" class="s" style="fill:#d29922">on 2026-07-21 replay: 1.0 took 0 trades across 59 symbols while 2.0's zone bounces</text>
+<text x="540" y="174" class="s" style="fill:#d29922">caught MU and COIN. Not a bug — a deliberately tighter net for trending tape.</text>
+<text x="540" y="210" class="s">Revert live bot to 1.0: flip those six settings (HANDOFF §7).</text>
+</svg>
+</div>
+
+<!-- LEVELS detail -->
+<div class="view" data-id="levels_view" data-parent="strategies" data-title="Levels" data-desc="Intraday level map — prior-day H/L/C, opening range and round numbers; trade the rejection or the breakout-retest.">
+<svg viewBox="0 0 1120 288" xmlns="http://www.w3.org/2000/svg">
+<text x="24" y="24" class="ph">Levels — intraday level map (levels) · lv_* settings</text>
+<rect class="bx" x="24" y="36" width="1072" height="46" rx="8"/><text x="40" y="56" class="t" style="font-size:11.5px">Level set</text><text x="40" y="73" class="s">PDH / PDL / PDC · 15-min opening range · premarket H/L · round numbers count as CONFLUENCE only (never standalone)</text>
+<rect class="bxg" x="24" y="92" width="524" height="50" rx="8"/><text x="40" y="114" class="t" style="font-size:11.5px">Rejection</text><text x="40" y="132" class="s">wick ≥ 55% through a level then close back — fade it</text>
+<rect class="bxr" x="572" y="92" width="524" height="50" rx="8"/><text x="588" y="114" class="t" style="font-size:11.5px">Breakout-retest</text><text x="588" y="132" class="s">break level, retest holds within 6 bars — go with it</text>
+<rect class="bx" x="24" y="152" width="1072" height="46" rx="8"/><text x="40" y="172" class="t" style="font-size:11.5px">Gates</text><text x="40" y="189" class="s">min confluence 1 · ATR-scaled proximity · trend filter on · min R:R 2.0 (lv_min_rr)</text>
+<text x="24" y="228" class="lbl">All level times are ET/RTH-audited (a UTC bug voided every pre-2026-07-21 Levels backtest — re-run owed before trusting numbers).</text>
+<text x="24" y="252" class="lbl">Admin: lv_or_minutes · lv_level_proximity · lv_confluence_dist · lv_reject_wick_ratio · lv_breakout_buffer · lv_retest_max_bars.</text>
+</svg>
+</div>
+
+<!-- CHOCH / FVG detail -->
+<div class="view" data-id="choch_fvg" data-parent="strategies" data-title="CHoCH / FVG" data-desc="Change-of-character + fair-value-gap retrace — a validated morning-only engine (09:30–11:00 ET).">
+<svg viewBox="0 0 1120 288" xmlns="http://www.w3.org/2000/svg">
+<text x="24" y="24" class="ph">CHoCH / FVG — morning reversal (choch_fvg) · cf_* settings</text>
+<rect class="bx" x="24" y="36" width="1072" height="46" rx="8"/><text x="40" y="56" class="t" style="font-size:11.5px">Setup</text><text x="40" y="73" class="s">change of character (pivot k=2 swings) breaks the morning trend → enter on the retrace into the fresh fair-value gap</text>
+<rect class="bxg" x="24" y="92" width="524" height="50" rx="8"/><text x="40" y="114" class="t" style="font-size:11.5px">CALL</text><text x="40" y="132" class="s">bullish CHoCH + retrace into the up-move FVG</text>
+<rect class="bxr" x="572" y="92" width="524" height="50" rx="8"/><text x="588" y="114" class="t" style="font-size:11.5px">PUT</text><text x="588" y="132" class="s">bearish CHoCH + retrace into the down-move FVG</text>
+<rect class="bx" x="24" y="152" width="1072" height="46" rx="8"/><text x="40" y="172" class="t" style="font-size:11.5px">Risk &amp; liquidity</text><text x="40" y="189" class="s">stop = swing ± buffer (cf_stop_buffer) · R:R 1.5 · spread ≤ 8% · OI ≥ 100 · premium ≥ $0.10 · 0DTE cutoff 13:00 ET</text>
+<text x="24" y="228" class="lbl">MORNING-ONLY: validated 09:30–11:00 PF 3.41 / 60.6% win — after 11:00 PF drops to 0.50, so cf_no_entries_after = 11:00 by design.</text>
+<text x="24" y="252" class="lbl">20-symbol universe (cf_universe) · daily-expiry symbols SPY/QQQ/IWM · signal mode: choch (cf_signal_mode).</text>
+</svg>
+</div>
+
 <!-- AI CONFIRM -->
-<div class="view" data-id="ai" data-parent="overall" data-title="AI confidence score" data-desc="Per-symbol GradientBoosting model → probability → confidence, size, exit mode.">
+<div class="view" data-id="ai" data-parent="overall" data-title="AI confidence score" data-desc="Per-symbol GradientBoosting model → probability → confidence, size, exit mode. Click any box to drill in.">
 <svg viewBox="0 0 1120 470" xmlns="http://www.w3.org/2000/svg">
 <defs><marker id="ai1" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#bc8cff"/></marker><marker id="ai2" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#58a6ff"/></marker></defs>
-<text x="24" y="24" class="ph">Feature groups (~46)</text>
-<rect class="bx" x="24" y="34" width="250" height="42" rx="8"/><text x="40" y="52" class="t" style="font-size:11px">24 core technicals</text><text x="40" y="68" class="s">returns, EMAs, RSI, MACD, Boll, ATR</text>
-<rect class="bx" x="24" y="84" width="250" height="42" rx="8"/><text x="40" y="102" class="t" style="font-size:11px">4 calendar</text><text x="40" y="118" class="s">day / month cycles</text>
-<rect class="bx" x="24" y="134" width="250" height="42" rx="8"/><text x="40" y="152" class="t" style="font-size:11px">8 extended technical</text><text x="40" y="168" class="s">volatility, structure, volume shape</text>
-<rect class="bx" x="24" y="184" width="250" height="42" rx="8"/><text x="40" y="202" class="t" style="font-size:11px">9 external context</text><text x="40" y="218" class="s">VIX, SPY regime, days-to-earnings</text>
-<rect class="bx" x="24" y="234" width="250" height="42" rx="8"/><text x="40" y="252" class="t" style="font-size:11px">5 L2 order-book *</text><text x="40" y="268" class="s">real-time only (imputed in training)</text>
-<rect class="bxp" x="330" y="110" width="210" height="110" rx="10"/><text x="435" y="150" text-anchor="middle" class="t">GradientBoosting</text><text x="435" y="168" text-anchor="middle" class="t">Classifier</text><text x="435" y="190" text-anchor="middle" class="s">per symbol · recency-weighted</text><text x="435" y="206" text-anchor="middle" class="s">newest bars ~12× weight</text>
+<text x="24" y="24" class="ph">Feature groups (swing 60 · scalp 59)</text><text x="322" y="24" class="cue">◆</text>
+<g class="clk" data-nav="ai_features">
+<rect class="bx" x="24" y="34" width="250" height="42" rx="8"/><text x="40" y="52" class="t" style="font-size:11px">45 core technicals — both</text><text x="40" y="68" class="s">returns, EMAs, RSI, MACD, Boll, ATR, vol, calendar</text>
+<rect class="bx" x="24" y="84" width="250" height="42" rx="8"/><text x="40" y="102" class="t" style="font-size:11px">9 external context — both</text><text x="40" y="118" class="s">VIX, SPY regime, days-to-earnings</text>
+<rect class="bxa" x="24" y="134" width="250" height="42" rx="8"/><text x="40" y="152" class="t" style="font-size:11px">6 4H-context — swing only</text><text x="40" y="168" class="s">h4 trend / vol / distance block</text>
+<rect class="bxp" x="24" y="184" width="250" height="42" rx="8"/><text x="40" y="202" class="t" style="font-size:11px">5 L2 order-book — scalp only *</text><text x="40" y="218" class="s">real-time only (imputed in training)</text>
+<rect class="bx" x="24" y="234" width="250" height="42" rx="8"/><text x="40" y="252" class="t" style="font-size:11px">Totals</text><text x="40" y="268" class="s">swing 45+9+6=60 · scalp 45+9+5=59</text></g>
+<g class="clk" data-nav="training"><rect class="bxp" x="330" y="110" width="210" height="110" rx="10"/><text x="435" y="150" text-anchor="middle" class="t">GradientBoosting</text><text x="435" y="168" text-anchor="middle" class="t">Classifier</text><text x="435" y="190" text-anchor="middle" class="s">per symbol · recency-weighted</text><text x="435" y="206" text-anchor="middle" class="s">newest bars ~12× weight</text><text x="532" y="126" text-anchor="end" class="cue">◆</text></g>
 <path d="M274,55 L300,55 L300,140 L328,140" class="fb" marker-end="url(#ai1)"/><path d="M274,155 L300,155 L300,165 L328,165" class="fb" marker-end="url(#ai1)"/><path d="M274,205 L300,205 L300,190 L328,190" class="fb" marker-end="url(#ai1)"/>
 <rect class="bx" x="580" y="128" width="200" height="74" rx="9"/><text x="680" y="156" text-anchor="middle" class="t">predict_proba</text><text x="680" y="176" text-anchor="middle" class="s">bull vs bear probability</text><text x="680" y="192" text-anchor="middle" class="s">confidence = max class %</text>
 <line x1="540" y1="165" x2="578" y2="165" class="fw" marker-end="url(#ai2)" style="stroke:#bc8cff"/>
-<text x="820" y="118" class="ph">Thresholds</text>
+<text x="820" y="118" class="ph">Thresholds</text><text x="1096" y="118" text-anchor="end" class="cue">◆</text>
+<g class="clk" data-nav="ai_tuning">
 <rect class="bxr" x="820" y="128" width="276" height="30" rx="7"/><text x="836" y="148" class="s">&lt; 55% → LOW → no signal (self-tuning ↑)</text>
 <rect class="bxa" x="820" y="164" width="276" height="30" rx="7"/><text x="836" y="184" class="s">55–65% → MEDIUM</text>
-<rect class="bxg" x="820" y="200" width="276" height="30" rx="7"/><text x="836" y="220" class="s">≥ 65% → HIGH</text>
+<rect class="bxg" x="820" y="200" width="276" height="30" rx="7"/><text x="836" y="220" class="s">≥ 65% → HIGH</text></g>
 <line x1="780" y1="165" x2="818" y2="165" class="fw" marker-end="url(#ai2)"/>
 <text x="330" y="280" class="ph">The confidence then drives:</text>
-<rect class="bx" x="330" y="292" width="250" height="48" rx="8"/><text x="346" y="312" class="t" style="font-size:11px">Size multiplier</text><text x="346" y="330" class="s">55→1×…65%+ up (frozen 1× pending calibration)</text>
-<rect class="bx" x="596" y="292" width="250" height="48" rx="8"/><text x="612" y="312" class="t" style="font-size:11px">Exit mode</text><text x="612" y="330" class="s">RUNNER ≥65% · STANDARD · QUICK &lt;60%</text>
-<rect class="bxp" x="862" y="292" width="234" height="48" rx="8"/><text x="878" y="312" class="t" style="font-size:11px">L2 wall upgrade</text><text x="878" y="330" class="s">bid/ask wall bumps MED→HIGH</text>
+<g class="clk" data-nav="sizing"><rect class="bx" x="330" y="292" width="250" height="48" rx="8"/><text x="346" y="312" class="t" style="font-size:11px">Size multiplier</text><text x="346" y="330" class="s">55→1×…65%+ up (frozen 1× pending calibration)</text><text x="572" y="308" text-anchor="end" class="cue">◆</text></g>
+<g class="clk" data-nav="exitmodes"><rect class="bx" x="596" y="292" width="250" height="48" rx="8"/><text x="612" y="312" class="t" style="font-size:11px">Exit mode</text><text x="612" y="330" class="s">RUNNER ≥65% · STANDARD · QUICK &lt;60%</text><text x="838" y="308" text-anchor="end" class="cue">◆</text></g>
+<g class="clk" data-nav="ai_l2"><rect class="bxp" x="862" y="292" width="234" height="48" rx="8"/><text x="878" y="312" class="t" style="font-size:11px">L2 wall upgrade</text><text x="878" y="330" class="s">bid/ask wall bumps MED→HIGH</text><text x="1088" y="308" text-anchor="end" class="cue">◆</text></g>
 <line x1="680" y1="230" x2="680" y2="290" class="fw" marker-end="url(#ai2)"/>
-<text x="24" y="380" class="s">* L2 features exist only at inference; imputed neutral during training. Every prediction is logged for the self-tuning accuracy tracker.</text>
+<text x="24" y="380" class="s">* L2 features (scalp matrix only) exist at inference; imputed neutral during training. Swing drops L2 for a 4H-context block. Every prediction is logged for the self-tuning accuracy tracker.</text>
 <text x="24" y="402" class="s" style="fill:#d29922">Note: this ML confidence is separate from Andre's rule-based /6 score. Here it acts as the confirm/veto brain on a strategy setup.</text>
 </svg>
 </div>
 
 <!-- GATES (new) -->
+<!-- AI FEATURES leaf (child of ai) -->
+<div class="view" data-id="ai_features" data-parent="ai" data-title="Feature groups (swing 60 · scalp 59)" data-desc="What the per-symbol model sees — swing runs on HOURLY bars + a 4H-context block (no L2); scalp runs on 5-min bars + L2 (no 4H).">
+<svg viewBox="0 0 1120 330" xmlns="http://www.w3.org/2000/svg">
+<text x="24" y="24" class="ph">swing 60 feats (hourly + 4H) · scalp 59 feats (5-min + L2) · names as they appear in top_feature stats</text>
+<rect class="bx" x="24" y="36" width="1072" height="52" rx="8"/><text x="40" y="56" class="t" style="font-size:11.5px">45 core technicals — both modes</text><text x="40" y="74" class="s">returns · EMA stack · RSI · macd_hist · Bollinger bb_width · ATR &amp; atr_ratio · mfi · slopes · dist_20d/60d/52wk high-low · vol family · candle anatomy · calendar cycles</text>
+<rect class="bx" x="24" y="96" width="524" height="52" rx="8"/><text x="40" y="116" class="t" style="font-size:11.5px">9 external context — both modes</text><text x="40" y="134" class="s">vix_level · vix_pct_rank · vix_ma20_ratio · spy_rsi · SPY regime · days-to-earnings</text>
+<rect class="bxa" x="572" y="96" width="524" height="52" rx="8"/><text x="588" y="116" class="t" style="font-size:11.5px">6 4H-context — SWING only</text><text x="588" y="134" class="s">h4_ema_align · h4_rsi · h4_atr_pct · h4_slope · h4_dist_high/low — no-lookahead, shifted to 4H close</text>
+<rect class="bxp" x="24" y="156" width="524" height="52" rx="8"/><text x="40" y="176" class="t" style="font-size:11.5px">5 L2 order-book — SCALP only (live)</text><text x="40" y="194" class="s">bid/ask wall sizes &amp; imbalance — imputed to neutral medians during training</text>
+<rect class="bx" x="572" y="156" width="524" height="52" rx="8"/><text x="588" y="176" class="t" style="font-size:11.5px">Totals</text><text x="588" y="194" class="s">swing 45+9+6 = 60 (L2 dropped) · scalp 45+9+5 = 59 (no 4H block)</text>
+<text x="24" y="242" class="lbl">Labels: forward-return over the mode's horizon — swing 32 hourly bars (~1 trading week) · scalp 6 bars (~30 min). Regime models (gamma_pos / gamma_neg / near_max_pain)</text>
+<text x="24" y="262" class="lbl">train on the same features filtered to those regimes. Recency weighting makes the newest bars worth ~12× the oldest.</text>
+</svg>
+</div>
+
+<!-- AI TUNING leaf (child of ai) -->
+<div class="view" data-id="ai_tuning" data-parent="ai" data-title="Thresholds &amp; self-tuning" data-desc="How the confidence thresholds move, and where the veto stands today.">
+<svg viewBox="0 0 1120 330" xmlns="http://www.w3.org/2000/svg">
+<text x="24" y="24" class="ph">Self-tuning thresholds · veto wiring · honest current state</text>
+<rect class="bx" x="24" y="36" width="1072" height="52" rx="8"/><text x="40" y="56" class="t" style="font-size:11.5px">Self-tuning</text><text x="40" y="74" class="s">every prediction is logged and graded; if a symbol's ROLLING LIVE accuracy drops, its LOW threshold rises → weak model emits fewer signals</text>
+<rect class="bx" x="24" y="96" width="1072" height="52" rx="8"/><text x="40" y="116" class="t" style="font-size:11.5px">Veto wiring (ai_confirm_mode)</text><text x="40" y="134" class="s">off / on / strict · structure veto ALWAYS runs first (4H+15m aligned against you = veto) · model opposes ≥ ai_veto_conf (0.70) → suppressed</text>
+<rect class="bxa" x="24" y="156" width="1072" height="52" rx="8"/><text x="40" y="176" class="t" style="font-size:11.5px">Current state (2026-07-21)</text><text x="40" y="194" class="s">11/59 models beat an always-flat baseline · median edge −0.64 pts · grading tz bug fixed today → months of backlogged labels regrade next nightly</text>
+<text x="24" y="242" class="lbl">Decision pending: model second-opinion veto can only SUBTRACT from validated strategies until calibration improves — re-measure edge after</text>
+<text x="24" y="262" class="lbl">a few post-fix nightlies before deciding. The /ai page visualizes edge-over-baseline per symbol honestly.</text>
+</svg>
+</div>
+
+<!-- AI L2 leaf (child of ai) -->
+<div class="view" data-id="ai_l2" data-parent="ai" data-title="L2 order-book layer" data-desc="The live Level-2 stream: what it feeds, its knobs, and its operational quirks.">
+<svg viewBox="0 0 1120 330" xmlns="http://www.w3.org/2000/svg">
+<text x="24" y="24" class="ph">Schwab L2 stream → wall detection → confidence upgrade / order-flow features</text>
+<rect class="bx" x="24" y="36" width="1072" height="52" rx="8"/><text x="40" y="56" class="t" style="font-size:11.5px">What it does</text><text x="40" y="74" class="s">live bid/ask book → wall size &amp; imbalance → bumps MED→HIGH confidence · feeds the 5 L2 features and the order-flow L2 branch (shadow mode)</text>
+<rect class="bx" x="24" y="96" width="1072" height="52" rx="8"/><text x="40" y="116" class="t" style="font-size:11.5px">Knobs (of_l2_*)</text><text x="40" y="134" class="s">strong imbalance 0.40 · min pull 0.50 · min reliability 0.60 · wait 2.0s · shadow mode ON (logs decisions, doesn't act yet)</text>
+<rect class="bxr" x="24" y="156" width="1072" height="52" rx="8"/><text x="40" y="176" class="t" style="font-size:11.5px">Operational quirks (these WILL bite)</text><text x="40" y="194" class="s">parser bug stored EMPTY books for months (schwab-py relabeled fields — fixed 2026-07-21, verified live) · ONE streamer per account: ToS desktop kicks the bot's stream</text>
+<text x="24" y="242" class="lbl">Training-time imputation means the model never learned real L2 patterns — the L2 layer only matters at inference, as an upgrade/veto signal.</text>
+</svg>
+</div>
+
 <div class="view" data-id="gates" data-parent="overall" data-title="Pre-entry gates" data-desc="Every gate can reject the signal. Pass all → sizing.">
 <svg viewBox="0 0 1120 300" xmlns="http://www.w3.org/2000/svg">
 <defs><marker id="g1" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#58a6ff"/></marker></defs>
@@ -401,6 +551,8 @@
 <rect class="bxr" x="860" y="230" width="236" height="48" rx="9"/><text x="978" y="250" text-anchor="middle" class="t">Live close path</text><text x="978" y="268" text-anchor="middle" class="s">real SELL on every exit</text>
 <line x1="810" y1="254" x2="858" y2="254" class="fw" marker-end="url(#b1)"/>
 <text x="24" y="320" class="s">Sizing on CASH uses cashAvailableForWithdrawal (settled) — unsettled restores on T+1. Kill switch blocks ALL new entries (paper &amp; live).</text>
+<text x="24" y="348" class="s" style="fill:#3fb950">Order pricing (2026-07): MID-FIRST LADDER (order_pricing.py) — entries walk mid→ask, exits mid→bid (3 rungs, 10s each);</text>
+<text x="24" y="368" class="s" style="fill:#3fb950">urgent exits (stop / EOD / kill) go marketable immediately · spread gate = round-trip cost from mid · paper models the same fills.</text>
 </svg>
 </div>
 
@@ -463,12 +615,14 @@
 <rect class="bxb" x="24" y="128" width="674" height="46" rx="9"/><text x="361" y="148" text-anchor="middle" class="t">config.WATCHLIST (74) ∪ dynamic active ∪ contention candidates ∪ core</text><text x="361" y="165" text-anchor="middle" class="s">a swapped-in / manually-added symbol already has a model — no 24-hour blind spot</text>
 <line x1="361" y1="174" x2="361" y2="196" class="fw" marker-end="url(#rt)"/>
 <text x="24" y="214" class="ph">Step 3 — Train per symbol</text>
-<g class="clk" data-nav="training"><rect class="bxp" x="24" y="224" width="330" height="52" rx="9"/><text x="189" y="248" text-anchor="middle" class="t">Train GBM (features + recency weight) ◆</text><text x="189" y="266" text-anchor="middle" class="s">730 days · VIX/SPY context once</text></g>
+<g class="clk" data-nav="training"><rect class="bxp" x="24" y="224" width="330" height="52" rx="9"/><text x="189" y="248" text-anchor="middle" class="t">Train GBM (features + recency weight) ◆</text><text x="189" y="266" text-anchor="middle" class="s">swing: hourly ~729d + 4H · scalp: 5-min · VIX/SPY context once</text></g>
 <rect class="bx" x="374" y="224" width="324" height="52" rx="9"/><text x="536" y="248" text-anchor="middle" class="t">Kelly + ATR recommendations</text><text x="536" y="266" text-anchor="middle" class="s">sizing &amp; stop tuning</text>
 <line x1="354" y1="250" x2="372" y2="250" class="fw" marker-end="url(#rt)"/>
 <rect class="bxg" x="760" y="128" width="336" height="148" rx="10"/><text x="928" y="154" text-anchor="middle" class="t">Publish</text><rect class="bx" x="782" y="170" width="292" height="30" rx="7"/><text x="928" y="190" text-anchor="middle" class="s">per-symbol models → ai_models/</text><rect class="bx" x="782" y="208" width="292" height="30" rx="7"/><text x="928" y="228" text-anchor="middle" class="s">Kelly risk % + ATR stops → config</text><rect class="bx" x="782" y="246" width="292" height="22" rx="7"/><text x="928" y="262" text-anchor="middle" class="s">updated watchlist</text>
 <line x1="698" y1="250" x2="758" y2="224" class="fw" marker-end="url(#rt)"/>
 <path d="M928,276 L928,318 L361,318 L361,296" class="fb" marker-end="url(#rt)"/><text x="560" y="314" class="lbl">feeds the next trading day's signals, confidence &amp; sizing</text>
+<text x="24" y="352" class="s" style="fill:#3fb950">Also nightly: Deeper Dive optimizer — strategy grids (risk/exit knobs only), each combo train/test split (70/30 walk-forward);</text>
+<text x="24" y="372" class="s" style="fill:#3fb950">only a combo that stays profitable OUT-OF-SAMPLE (≥10 trades, stable neighbors) may auto-apply — raw in-sample winners never do.</text>
 </svg>
 </div>
 
@@ -476,14 +630,14 @@
 <div class="view" data-id="training" data-parent="retrain" data-title="Per-symbol model training" data-desc="What one symbol's nightly GradientBoosting train does.">
 <svg viewBox="0 0 1120 300" xmlns="http://www.w3.org/2000/svg">
 <defs><marker id="tr" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#bc8cff"/></marker></defs>
-<rect class="bx" x="24" y="50" width="200" height="60" rx="8"/><text x="124" y="76" text-anchor="middle" class="t">Fetch bars</text><text x="124" y="94" text-anchor="middle" class="s">730 days daily OHLCV</text>
-<rect class="bx" x="248" y="50" width="210" height="60" rx="8"/><text x="353" y="76" text-anchor="middle" class="t">Build features + labels</text><text x="353" y="94" text-anchor="middle" class="s">~46 features · forward-return label</text>
+<rect class="bx" x="24" y="50" width="200" height="60" rx="8"/><text x="124" y="76" text-anchor="middle" class="t">Fetch bars</text><text x="124" y="94" text-anchor="middle" class="s">swing: hourly ~729d · scalp: 5-min</text>
+<rect class="bx" x="248" y="50" width="210" height="60" rx="8"/><text x="353" y="76" text-anchor="middle" class="t">Build features + labels</text><text x="353" y="94" text-anchor="middle" class="s">swing 60 (hourly+4H) · scalp 59 (5-min+L2) · fwd-return label</text>
 <rect class="bxp" x="482" y="50" width="210" height="60" rx="8"/><text x="587" y="76" text-anchor="middle" class="t">Train GBM</text><text x="587" y="94" text-anchor="middle" class="s">recency-weighted (newest ~12×)</text>
 <rect class="bx" x="716" y="50" width="200" height="60" rx="8"/><text x="816" y="76" text-anchor="middle" class="t">Walk-forward test</text><text x="816" y="94" text-anchor="middle" class="s">held-out accuracy</text>
 <rect class="bxg" x="940" y="50" width="156" height="60" rx="8"/><text x="1018" y="76" text-anchor="middle" class="t">Save model</text><text x="1018" y="94" text-anchor="middle" class="s">+ impute medians</text>
 <line x1="224" y1="80" x2="246" y2="80" class="fw" marker-end="url(#tr)" style="stroke:#bc8cff"/><line x1="458" y1="80" x2="480" y2="80" class="fw" marker-end="url(#tr)" style="stroke:#bc8cff"/><line x1="692" y1="80" x2="714" y2="80" class="fw" marker-end="url(#tr)" style="stroke:#bc8cff"/><line x1="916" y1="80" x2="938" y2="80" class="fw" marker-end="url(#tr)" style="stroke:#bc8cff"/>
 <text x="24" y="170" class="s">The self-tuning confidence threshold rises automatically if the model's rolling live accuracy drops, so a weak model emits fewer signals.</text>
-<text x="24" y="192" class="s">L2 order-book features are imputed to neutral during training (they only exist live at inference).</text>
+<text x="24" y="192" class="s">Scalp keeps 5 L2 order-book features (imputed neutral in training, live-only at inference); swing drops them for a 6-feature 4H-context block.</text>
 <text x="24" y="230" class="lbl">Output feeds the “AI confidence score” view — that model IS what this training produces, per symbol, every night.</text>
 </svg>
 </div>
@@ -500,11 +654,11 @@
 <text x="40" y="176" class="ph">SCALP config</text>
 <rect class="bxg" x="40" y="186" width="500" height="40" rx="8"/><text x="56" y="211" class="s"><tspan class="t" style="font-size:11px">Dynamic</tspan> — engine picks ~ATM (50Δ), weekly expiry  ·  +5.7%/tr</text>
 <rect class="bx" x="40" y="232" width="500" height="40" rx="8"/><text x="56" y="257" class="s"><tspan class="t" style="font-size:11px">Static</tspan> — Target DTE + strike · default 1DTE / 1-OTM  ·  +21%/tr</text>
-<rect class="bxr" x="40" y="278" width="500" height="40" rx="8"/><text x="56" y="303" class="s"><tspan class="t" style="font-size:11px">High risk</tspan> — 0DTE ATM before 1pm ET, 1DTE 1-OTM after</text>
+<rect class="bxr" x="40" y="278" width="500" height="40" rx="8"/><text x="56" y="303" class="s"><tspan class="t" style="font-size:11px">High risk</tspan> — 0DTE ATM &lt;1pm, 1DTE 1-OTM after · <tspan style="fill:#3fb950">11am-switch variant (high_risk_11)</tspan></text>
 <text x="580" y="176" class="ph">SWING config</text>
 <rect class="bxg" x="580" y="186" width="500" height="40" rx="8"/><text x="596" y="211" class="s"><tspan class="t" style="font-size:11px">Dynamic</tspan> — engine picks ~ATM (50Δ), weeks-out expiry</text>
 <rect class="bx" x="580" y="232" width="500" height="40" rx="8"/><text x="596" y="257" class="s"><tspan class="t" style="font-size:11px">Static</tspan> — Target DTE (e.g. 30 ≈ monthly) + strike offset</text>
-<rect class="bxr" x="580" y="278" width="500" height="40" rx="8"/><text x="596" y="303" class="s"><tspan class="t" style="font-size:11px">High risk</tspan> — 0DTE ATM before 1pm ET, 1DTE 1-OTM after</text>
+<rect class="bxr" x="580" y="278" width="500" height="40" rx="8"/><text x="596" y="303" class="s"><tspan class="t" style="font-size:11px">High risk</tspan> — 0DTE ATM &lt;1pm, 1DTE 1-OTM after · <tspan style="fill:#3fb950">11am-switch variant (high_risk_11)</tspan></text>
 <line x1="290" y1="318" x2="500" y2="356" class="fw" marker-end="url(#ce)"/>
 <line x1="830" y1="318" x2="620" y2="356" class="fw" marker-end="url(#ce)"/>
 <rect class="bxb" x="360" y="356" width="400" height="48" rx="9"/><text x="560" y="380" text-anchor="middle" class="t">find_best_contract → closest listed option</text><text x="560" y="397" text-anchor="middle" class="s">real chain · bid/ask · then sizing → broker</text>
