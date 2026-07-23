@@ -116,7 +116,7 @@
     <div class="bar">
       <button class="menuBtn" id="menuBtn" onclick="toggleSide()" aria-label="Open menu">☰</button>
       <button class="btn" id="backBtn" onclick="goBack()">↑ Back</button>
-      <button class="btn" onclick="nav('overall')">⌂ Home</button>
+      <button class="btn" onclick="nav('system_context')">⌂ Home</button>
       <span class="crumbs" id="crumbs"></span>
     </div>
     <div class="mobtip">Swipe a diagram sideways to pan · pinch to zoom · tap ☰ for the map · tap any ◆ box to dig in.</div>
@@ -129,7 +129,7 @@
 <div id="views" style="display:none">
 
 <!-- L0 OVERALL -->
-<div class="view" data-id="overall" data-parent="" data-title="Overall process" data-desc="The full trading loop. Click any phase to dig into it.">
+<div class="view" data-id="overall" data-parent="system_context" data-title="Overall process (trading loop)" data-desc="The full trading loop. Click any phase to dig into it.">
 <svg viewBox="0 0 1120 470" xmlns="http://www.w3.org/2000/svg">
 <defs><marker id="o1" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#58a6ff"/></marker></defs>
 <g class="clk" data-nav="candidates"><rect class="bx" x="24" y="30" width="200" height="66" rx="9"/><text x="124" y="56" text-anchor="middle" class="t">① Find</text><text x="124" y="73" text-anchor="middle" class="s">scan 74-symbol watchlist</text><text x="214" y="42" text-anchor="end" class="cue">◆</text></g>
@@ -148,12 +148,11 @@
 <g class="clk" data-nav="retrain"><rect class="band" x="120" y="288" width="900" height="70" rx="10"/><text x="140" y="312" class="ph">⑨ Nightly retrain — 17:00 ET (swap → train)  ◆</text><text x="140" y="336" class="s">watchlist swaps + score  →  train GBM on 74 + contention  →  Kelly / ATR recs  →  publish models</text></g>
 <path d="M120,323 L60,323 L60,63 L22,63" class="fb" marker-end="url(#o1)"/>
 <text x="70" y="205" class="lbl" transform="rotate(-90 70 205)">fresh models feed tomorrow</text>
-<g class="clk" data-nav="system_context"><rect class="band" x="120" y="382" width="900" height="52" rx="10"/><text x="140" y="404" class="ph">🌐 System context — everything OUTSIDE the bot  ◆</text><text x="140" y="422" class="s">Schwab (data + the ONLY order broker) · Robinhood (data toggle) · Yahoo fallback · Discord · email · Task Scheduler · GitHub Pages · your browser</text></g>
 </svg>
 </div>
 
 <!-- OVERALL → system context (external systems) -->
-<div class="view" data-id="system_context" data-parent="overall" data-title="System context — outside systems" data-desc="Everything Confluence talks to beyond its own process. Schwab is the ONLY broker that ever places real orders — the Robinhood toggle is market data only.">
+<div class="view" data-id="system_context" data-parent="" data-title="System context (start here)" data-desc="The highest-level view: everything Confluence talks to beyond its own process. Schwab is the ONLY broker that ever places real orders — the Robinhood toggle is market data only. Click the bot engine to open the full trading loop.">
 <svg viewBox="0 0 1120 560" xmlns="http://www.w3.org/2000/svg">
 <defs>
 <marker id="sc1" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#58a6ff"/></marker>
@@ -186,7 +185,7 @@
 <rect class="bx" x="24" y="238" width="250" height="62" rx="9"/><text x="40" y="260" class="t">Yahoo Finance (yfinance)</text><text x="40" y="278" class="s">fallback bars (hourly swing history)</text><text x="40" y="292" class="s">VIX / SPY market-context features</text>
 
 <!-- CENTER: the machine -->
-<g class="clk" data-nav="strategies"><rect class="bxg" x="350" y="46" width="360" height="98" rx="9"/><text x="366" y="68" class="t">main.py — bot engine</text><text x="366" y="86" class="s">scan loop · single or MULTI-strategy roster</text><text x="366" y="100" class="s">AI veto → gates → contract engine → execution</text><text x="366" y="114" class="s">position monitor · live-sync with Schwab</text><text x="366" y="132" class="s" style="fill:#8b949e">polling: fast in market hours · slow after-hours (minutes)</text><text x="700" y="58" text-anchor="end" class="cue">◆</text></g>
+<g class="clk" data-nav="overall"><rect class="bxg" x="350" y="46" width="360" height="98" rx="9"/><text x="366" y="68" class="t">main.py — bot engine</text><text x="366" y="86" class="s">scan loop · single or MULTI-strategy roster</text><text x="366" y="100" class="s">AI veto → gates → contract engine → execution</text><text x="366" y="114" class="s">position monitor · live-sync with Schwab</text><text x="366" y="132" class="s" style="fill:#8b949e">polling: fast in market hours · slow after-hours (minutes)</text><text x="700" y="58" text-anchor="end" class="cue">◆</text></g>
 <rect class="bx" x="350" y="170" width="360" height="70" rx="9"/><text x="366" y="192" class="t">Flask dashboard :5000</text><text x="366" y="210" class="s">admin · positions · manual orders · Deeper Dive</text><text x="366" y="226" class="s" style="fill:#f85149">no auth — LAN only, never port-forward (SECURITY_PLAN)</text>
 <g class="clk" data-nav="retrain"><rect class="bxp" x="350" y="266" width="360" height="80" rx="9"/><text x="366" y="288" class="t">run_nightly.py — nightly pipeline</text><text x="366" y="306" class="s">AI trainer (74 symbols) · parallel Deeper Dives (12h cap)</text><text x="366" y="322" class="s">bars_store 5-min archive collection</text><text x="366" y="338" class="s">auto-adopts walk-forward-VALIDATED settings only</text><text x="700" y="278" text-anchor="end" class="cue">◆</text></g>
 <rect class="band" x="350" y="372" width="360" height="56" rx="9"/><text x="366" y="394" class="t">Local state (no cloud)</text><text x="366" y="412" class="s">bot_mode.json · admin_settings · SQLite · bars_store · ai_models/</text>
@@ -200,7 +199,7 @@
 <rect class="bx" x="830" y="296" width="266" height="56" rx="9"/><text x="846" y="318" class="t">Your browser (LAN)</text><text x="846" y="336" class="s">operates the dashboard · applies settings</text>
 <rect class="band" x="830" y="372" width="266" height="60" rx="9"/><text x="846" y="394" class="t">GitHub Pages</text><text x="846" y="410" class="s">this diagrams site — served from the main branch</text><text x="846" y="424" class="s" style="fill:#484f58">reference only · nothing in the bot writes to it</text>
 
-<text x="24" y="540" class="lbl">Solid blue = live trading-hours traffic · dashed = data/fallback &amp; nightly-only · amber = scheduler trigger. Click Schwab, the bot engine or the nightly box to drill in.</text>
+<text x="24" y="540" class="lbl">Solid blue = live trading-hours traffic · dashed = data/fallback &amp; nightly-only · amber = scheduler trigger. Click the BOT ENGINE for the full trading loop · Schwab → order routing · nightly box → retrain.</text>
 </svg>
 </div>
 
@@ -689,7 +688,7 @@
     let html = '<div class="grp">Explore</div>';
     // overall first, then its children, with their children indented
     const order = [];
-    roots.forEach(r=>{ order.push([r,0]); childrenOf(r).forEach(c=>{ order.push([c,1]); childrenOf(c).forEach(g=>order.push([g,2])); }); });
+    roots.forEach(r=>{ order.push([r,0]); childrenOf(r).forEach(c=>{ order.push([c,1]); childrenOf(c).forEach(g=>{ order.push([g,2]); childrenOf(g).forEach(gg=>{ order.push([gg,3]); childrenOf(gg).forEach(g3=>order.push([g3,4])); }); }); }); });
     order.forEach(([id,depth])=>{
       html += `<a data-nav="${id}" class="${depth?'child':''}" style="padding-left:${8+depth*14}px">${depth?'└ ':''}${META[id].title}</a>`;
     });
@@ -700,7 +699,7 @@
   const histStack = [];
   function pathTo(id){ const p=[]; let c=id; while(c){ p.unshift(c); c=META[c].parent; } return p; }
   function render(id, pushHist=true){
-    if(!META[id]) id='overall';
+    if(!META[id]) id='system_context';
     if(pushHist && current && current!==id) histStack.push(current);
     current = id;
     // move the view into the stage
@@ -735,7 +734,7 @@
   // close drawer on Escape / when rotating to a wide viewport
   document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeSide(); });
   window.addEventListener('resize', ()=>{ if(window.innerWidth>820) closeSide(); });
-  render('overall', false);
+  render('system_context', false);
 })();
 </script>
 </body>
