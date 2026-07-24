@@ -153,7 +153,7 @@
 
 <!-- OVERALL → system context (external systems) -->
 <div class="view" data-id="system_context" data-parent="" data-title="System context (start here)" data-desc="The highest-level view: everything Confluence talks to beyond its own process. Schwab is the ONLY broker that ever places real orders — the Robinhood toggle is market data only. Click the bot engine to open the full trading loop.">
-<svg viewBox="0 0 1120 560" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 1120 604" xmlns="http://www.w3.org/2000/svg">
 <defs>
 <marker id="sc1" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#58a6ff"/></marker>
 <marker id="sca" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#d29922"/></marker>
@@ -200,6 +200,7 @@
 <rect class="band" x="830" y="372" width="266" height="60" rx="9"/><text x="846" y="394" class="t">GitHub Pages</text><text x="846" y="410" class="s">this diagrams site — served from the main branch</text><text x="846" y="424" class="s" style="fill:#484f58">reference only · nothing in the bot writes to it</text>
 
 <text x="24" y="540" class="lbl">Solid blue = live trading-hours traffic · dashed = data/fallback &amp; nightly-only · amber = scheduler trigger. Click the BOT ENGINE for the full trading loop · Schwab → order routing · nightly box → retrain.</text>
+<g class="clk" data-nav="code_map"><rect class="bxp" x="24" y="556" width="1072" height="40" rx="9"/><text x="44" y="581" class="t">🗺 Code map — every vital path by function name</text><text x="700" y="581" class="s">the CODE behind these concept views: real module + function names, wired as they call each other</text><text x="1086" y="571" text-anchor="end" class="cue">◆</text></g>
 </svg>
 </div>
 
@@ -662,6 +663,116 @@
 <line x1="830" y1="318" x2="620" y2="356" class="fw" marker-end="url(#ce)"/>
 <rect class="bxb" x="360" y="356" width="400" height="48" rx="9"/><text x="560" y="380" text-anchor="middle" class="t">find_best_contract → closest listed option</text><text x="560" y="397" text-anchor="middle" class="s">real chain · bid/ask · then sizing → broker</text>
 <text x="40" y="440" class="lbl">Set independently on the dashboard → Contract Selection. Dynamic = today's default for every strategy; Static is Order Flow's backtest-validated 1DTE / 1-OTM.</text>
+</svg>
+</div>
+
+<!-- ================= CODE MAP (function-level drill-down) ================= -->
+
+<!-- CODE MAP index -->
+<div class="view" data-id="code_map" data-parent="system_context" data-title="🗺 Code map (by function name)" data-desc="The CODE, not the concept: every vital path drawn with the REAL module + function names, wired as they call each other. main.py boots ONE process — a Flask dashboard thread plus four daemon threads and the scan loop. Click any path to walk its functions.">
+<svg viewBox="0 0 1120 432" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="cm1" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#58a6ff"/></marker></defs>
+<text x="24" y="22" class="ph">main.py  __main__  — one Windows process: Flask thread + 4 daemon threads + the scan loop</text>
+<rect class="bxg" x="24" y="34" width="208" height="66" rx="8"/><text x="34" y="55" class="t" style="font-size:10.5px">start_dashboard()</text><text x="34" y="72" class="s">dashboard/ Flask :5000</text><text x="34" y="88" class="s">admin · positions · optimizers</text>
+<rect class="bxb" x="240" y="34" width="208" height="66" rx="8"/><text x="250" y="55" class="t" style="font-size:10.5px">main()  — scan loop</text><text x="250" y="72" class="s">while True · signals → order</text><text x="250" y="88" class="s">path ①</text>
+<rect class="bx" x="456" y="34" width="208" height="66" rx="8"/><text x="466" y="55" class="t" style="font-size:10.5px">_position_monitor_thread</text><text x="466" y="72" class="s">reprice + exits · path ②</text><text x="466" y="88" class="s">5s via _two_tier_interval</text>
+<rect class="bx" x="672" y="34" width="208" height="66" rx="8"/><text x="682" y="55" class="t" style="font-size:10.5px">_live_sync_loop</text><text x="682" y="72" class="s">adopt / prune vs Schwab</text><text x="682" y="88" class="s">30s live sync</text>
+<rect class="bx" x="888" y="34" width="208" height="66" rx="8"/><text x="898" y="55" class="t" style="font-size:10.5px">_position_summary_thread</text><text x="898" y="72" class="s">30-min Discord summary</text><text x="898" y="88" class="s">(+ _manual_order_thread)</text>
+<text x="24" y="130" class="ph">VITAL CODE PATHS — click any to walk the actual functions ◆</text>
+<g class="clk" data-nav="code_signal_path"><rect class="bxg" x="24" y="142" width="524" height="118" rx="10"/><text x="40" y="168" class="t">① SIGNAL → ORDER pipeline</text><text x="40" y="190" class="s">main() scan → _collect_roster_signals → scan_all(strategy)</text><text x="40" y="208" class="s">→ engine analyze_* → ai_confirm.apply → entry gates</text><text x="40" y="226" class="s">→ _resolve_contract_target → find_best_contract → sizing</text><text x="40" y="244" class="s">→ paper_open()/live_open() → entry_ladder → _reconcile_live_opens</text><text x="532" y="156" text-anchor="end" class="cue">◆</text></g>
+<g class="clk" data-nav="code_monitor_path"><rect class="bxb" x="572" y="142" width="524" height="118" rx="10"/><text x="588" y="168" class="t">② REPRICE &amp; EXITS</text><text x="588" y="190" class="s">_position_monitor_thread → paper_monitor → _paper_monitor_unlocked</text><text x="588" y="208" class="s">→ get_quotes_batch + schwab_stream.get_price → stop/target/trail/scale</text><text x="588" y="226" class="s">→ _begin_live_close → exit_ladder → _finalize_close → send_trade_closed</text><text x="588" y="244" class="s">side: _live_sync_loop · _roster_flush_market_close</text><text x="1080" y="156" text-anchor="end" class="cue">◆</text></g>
+<g class="clk" data-nav="code_nightly_path"><rect class="bxp" x="24" y="272" width="524" height="118" rx="10"/><text x="40" y="298" class="t">③ NIGHTLY pipeline</text><text x="40" y="320" class="s">run_nightly.py main() → collect_bars → run_ai_trainer</text><text x="40" y="338" class="s">→ ai_daily_trainer.train_symbol → train_model (GBM)</text><text x="40" y="356" class="s">→ run_all_optimizers POOL → backtest_optimizer walk-forward</text><text x="40" y="374" class="s">→ _auto_apply_optimizer_results → send_retrain_summary</text><text x="532" y="286" text-anchor="end" class="cue">◆</text></g>
+<g class="clk" data-nav="code_data_layer"><rect class="bxa" x="572" y="272" width="524" height="118" rx="10"/><text x="588" y="298" class="t">④ DATA layer (shared by ①②③)</text><text x="588" y="320" class="s">broker_router — data-only broker switch</text><text x="588" y="338" class="s">schwab_data.get_bars (TTL → disk → REST → yf)</text><text x="588" y="356" class="s">get_quotes_batch · get_option_quote · find_best_contract</text><text x="588" y="374" class="s">schwab_stream websocket · bars_store SQLite archive</text><text x="1080" y="286" text-anchor="end" class="cue">◆</text></g>
+<text x="24" y="416" class="lbl">Every function name here exists in the code at the file shown. These CODE views complement the concept views (strategies, gates, contract engine) reachable from the trading loop.</text>
+</svg>
+</div>
+
+<!-- CODE: signal → order path -->
+<div class="view" data-id="code_signal_path" data-parent="code_map" data-title="Code ① signal → order" data-desc="The scan-to-execution path with real function names. main.py main() drives it; scan_all lives in signals.py (scalp) / swing_signals.py (swing) and already runs ai_confirm.apply inside. Grey ◆ boxes cross-link to the concept views.">
+<svg viewBox="0 0 1120 334" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="sig" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#58a6ff"/></marker></defs>
+<rect class="bxg" x="24" y="46" width="250" height="72" rx="8"/><text x="36" y="70" class="t" style="font-size:10.5px">main() scan loop</text><text x="36" y="88" class="s">main.py · while True</text><text x="36" y="104" class="s">trading-window cycles</text>
+<rect class="bx" x="288" y="46" width="250" height="72" rx="8"/><text x="300" y="70" class="t" style="font-size:10.5px">_collect_roster_signals</text><text x="300" y="88" class="s">main.py · _roster_in_window</text><text x="300" y="104" class="s">per-horizon window gate</text>
+<rect class="bxb" x="552" y="46" width="250" height="72" rx="8"/><text x="564" y="70" class="t" style="font-size:10.5px">scan_all(strategy=…)</text><text x="564" y="88" class="s">signals.py · swing_signals.py</text><text x="564" y="104" class="s">scalp vs swing</text>
+<rect class="bx" x="816" y="46" width="250" height="72" rx="8"/><text x="828" y="70" class="t" style="font-size:10.5px">analyze_ticker / _mtf / analyze</text><text x="828" y="88" class="s">order_flow · andre · ms_pullback</text><text x="828" y="104" class="s">engines → candidates</text>
+<rect class="bxp" x="816" y="140" width="250" height="72" rx="8"/><text x="828" y="164" class="t" style="font-size:10.5px">ai_confirm.apply()</text><text x="828" y="182" class="s">ai_confirm.py · in scan_all</text><text x="828" y="198" class="s">MTF veto + GBM confirm</text>
+<g class="clk" data-nav="gates"><rect class="bxa" x="552" y="140" width="250" height="72" rx="8"/><text x="564" y="164" class="t" style="font-size:10.5px">entry gates</text><text x="564" y="182" class="s">main.py</text><text x="564" y="198" class="s">kill switch · caps · spread</text><text x="794" y="156" text-anchor="end" class="cue">◆</text></g>
+<g class="clk" data-nav="contracts"><rect class="bx" x="288" y="140" width="250" height="72" rx="8"/><text x="300" y="164" class="t" style="font-size:10.5px">_resolve_contract_target</text><text x="300" y="182" class="s">main.py</text><text x="300" y="198" class="s">scalp vs swing horizon</text><text x="530" y="156" text-anchor="end" class="cue">◆</text></g>
+<rect class="bxg" x="24" y="140" width="250" height="72" rx="8"/><text x="36" y="164" class="t" style="font-size:10.5px">find_best_contract</text><text x="36" y="182" class="s">broker_router.py</text><text x="36" y="198" class="s">closest listed option</text>
+<rect class="bx" x="24" y="234" width="250" height="72" rx="8"/><text x="36" y="258" class="t" style="font-size:10.5px">Kelly sizing</text><text x="36" y="276" class="s">main.py</text><text x="36" y="292" class="s">risk % → # contracts</text>
+<rect class="bxg" x="288" y="234" width="250" height="72" rx="8"/><text x="300" y="258" class="t" style="font-size:10.5px">paper_open() + live_open()</text><text x="300" y="276" class="s">main.py</text><text x="300" y="292" class="s">paper always · live if routed</text>
+<rect class="bxb" x="552" y="234" width="250" height="72" rx="8"/><text x="564" y="258" class="t" style="font-size:10.5px">entry_ladder()</text><text x="564" y="276" class="s">order_pricing.py</text><text x="564" y="292" class="s">mid-first · order_max_slippage_pct</text>
+<rect class="bx" x="816" y="234" width="250" height="72" rx="8"/><text x="828" y="258" class="t" style="font-size:10.5px">_reconcile_live_opens</text><text x="828" y="276" class="s">main.py</text><text x="828" y="292" class="s">dedupe vs Schwab fills</text>
+<line x1="274" y1="82" x2="288" y2="82" class="fw" marker-end="url(#sig)"/><line x1="538" y1="82" x2="552" y2="82" class="fw" marker-end="url(#sig)"/><line x1="802" y1="82" x2="816" y2="82" class="fw" marker-end="url(#sig)"/>
+<line x1="941" y1="118" x2="941" y2="140" class="fw" marker-end="url(#sig)"/>
+<line x1="816" y1="176" x2="802" y2="176" class="fw" marker-end="url(#sig)"/><line x1="552" y1="176" x2="538" y2="176" class="fw" marker-end="url(#sig)"/><line x1="288" y1="176" x2="274" y2="176" class="fw" marker-end="url(#sig)"/>
+<line x1="149" y1="212" x2="149" y2="234" class="fw" marker-end="url(#sig)"/>
+<line x1="274" y1="270" x2="288" y2="270" class="fg" marker-end="url(#sig)"/><line x1="538" y1="270" x2="552" y2="270" class="fg" marker-end="url(#sig)"/><line x1="802" y1="270" x2="816" y2="270" class="fg" marker-end="url(#sig)"/>
+<text x="24" y="326" class="lbl">Order of calls flows with the arrows (snake). ai_confirm.apply runs INSIDE scan_all. ◆ boxes cross-link to the concept-level Pre-entry gates and Contract Engine views.</text>
+</svg>
+</div>
+
+<!-- CODE: monitor / exit path -->
+<div class="view" data-id="code_monitor_path" data-parent="code_map" data-title="Code ② reprice &amp; exits" data-desc="The position-monitor daemon and the live-close path, real names. Runs on its own 30s/5s thread guarded by an RLock (paper_monitor). Two sibling daemons handle live sync and end-of-day roster flush.">
+<svg viewBox="0 0 1120 344" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="mon" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#58a6ff"/></marker><marker id="monr" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#f85149"/></marker></defs>
+<rect class="bx" x="24" y="46" width="250" height="72" rx="8"/><text x="36" y="70" class="t" style="font-size:10.5px">_position_monitor_thread</text><text x="36" y="88" class="s">main.py · daemon</text><text x="36" y="104" class="s">interval via _two_tier_interval</text>
+<rect class="bxb" x="288" y="46" width="250" height="72" rx="8"/><text x="300" y="70" class="t" style="font-size:10.5px">paper_monitor()</text><text x="300" y="88" class="s">main.py · RLock guard</text><text x="300" y="104" class="s">serializes pricing pass</text>
+<rect class="bx" x="552" y="46" width="250" height="72" rx="8"/><text x="564" y="70" class="t" style="font-size:10.5px">_paper_monitor_unlocked</text><text x="564" y="88" class="s">main.py</text><text x="564" y="104" class="s">per-position pass</text>
+<rect class="bxa" x="816" y="46" width="250" height="72" rx="8"/><text x="828" y="70" class="t" style="font-size:10.5px">quote prefetch</text><text x="828" y="88" class="s">get_quotes_batch (spot)</text><text x="828" y="104" class="s">schwab_stream.get_price (mark)</text>
+<g class="clk" data-nav="scaling"><rect class="bx" x="816" y="140" width="250" height="72" rx="8"/><text x="828" y="164" class="t" style="font-size:10.5px">stop / target / trail / scale</text><text x="828" y="182" class="s">main.py</text><text x="828" y="198" class="s">first trigger wins</text><text x="1058" y="156" text-anchor="end" class="cue">◆</text></g>
+<rect class="bxr" x="552" y="140" width="250" height="72" rx="8"/><text x="564" y="164" class="t" style="font-size:10.5px">_begin_live_close()</text><text x="564" y="182" class="s">main.py</text><text x="564" y="198" class="s">starts the real SELL</text>
+<rect class="bxb" x="288" y="140" width="250" height="72" rx="8"/><text x="300" y="164" class="t" style="font-size:10.5px">exit_ladder()</text><text x="300" y="182" class="s">order_pricing.py</text><text x="300" y="198" class="s">urgent bypass → market</text>
+<g class="clk" data-nav="close"><rect class="bxg" x="24" y="140" width="250" height="72" rx="8"/><text x="36" y="164" class="t" style="font-size:10.5px">_finalize_close()</text><text x="36" y="182" class="s">main.py</text><text x="36" y="198" class="s">realize P&amp;L · record</text><text x="266" y="156" text-anchor="end" class="cue">◆</text></g>
+<rect class="bx" x="24" y="234" width="250" height="60" rx="8"/><text x="36" y="258" class="t" style="font-size:10.5px">send_trade_closed</text><text x="36" y="276" class="s">discord_notify.py · Discord alert</text>
+<text x="300" y="230" class="ph">Sibling daemons (run in parallel)</text>
+<rect class="band" x="288" y="238" width="250" height="56" rx="8"/><text x="300" y="260" class="t" style="font-size:10.5px">_live_sync_loop</text><text x="300" y="278" class="s">main.py · adopt / prune vs Schwab</text>
+<rect class="band" x="552" y="238" width="250" height="56" rx="8"/><text x="564" y="260" class="t" style="font-size:10.5px">_roster_flush_market_close</text><text x="564" y="278" class="s">main.py · close roster windows at EOD</text>
+<line x1="274" y1="82" x2="288" y2="82" class="fw" marker-end="url(#mon)"/><line x1="538" y1="82" x2="552" y2="82" class="fw" marker-end="url(#mon)"/><line x1="802" y1="82" x2="816" y2="82" class="fa" marker-end="url(#mon)"/>
+<line x1="941" y1="118" x2="941" y2="140" class="fw" marker-end="url(#mon)"/>
+<line x1="816" y1="176" x2="802" y2="176" class="fr" marker-end="url(#monr)" style="stroke:#f85149;stroke-width:2;fill:none"/><line x1="552" y1="176" x2="538" y2="176" class="fw" marker-end="url(#mon)"/><line x1="288" y1="176" x2="274" y2="176" class="fw" marker-end="url(#mon)"/>
+<line x1="149" y1="212" x2="149" y2="234" class="fw" marker-end="url(#mon)"/>
+<text x="24" y="326" class="lbl">Stops/targets/trail (◆ Scale-in/out) fire the close chain: _begin_live_close → exit_ladder → _finalize_close → send_trade_closed (◆ Close &amp; record).</text>
+</svg>
+</div>
+
+<!-- CODE: nightly path -->
+<div class="view" data-id="code_nightly_path" data-parent="code_map" data-title="Code ③ nightly pipeline" data-desc="run_nightly.py step-by-step with real names. STEP 1 trains per-symbol GBMs; STEP 2 fires the parallel optimizer pool in the dashboard; only walk-forward-validated combos auto-apply. Task Scheduler launches it (12h stop-limit).">
+<svg viewBox="0 0 1120 344" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="ngt" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#58a6ff"/></marker></defs>
+<rect class="bxa" x="24" y="42" width="250" height="80" rx="8"/><text x="36" y="66" class="t" style="font-size:10.5px">main()</text><text x="36" y="84" class="s">run_nightly.py</text><text x="36" y="100" class="s">Task Scheduler entry</text><text x="36" y="116" class="s">12h stop-limit</text>
+<rect class="bx" x="288" y="42" width="250" height="80" rx="8"/><text x="300" y="66" class="t" style="font-size:10.5px">collect_bars()  STEP 0</text><text x="300" y="84" class="s">run_nightly → bars_store</text><text x="300" y="100" class="s">collect_watchlist</text><text x="300" y="116" class="s">5-min archive</text>
+<g class="clk" data-nav="training"><rect class="bxp" x="552" y="42" width="250" height="80" rx="8"/><text x="564" y="66" class="t" style="font-size:10.5px">run_ai_trainer()  STEP 1</text><text x="564" y="84" class="s">ai_daily_trainer.main</text><text x="564" y="100" class="s">→ train_symbol → train_model</text><text x="564" y="116" class="s">hourly bars → GBM (per symbol)</text><text x="794" y="58" text-anchor="end" class="cue">◆</text></g>
+<rect class="bx" x="816" y="42" width="250" height="80" rx="8"/><text x="828" y="66" class="t" style="font-size:10.5px">fire_deeper_dive()  STEP 2</text><text x="828" y="84" class="s">run_nightly → dashboard</text><text x="828" y="100" class="s">POST /api/admin/</text><text x="828" y="116" class="s">run_all_optimizers</text>
+<g class="clk" data-nav="retrain"><rect class="bxg" x="816" y="150" width="250" height="80" rx="8"/><text x="828" y="174" class="t" style="font-size:10.5px">optimizer POOL</text><text x="828" y="192" class="s">dashboard/backtests.py</text><text x="828" y="208" class="s">_PARALLEL_MAX_CONCURRENT=4</text><text x="828" y="224" class="s">_job_family · _next_poolable · _run_all_watcher</text><text x="1058" y="166" text-anchor="end" class="cue">◆</text></g>
+<rect class="bxb" x="552" y="150" width="250" height="80" rx="8"/><text x="564" y="174" class="t" style="font-size:10.5px">walk-forward select</text><text x="564" y="192" class="s">backtest_optimizer.py</text><text x="564" y="208" class="s">_wf_fields</text><text x="564" y="224" class="s">_select_validated</text>
+<rect class="bxg" x="288" y="150" width="250" height="80" rx="8"/><text x="300" y="174" class="t" style="font-size:10.5px">_auto_apply_optimizer_results</text><text x="300" y="192" class="s">dashboard/backtests.py</text><text x="300" y="208" class="s">validated-only</text><text x="300" y="224" class="s">auto-apply to config</text>
+<rect class="bxp" x="24" y="150" width="250" height="80" rx="8"/><text x="36" y="174" class="t" style="font-size:10.5px">send_retrain_summary</text><text x="36" y="192" class="s">discord_notify.py</text><text x="36" y="208" class="s">nightly report</text>
+<text x="24" y="258" class="ph">Also nightly (later steps)</text>
+<rect class="band" x="24" y="266" width="524" height="52" rx="8"/><text x="36" y="288" class="t" style="font-size:10.5px">train_vwap_penetration()  STEP 3</text><text x="36" y="306" class="s">run_nightly.py · per-symbol VWAP-stop buffers</text>
+<rect class="band" x="560" y="266" width="536" height="52" rx="8"/><text x="572" y="288" class="t" style="font-size:10.5px">run_strategy_allocator_shadow()  STEP 4</text><text x="572" y="306" class="s">run_nightly.py · logs a pick · does NOT act (shadow only)</text>
+<line x1="274" y1="82" x2="288" y2="82" class="fw" marker-end="url(#ngt)"/><line x1="538" y1="82" x2="552" y2="82" class="fw" marker-end="url(#ngt)"/><line x1="802" y1="82" x2="816" y2="82" class="fw" marker-end="url(#ngt)"/>
+<line x1="941" y1="122" x2="941" y2="150" class="fw" marker-end="url(#ngt)"/>
+<line x1="816" y1="190" x2="802" y2="190" class="fw" marker-end="url(#ngt)"/><line x1="552" y1="190" x2="538" y2="190" class="fg" marker-end="url(#ngt)"/><line x1="288" y1="190" x2="274" y2="190" class="fw" marker-end="url(#ngt)"/>
+<text x="24" y="336" class="lbl">STEP 1 trains one GBM per symbol (◆ Per-symbol model training). STEP 2 posts to the dashboard, which runs the parallel optimizer pool (◆ Nightly retrain) — only _select_validated survivors auto-apply.</text>
+</svg>
+</div>
+
+<!-- CODE: data layer -->
+<div class="view" data-id="code_data_layer" data-parent="code_map" data-title="Code ④ data layer" data-desc="Every bar, quote and mark the bot reads flows through here. broker_router is a DATA-only switch (Schwab or Robinhood); execution is always Schwab. schwab_data.get_bars is the cached workhorse with a yfinance fallback.">
+<svg viewBox="0 0 1120 344" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="dat" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#d29922"/></marker></defs>
+<rect class="bxa" x="24" y="40" width="1072" height="52" rx="9"/><text x="40" y="62" class="t">broker_router — data-only broker switch</text><text x="40" y="80" class="s">broker_router.py · get_broker() → _provider() · routes get_bars / get_quote / option chains to Schwab (or Robinhood, DATA only). Real orders are ALWAYS Schwab.</text>
+<rect class="bxb" x="24" y="108" width="256" height="56" rx="8"/><text x="36" y="130" class="t" style="font-size:10.5px">get_bars()</text><text x="36" y="148" class="s">schwab_data.py · cached workhorse</text>
+<rect class="bxb" x="290" y="108" width="256" height="56" rx="8"/><text x="302" y="130" class="t" style="font-size:10.5px">get_quotes_batch()</text><text x="302" y="148" class="s">schwab_data.py · batched spots</text>
+<rect class="bxb" x="556" y="108" width="256" height="56" rx="8"/><text x="568" y="130" class="t" style="font-size:10.5px">get_option_quote()</text><text x="568" y="148" class="s">schwab_data.py · option bid/ask</text>
+<rect class="bxb" x="822" y="108" width="256" height="56" rx="8"/><text x="834" y="130" class="t" style="font-size:10.5px">find_best_contract()</text><text x="834" y="148" class="s">schwab_data.py · resolve OCC</text>
+<rect class="bx" x="24" y="180" width="1054" height="44" rx="8"/><text x="40" y="200" class="t" style="font-size:10.5px">get_bars cache chain</text><text x="40" y="217" class="s">mem TTL cache → BARS_DISK_CACHE (shared by backtest children) → Schwab REST → _yf_fallback (yfinance hourly/VIX/SPY)</text>
+<rect class="bxp" x="24" y="240" width="524" height="56" rx="8"/><text x="36" y="262" class="t" style="font-size:10.5px">schwab_stream</text><text x="36" y="280" class="s">schwab_stream.py · websocket · get_price / get_delta live marks</text>
+<rect class="band" x="560" y="240" width="518" height="56" rx="8"/><text x="572" y="262" class="t" style="font-size:10.5px">bars_store</text><text x="572" y="280" class="s">bars_store.py · SQLite archive · append_bars · load_history · collect_watchlist</text>
+<line x1="300" y1="92" x2="200" y2="108" class="fa" marker-end="url(#dat)"/><line x1="560" y1="92" x2="560" y2="108" class="fa" marker-end="url(#dat)"/><line x1="820" y1="92" x2="930" y2="108" class="fa" marker-end="url(#dat)"/>
+<line x1="152" y1="164" x2="152" y2="180" class="fa" marker-end="url(#dat)"/>
+<text x="24" y="322" class="lbl">Paths ①②③ all read through this layer. The get_bars cache fix (TTL + shared disk cache) stopped per-symbol 429s under the 120 req/min Schwab cap.</text>
 </svg>
 </div>
 
