@@ -153,7 +153,7 @@
 
 <!-- OVERALL → system context (external systems) -->
 <div class="view" data-id="system_context" data-parent="" data-title="System context (start here)" data-desc="The highest-level view: everything Confluence talks to beyond its own process. Schwab is the ONLY broker that ever places real orders — the Robinhood toggle is market data only. Click the bot engine to open the full trading loop.">
-<svg viewBox="0 0 1120 604" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 1120 660" xmlns="http://www.w3.org/2000/svg">
 <defs>
 <marker id="sc1" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#58a6ff"/></marker>
 <marker id="sca" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#d29922"/></marker>
@@ -203,6 +203,41 @@
 
 <text x="24" y="540" class="lbl">Solid blue = live trading-hours traffic · dashed = data/fallback &amp; nightly-only · amber = scheduler trigger. Click the BOT ENGINE for the full trading loop · Schwab → order routing · nightly box → retrain.</text>
 <g class="clk" data-nav="code_map"><rect class="bxp" x="24" y="556" width="1072" height="40" rx="9"/><text x="44" y="581" class="t">🗺 Code map — every vital path by function name</text><text x="700" y="581" class="s">the CODE behind these concept views: real module + function names, wired as they call each other</text><text x="1086" y="571" text-anchor="end" class="cue">◆</text></g>
+<g class="clk" data-nav="exit_stack_2026"><rect class="bxg" x="24" y="608" width="1072" height="40" rx="9"/><text x="44" y="633" class="t">⚙ Exit stack · booster runner · flow-reject (2026-07-24)</text><text x="700" y="633" class="s">premium-driven exits, the 1-DTE structure-trailed booster leg, and the shadow order-flow referee</text><text x="1086" y="623" text-anchor="end" class="cue">◆</text></g>
+</svg>
+</div>
+
+<!-- system_context → exit stack / booster / flow-reject -->
+<div class="view" data-id="exit_stack_2026" data-parent="system_context" data-title="Exit stack + booster + flow-reject (2026-07-24)" data-desc="The premium is the ONLY exit driver — stock levels on the dashboard are delta-derived display equivalents. Validated on a 6-month replay (2,997 trades, +$165k at $500 stakes, no losing month). Roster: Andre 2.0 + Levels; Order Flow disabled.">
+<svg viewBox="0 0 1120 620" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="ex1" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#58a6ff"/></marker><marker id="exg" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#3fb950"/></marker></defs>
+<text x="24" y="24" class="ph">BASE CONTRACT — premium-driven exits</text>
+<text x="392" y="24" class="ph">BOOSTER RUNNER (replaces scale-in)</text>
+<text x="760" y="24" class="ph">FLOW-REJECT — shadow referee</text>
+
+<rect class="bxr" x="24" y="34" width="340" height="52" rx="9"/><text x="40" y="56" class="t">Hard stop (premium %)</text><text x="40" y="74" class="s">OF −20% · Andre −55% backstop · Levels −30%</text>
+<rect class="bxb" x="24" y="98" width="340" height="52" rx="9"/><text x="40" y="120" class="t">Scale-out +20% → bank 25% of the lot</text><text x="40" y="138" class="s">then 30%-giveback trail guards the peak</text>
+<rect class="bx" x="24" y="162" width="340" height="52" rx="9"/><text x="40" y="184" class="t">Structure break (Andre bases)</text><text x="40" y="202" class="s">_andre_structure_broken exits at ANY P&amp;L</text>
+<rect class="bxg" x="24" y="226" width="340" height="52" rx="9"/><text x="40" y="248" class="t">Take-profit cap +100% (tp_override_pct)</text><text x="40" y="266" class="s">sweep: every lower cap truncated the fat tail · 999 ≈ trail-only</text>
+<rect class="bx" x="24" y="290" width="340" height="44" rx="9"/><text x="40" y="312" class="t">EOD flat 15:55 (scalps)</text>
+<rect class="bxr" x="24" y="346" width="340" height="52" rx="9"/><text x="40" y="368" class="t">Scale-in: OFF</text><text x="40" y="386" class="s">doubling the dying 0DTE lost at EVERY threshold tested</text>
+<line x1="194" y1="86" x2="194" y2="98" class="fb"/><line x1="194" y1="150" x2="194" y2="162" class="fb"/><line x1="194" y1="214" x2="194" y2="226" class="fb"/><line x1="194" y1="278" x2="194" y2="290" class="fb"/><line x1="194" y1="334" x2="194" y2="346" class="fb"/>
+
+<rect class="bxa" x="392" y="34" width="340" height="64" rx="9"/><text x="408" y="56" class="t">Trigger: base peaks ≥ +20%, pulls back 5%</text><text x="408" y="74" class="s">once per parent · paper scalp options only</text><text x="408" y="90" class="s">(the old scale-in trigger, repurposed)</text>
+<rect class="bxg" x="392" y="118" width="340" height="64" rx="9"/><text x="408" y="140" class="t">Open child leg: 1-DTE, 2 strikes OTM</text><text x="408" y="158" class="s">dollar-matched to the parent's cost (_open_booster)</text><text x="408" y="174" class="s">fresh contract → next-day theta, more gamma per $</text>
+<rect class="bxb" x="392" y="202" width="340" height="80" rx="9"/><text x="408" y="224" class="t">Structure trail = the ONLY exit</text><text x="408" y="242" class="s">stop ratchets behind each confirmed 5-min swing</text><text x="408" y="258" class="s">(higher low for calls / lower high for puts, k=3)</text><text x="408" y="274" class="s" style="fill:#3fb950">a break AFTER a run = profit-taking, not a loss</text>
+<rect class="bx" x="392" y="302" width="340" height="80" rx="9"/><text x="408" y="324" class="t">Kill conditions</text><text x="408" y="342" class="s">−50% leg premium disaster floor</text><text x="408" y="358" class="s">parent STOPPED out (thesis dead) — parent TP does NOT kill it</text><text x="408" y="374" class="s">flat 15:55 — overnight conversion tested NEGATIVE</text>
+<line x1="562" y1="98" x2="562" y2="118" class="fw" marker-end="url(#ex1)"/><line x1="562" y1="182" x2="562" y2="202" class="fw" marker-end="url(#ex1)"/><line x1="562" y1="282" x2="562" y2="302" class="fb"/>
+<path d="M364,60 C 378,60 380,60 392,62" class="fa"/>
+
+<rect class="bx" x="760" y="34" width="336" height="76" rx="9"/><text x="776" y="56" class="t">Data: real tape when IBKR is up</text><text x="776" y="74" class="s">ibkr_ticks: tick-by-tick AllLast + BidAsk (clientId 71)</text><text x="776" y="90" class="s">fallback: synthetic tape from Schwab L1 volume deltas</text><text x="776" y="104" class="s">book refresh/depletion: Schwab NASDAQ TotalView L2</text>
+<rect class="bxb" x="760" y="122" width="336" height="92" rx="9"/><text x="776" y="144" class="t">Six evidence features (0..1) at a LEVEL</text><text x="776" y="162" class="s" style="fill:#3fb950">HOLD: absorption · delta-flip · book-refresh</text><text x="776" y="178" class="s" style="fill:#f85149">BREAK: depletion · acceleration · sweep · acceptance</text><text x="776" y="194" class="s">levels: PDH/PDL/PDC · opening range · rounds (0.15×ATR band)</text><text x="776" y="208" class="s">weighted scores → REJECT (fade) / BREAK (go with) / WAIT</text>
+<rect class="bxp" x="760" y="226" width="336" height="72" rx="9"/><text x="776" y="248" class="t">SHADOW MODE — decides, never trades</text><text x="776" y="266" class="s">every call ≥0.50 conf → flow_reject_calls.jsonl</text><text x="776" y="282" class="s">grade a week of calls vs outcomes → tune → then a roster row</text>
+<line x1="928" y1="110" x2="928" y2="122" class="fb"/><line x1="928" y1="214" x2="928" y2="226" class="fw" marker-end="url(#ex1)"/>
+
+<rect class="band" x="24" y="420" width="1072" height="76" rx="9"/><text x="44" y="444" class="t">Validation (6-month replay, real engines + live gates, $500 stakes, BS-modeled premiums)</text><text x="44" y="464" class="s">2,997 trades · base legs +$100k with NO losing month (May flat) · booster +$65k (Feb's +$38k is vol-model-flattered — budget +$15–25k/mo total, ~$0 in dead tape)</text><text x="44" y="482" class="s" style="fill:#d29922">Order Flow removed from the roster 2026-07-24: lost money in the weekly A/B gated AND ungated — signals fade chop; instrument amplified it.</text>
+<text x="24" y="530" class="lbl">Roster: Andre 2.0 (9:30–4:00 scalp · 9:45–4:00 swing) + Levels (9:30–1:00). Stock stop/TP shown on the dashboard are delta-derived display equivalents — the premium is the only trigger.</text>
+<text x="24" y="552" class="lbl">Settings: scale_out_at_pct 20 · scale_in_enabled off · tp_override_pct 100 · booster_* (trigger 20 / pullback 5 / 2-OTM / floor 50) · flow_reject_* (enabled, conf 0.50, ibkr_ticks on).</text>
 </svg>
 </div>
 
@@ -294,7 +329,7 @@
 </div>
 
 <!-- ORDER FLOW detail -->
-<div class="view" data-id="order_flow" data-parent="strategies" data-title="Order Flow / CVD" data-desc="Aggressor imbalance as the primary driver — the backtest-validated engine (+21%/trade at 1DTE / 1-OTM).">
+<div class="view" data-id="order_flow" data-parent="strategies" data-title="Order Flow / CVD (DISABLED in roster)" data-desc="Aggressor imbalance as the primary driver. DISABLED 2026-07-24: lost money in the weekly A/B replay (gated and ungated) — kept documented for history; exits are premium-driven now. The flow-reject engine (system context) is its successor idea.">
 <svg viewBox="0 0 1120 356" xmlns="http://www.w3.org/2000/svg">
 <text x="24" y="24" class="ph">Order flow is the PRIMARY driver — bar-derived aggressor proxy</text>
 <rect class="bx" x="24" y="36" width="1072" height="46" rx="8"/><text x="40" y="56" class="t" style="font-size:11.5px">Aggressor delta ≈ close-location × volume</text><text x="40" y="73" class="s">delta = ((C−L) − (H−C)) / (H−L) × Volume · close near the high = buyers, near the low = sellers</text>
@@ -559,33 +594,34 @@
 </div>
 
 <!-- MANAGE → scaling -->
-<div class="view" data-id="scaling" data-parent="overall" data-title="Scale-in / out &amp; take-profit" data-desc="Per-tick gates: add on a winning pullback (sized by confidence) → bank half → trail the remainder → exit by mode.">
+<div class="view" data-id="scaling" data-parent="overall" data-title="Scale-out, booster runner &amp; take-profit (premium-driven)" data-desc="2026-07-24: the option PREMIUM is the only exit driver. Bank a quarter at +20%, trail the peak, cap at +100% — and instead of scaling IN, spawn a 1-DTE booster runner that trails stock structure.">
 <svg viewBox="0 0 1120 560" xmlns="http://www.w3.org/2000/svg">
 <defs><marker id="sc" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#58a6ff"/></marker></defs>
-<text x="24" y="22" class="ph">P&amp;L ladder (premium %)</text>
+<text x="24" y="22" class="ph">P&amp;L ladder (option premium %)</text>
 <line x1="60" y1="52" x2="60" y2="500" stroke="#30363d" stroke-width="2"/>
-<circle cx="60" cy="72" r="4" fill="#3fb950"/><text x="74" y="76" class="tick">Target (TP)</text>
-<circle cx="60" cy="140" r="4" fill="#3fb950"/><text x="74" y="144" class="tick">+60% → SCALE-OUT (sell half)</text>
-<circle cx="60" cy="185" r="4" fill="#d29922"/><text x="74" y="189" class="tick" style="fill:#d29922">post-scale-out TRAIL (≥30% off peak → close remainder)</text>
-<circle cx="60" cy="240" r="4" fill="#58a6ff"/><text x="74" y="244" class="tick">+20% → arm scale-in / runner</text>
+<circle cx="60" cy="72" r="4" fill="#3fb950"/><text x="74" y="76" class="tick">+100% → TP cap (tp_override_pct · 999 ≈ trail-only)</text>
+<circle cx="60" cy="140" r="4" fill="#3fb950"/><text x="74" y="144" class="tick">+20% → SCALE-OUT (bank 25% of the lot)</text>
+<circle cx="60" cy="185" r="4" fill="#d29922"/><text x="74" y="189" class="tick" style="fill:#d29922">then TRAIL: ≥30% giveback of PEAK → close remainder</text>
+<circle cx="60" cy="240" r="4" fill="#58a6ff"/><text x="74" y="244" class="tick">peak ≥ +20% then −5% pullback → BOOSTER runner leg</text>
 <circle cx="60" cy="340" r="4" fill="#8b949e"/><text x="74" y="344" class="tick">0% — entry</text>
-<circle cx="60" cy="470" r="4" fill="#f85149"/><text x="74" y="474" class="tick">−stop% → STOP-LOSS</text>
-<rect class="bxb" x="360" y="52" width="720" height="42" rx="9"/><text x="720" y="72" text-anchor="middle" class="t">Monitor loop — every ~30s: reprice, compute P&amp;L %, track running PEAK</text><text x="720" y="88" text-anchor="middle" class="s">gates below checked in order each tick</text>
-<rect class="bxb" x="360" y="108" width="720" height="88" rx="10"/><text x="376" y="130" class="ph">A · SCALE-IN (add on a pullback, once)</text><text x="376" y="150" class="s">IF enabled · not yet scaled-in · confidence ≠ LOW · P&amp;L &gt; 0 · PEAK ≥ +20% · pulled back ≥ 5% · cash available</text><rect class="bxg" x="376" y="160" width="330" height="28" rx="7"/><text x="386" y="179" class="s">→ add by confidence: HIGH 1× base · MED 0.5× · LOW skip</text><rect class="bxa" x="718" y="160" width="346" height="28" rx="7"/><text x="728" y="179" class="s">→ move STOP to original entry (breakeven)</text>
-<rect class="bxg" x="360" y="208" width="720" height="76" rx="10"/><text x="376" y="230" class="ph">B · SCALE-OUT (bank half at target, once)</text><text x="376" y="250" class="s">IF enabled · not yet scaled-out · P&amp;L ≥ +60%</text><rect class="bxg" x="376" y="258" width="330" height="22" rx="7"/><text x="386" y="274" class="s">→ sell half, realize partial profit</text><rect class="bx" x="718" y="258" width="346" height="22" rx="7"/><text x="728" y="274" class="s">→ 0 left → closed; else TRAIL remainder (≥30% peak giveback)</text>
-<g class="clk" data-nav="exitmodes"><rect class="bxr" x="360" y="296" width="720" height="70" rx="10"/><text x="376" y="318" class="ph">C · EXIT / TAKE-PROFIT (by exit mode) ◆</text><text x="376" y="338" class="s">STANDARD (full TP / structure break) · QUICK (60% of TP) · RUNNER (trailing stop)</text><text x="376" y="356" class="s" style="fill:#f85149">always on: hard STOP · EOD force-close · overnight theta-lock</text></g>
-<line x1="720" y1="94" x2="720" y2="108" class="fw" marker-end="url(#sc)"/><line x1="720" y1="196" x2="720" y2="208" class="fw" marker-end="url(#sc)"/><line x1="720" y1="284" x2="720" y2="296" class="fw" marker-end="url(#sc)"/>
-<text x="360" y="400" class="lbl">Scale-in adds by confidence (HIGH 1× / MED 0.5× base; LOW skipped). Scale-out banks half at +60%, then TRAILS the remainder — closing it if it gives back ≥30% of peak (any exit mode), so a scaled-out winner can't round-trip to breakeven.</text>
+<circle cx="60" cy="470" r="4" fill="#f85149"/><text x="74" y="474" class="tick">−stop% → STOP (OF −20 · Levels ~−30 · Andre ≤−55 backstop)</text>
+<rect class="bxb" x="360" y="52" width="720" height="42" rx="9"/><text x="720" y="72" text-anchor="middle" class="t">Monitor loop — every 5s in RTH: reprice premium, track running PEAK</text><text x="720" y="88" text-anchor="middle" class="s">stock-level stop/TP shown on the dashboard are display-only equivalents (via delta)</text>
+<rect class="bxb" x="360" y="108" width="720" height="92" rx="10"/><text x="376" y="130" class="ph">A · BOOSTER RUNNER (replaces scale-in, once per parent)</text><text x="376" y="150" class="s">IF booster_enabled · base peaked ≥ +20% · pulled back ≥ 5% · paper scalp option</text><rect class="bxg" x="376" y="160" width="330" height="30" rx="7"/><text x="386" y="180" class="s">→ open $-matched 1-DTE 2-OTM child leg</text><rect class="bxa" x="718" y="160" width="346" height="30" rx="7"/><text x="728" y="180" class="s">→ trails 5-min swing STRUCTURE level-to-level</text>
+<rect class="bxg" x="360" y="212" width="720" height="76" rx="10"/><text x="376" y="234" class="ph">B · SCALE-OUT (bank a quarter early, once)</text><text x="376" y="254" class="s">IF P&amp;L ≥ +20% (scale_out_at_pct) → sell 25% of the lot</text><rect class="bx" x="376" y="262" width="688" height="22" rx="7"/><text x="386" y="278" class="s">→ remainder rides with the 30%-of-peak giveback TRAIL — a scaled winner can never round-trip to breakeven</text>
+<g class="clk" data-nav="exitmodes"><rect class="bxr" x="360" y="300" width="720" height="70" rx="10"/><text x="376" y="322" class="ph">C · EXIT (first trigger wins) ◆</text><text x="376" y="342" class="s">TP cap +100% · structure break (Andre) · trail · hard premium stop · EOD flat 15:55</text><text x="376" y="360" class="s" style="fill:#f85149">SCALE-IN is OFF — doubling the dying 0DTE lost at every tested threshold</text></g>
+<rect class="band" x="360" y="386" width="720" height="64" rx="10"/><text x="376" y="408" class="t">Booster exits (independent of the base)</text><text x="376" y="426" class="s">structure break (its profit-taking mechanism) · −50% premium floor · parent STOP kills it (parent TP does NOT) · flat 15:55 · never overnight</text><text x="376" y="442" class="s" style="fill:#8b949e">6-month replay: base +$100k, booster +$65k at $500 stakes (Feb share vol-flattered)</text>
+<line x1="720" y1="94" x2="720" y2="108" class="fw" marker-end="url(#sc)"/><line x1="720" y1="200" x2="720" y2="212" class="fw" marker-end="url(#sc)"/><line x1="720" y1="288" x2="720" y2="300" class="fw" marker-end="url(#sc)"/>
+<text x="360" y="472" class="lbl">2026-07-24 sweep, 687 trades: scale-out +20% beat every higher trigger; every TP cap below "none" cost money (kept +100% as the validation step); scale-in negative at every threshold → replaced by the booster runner.</text>
 </svg>
 </div>
 
 <!-- exit modes leaf (child of scaling) -->
 <div class="view" data-id="exitmodes" data-parent="scaling" data-title="Exit modes" data-desc="The exit-mode branches — first trigger wins.">
 <svg viewBox="0 0 1120 340" xmlns="http://www.w3.org/2000/svg">
-<rect class="bxg" x="24" y="34" width="1072" height="48" rx="9"/><text x="44" y="55" class="t">STANDARD</text><text x="140" y="55" class="s">take profit at the full target; else exit on a structure break (andre / orb higher-low or lower-high lost)</text><text x="140" y="73" class="s">— the default for most positions</text>
+<rect class="bxg" x="24" y="34" width="1072" height="48" rx="9"/><text x="44" y="55" class="t">STANDARD</text><text x="140" y="55" class="s">take profit at the target, CAPPED at +100% by tp_override_pct; else exit on a structure break (andre / orb higher-low or lower-high lost)</text><text x="140" y="73" class="s">— the default for most positions</text>
 <rect class="bxa" x="24" y="94" width="1072" height="44" rx="9"/><text x="44" y="113" class="t">QUICK</text><text x="140" y="113" class="s">take profit early at 60% of the configured target — for lower-conviction (LOW confidence) entries</text>
 <rect class="bxb" x="24" y="150" width="1072" height="60" rx="9"/><text x="44" y="171" class="t">RUNNER</text><text x="140" y="171" class="s">no fixed take-profit; a trailing stop arms once the position reaches +20% (runner_min_pct)</text><text x="140" y="189" class="s">and closes if it gives back 30% of its PEAK gain — lets HIGH-confidence winners run</text>
-<rect class="bxr" x="24" y="222" width="1072" height="80" rx="9"/><text x="44" y="243" class="t" style="fill:#f85149">ALWAYS ON (any mode)</text><text x="260" y="243" class="s">hard STOP at −stop% · EOD force-close (scalps, ~15:55 ET)</text><text x="260" y="261" class="s">· overnight theta-lock (profitable option that would bleed ≥15% of premium held overnight)</text><text x="260" y="279" class="s" style="fill:#d29922">· post-scale-out trail — once half is banked, close the remainder on ≥30% giveback of peak</text>
+<rect class="bxr" x="24" y="222" width="1072" height="80" rx="9"/><text x="44" y="243" class="t" style="fill:#f85149">ALWAYS ON (any mode)</text><text x="260" y="243" class="s">hard STOP at −stop% · EOD force-close (scalps, ~15:55 ET)</text><text x="260" y="261" class="s">· overnight theta-lock (profitable option that would bleed ≥15% of premium held overnight)</text><text x="260" y="279" class="s" style="fill:#d29922">· post-scale-out trail — once a QUARTER is banked at +20%, close the remainder on ≥30% giveback of peak</text>
 <text x="24" y="312" class="lbl">Exit mode is chosen at signal time from the ML confidence (RUNNER ≥65% · QUICK &lt;60% · else STANDARD).</text>
 </svg>
 </div>
@@ -734,7 +770,7 @@
 <line x1="941" y1="118" x2="941" y2="140" class="fw" marker-end="url(#mon)"/>
 <line x1="816" y1="176" x2="802" y2="176" class="fr" marker-end="url(#monr)" style="stroke:#f85149;stroke-width:2;fill:none"/><line x1="552" y1="176" x2="538" y2="176" class="fw" marker-end="url(#mon)"/><line x1="288" y1="176" x2="274" y2="176" class="fw" marker-end="url(#mon)"/>
 <line x1="149" y1="212" x2="149" y2="234" class="fw" marker-end="url(#mon)"/>
-<text x="24" y="326" class="lbl">Stops/targets/trail (◆ Scale-in/out) fire the close chain: _begin_live_close → exit_ladder → _finalize_close → send_trade_closed (◆ Close &amp; record).</text>
+<text x="24" y="326" class="lbl">Stops/targets/trail (◆ Scale-out &amp; booster runner) fire the close chain: _begin_live_close → exit_ladder → _finalize_close → send_trade_closed (◆ Close &amp; record).</text>
 </svg>
 </div>
 
