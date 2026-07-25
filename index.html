@@ -733,6 +733,32 @@
 <!-- ================= CODE MAP (function-level drill-down) ================= -->
 
 <!-- CODE MAP index -->
+<!-- BACKTESTS & DEEPER DIVE detail (validation tooling) -->
+<div class="view" data-id="backtests" data-parent="system_context" data-title="Backtests &amp; Deeper Dive (validation)" data-desc="How strategies are backtested and grid-optimized. Rewired 2026-07-25: the Order Flow backtest now mirrors the LIVE engine (premium exits, EOD/hold rules, position &amp; loss caps), and the Deeper Dive optimizer precomputes entry signals so combos stop timing out.">
+<svg viewBox="0 0 1120 470" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="bt1" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#58a6ff"/></marker></defs>
+<text x="24" y="20" class="ph">A · Run a backtest (Admin &#9656; Backtests)</text>
+<rect class="bxb" x="24" y="30" width="196" height="50" rx="8"/><text x="40" y="51" class="t" style="font-size:11px">&quot;Run&quot; button</text><text x="40" y="68" class="s">per strategy · scalp/swing</text>
+<rect class="bx" x="256" y="30" width="228" height="50" rx="8"/><text x="272" y="51" class="t" style="font-size:11px">backtest_&lt;strategy&gt;.py</text><text x="272" y="68" class="s">fetch bars &#8594; entries &#8594; exits</text>
+<rect class="bx" x="520" y="30" width="228" height="50" rx="8"/><text x="536" y="51" class="t" style="font-size:11px">backtest_results_*.json</text><text x="536" y="68" class="s">summary + per-trade rows</text>
+<rect class="bxg" x="784" y="30" width="312" height="50" rx="8"/><text x="800" y="51" class="t" style="font-size:11px">Trade-Log table</text><text x="800" y="68" class="s">entry/exit time · $ · condition · P&amp;L · balance</text>
+<line x1="220" y1="55" x2="254" y2="55" class="fw" marker-end="url(#bt1)"/><line x1="484" y1="55" x2="518" y2="55" class="fw" marker-end="url(#bt1)"/><line x1="748" y1="55" x2="782" y2="55" class="fw" marker-end="url(#bt1)"/>
+<text x="24" y="97" class="s" style="fill:#3fb950">Fix: rows now use the renderer schema (signal_reason / close_reason / entry_amount_usd / account_balance) &#8212; blank columns solved.</text>
+<text x="24" y="124" class="ph">B · Order Flow backtest = LIVE-MIRROR</text>
+<rect class="bxb" x="24" y="134" width="250" height="54" rx="8"/><text x="40" y="156" class="t" style="font-size:11px">backtest_new.py (order_flow)</text><text x="40" y="173" class="s">delegates &#9656;</text>
+<rect class="bx" x="306" y="134" width="300" height="54" rx="8"/><text x="322" y="153" class="t" style="font-size:11px">backtest_of_live.py</text><text x="322" y="169" class="s">replays live CVD entries: imbalance</text><text x="322" y="182" class="s">cross + session-VWAP extension gate</text>
+<rect class="bxg" x="638" y="134" width="458" height="54" rx="8"/><text x="654" y="153" class="t" style="font-size:11px">backtest_andre_strategy.simulate()  &#8592; shared live engine</text><text x="654" y="169" class="s">premium exits stop &#8722;20% / target +40% · scale-out + trail ·</text><text x="654" y="182" class="s">structure-trail · EOD-protect · position + daily-loss caps</text>
+<line x1="274" y1="161" x2="304" y2="161" class="fg" marker-end="url(#bt1)"/><line x1="606" y1="161" x2="636" y2="161" class="fg" marker-end="url(#bt1)"/>
+<rect class="bxa" x="24" y="198" width="1072" height="42" rx="8"/><text x="40" y="217" class="t" style="font-size:11px">Hold rules</text><text x="118" y="217" class="s">SCALPS close by EOD (no overnight) · SWINGS hold up to ~5 trading days &#8212; matches live.</text><text x="40" y="233" class="s" style="fill:#3fb950">Result: realistic P&amp;L (scalp &#8722;40% / swing &#8722;8% over 3mo) instead of the idealized +1716%.</text>
+<text x="24" y="266" class="ph">C · Deeper Dive optimizer &#8212; why it errored, and the fix</text>
+<rect class="bxr" x="24" y="276" width="530" height="84" rx="8"/><text x="40" y="296" class="t" style="font-size:11px">OLD &#8212; every combo timed out</text><text x="40" y="314" class="s">108 combos/grid · each combo re-ran the full per-bar</text><text x="40" y="329" class="s">analyze scan (build_events) over ~59 symbols &#8594; &gt;20 min/</text><text x="40" y="344" class="s">combo &#8594; 20-min watchdog killed ALL &#8594; no result file &#8594;</text><text x="40" y="357" class="s">dashboard row shows &quot;error&quot;.</text>
+<rect class="bxg" x="566" y="276" width="530" height="84" rx="8"/><text x="582" y="296" class="t" style="font-size:11px">NEW &#8212; precompute entries once</text><text x="582" y="314" class="s">only max-stop / R:R / min-R:R change WHICH entries fire,</text><text x="582" y="329" class="s">so prepare() builds the 27 unique entry-sets ONCE (4-sym</text><text x="582" y="344" class="s">universe, untimed) &#8594; each combo = cheap simulate() ~0.5s</text><text x="582" y="357" class="s" style="fill:#3fb950">&#8594; grid finishes &#8594; result JSON written. No more timeouts.</text>
+<line x1="554" y1="318" x2="564" y2="318" class="fw" marker-end="url(#bt1)"/>
+<rect class="bx" x="24" y="376" width="1072" height="40" rx="8"/><text x="40" y="394" class="t" style="font-size:11px">Andre 1.0 vs 2.0</text><text x="150" y="394" class="s">SAME engine; 2.0 pins 6 settings: bias=close_through, zone-bounce ON, intraday-clearance ON, looser VWAP dist, 3% stop floor, spread-aware stop. 1.0 = stricter.</text>
+<text x="24" y="438" class="lbl">Backtests validate a strategy's edge; the Deeper Dive grid-searches stop / R:R / position / daily-loss knobs &#8212; only a walk-forward-VALIDATED combo is eligible to auto-apply to live.</text>
+</svg>
+</div>
+
 <div class="view" data-id="code_map" data-parent="system_context" data-title="🗺 Code map (by function name)" data-desc="The CODE, not the concept: every vital path drawn with the REAL module + function names, wired as they call each other. main.py boots ONE process — a Flask dashboard thread plus four daemon threads and the scan loop. Click any path to walk its functions.">
 <svg viewBox="0 0 1120 432" xmlns="http://www.w3.org/2000/svg">
 <defs><marker id="cm1" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#58a6ff"/></marker></defs>
