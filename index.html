@@ -293,12 +293,12 @@
 </div>
 
 <!-- SIGNAL → strategies -->
-<div class="view" data-id="strategies" data-parent="overall" data-title="Strategies (13 configs)" data-desc="All selectable signal engines — Andre listed twice because 1.0 and 2.0 are materially different configs. Order Flow / CVD is the backtest-validated one. Click any engine to drill in.">
-<svg viewBox="0 0 1120 648" xmlns="http://www.w3.org/2000/svg">
+<div class="view" data-id="strategies" data-parent="overall" data-title="Strategies (14 engines · 15 configs)" data-desc="Every selectable signal engine in _KNOWN_STRATEGIES, verified against main.py 2026-07-26. Andre is listed twice because 1.0 and 2.0 are materially different configs. Only THREE roster entries are live today — the rest are selectable but dormant. Click any engine to drill in.">
+<svg viewBox="0 0 1120 780" xmlns="http://www.w3.org/2000/svg">
 <defs><marker id="st" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#58a6ff"/></marker></defs>
-<text x="24" y="24" class="ph">Strategies — 12 engines · 13 configs (Andre 1.0 and 2.0 differ materially)</text>
-<g class="clk" data-nav="order_flow"><rect class="bxg" x="24" y="40" width="524" height="58" rx="8"/><text x="40" y="65" class="t" style="font-size:11.5px">★ Order Flow / CVD  (order_flow)</text><text x="40" y="84" class="s">aggressor delta → session CVD → fresh imbalance · validated +21%/tr</text><text x="540" y="56" text-anchor="end" class="cue">◆</text></g>
-<g class="clk" data-nav="andre"><rect class="bx" x="24" y="106" width="524" height="58" rx="8"/><text x="40" y="131" class="t" style="font-size:11.5px">Andre MTF 2.0  (andre_strategy) · LIVE config</text><text x="40" y="150" class="s">close-through bias · ORB retest or zone-bounce · intraday clearance · VWAP pullback</text><text x="540" y="122" text-anchor="end" class="cue">◆</text></g>
+<text x="24" y="24" class="ph">14 engines · 15 configs — green = LIVE in the roster today · red = deliberately disabled</text>
+<g class="clk" data-nav="order_flow"><rect class="bxr" x="24" y="40" width="524" height="58" rx="8"/><text x="40" y="65" class="t" style="font-size:11.5px">Order Flow / CVD  (order_flow) · DISABLED</text><text x="40" y="84" class="s">removed from the roster 2026-07-24 — lost money in the weekly A/B, gated and ungated</text><text x="540" y="56" text-anchor="end" class="cue">◆</text></g>
+<g class="clk" data-nav="andre"><rect class="bxg" x="24" y="106" width="524" height="58" rx="8"/><text x="40" y="131" class="t" style="font-size:11.5px">★ Andre MTF 2.0  (andre_strategy) · LIVE — scalp 09:30–16:00 + swing 09:45–16:00</text><text x="40" y="150" class="s">close-through bias · ORB retest or zone-bounce · intraday clearance · VWAP pullback</text><text x="540" y="122" text-anchor="end" class="cue">◆</text></g>
 <g class="clk" data-nav="vwap_trend"><rect class="bx" x="24" y="172" width="524" height="58" rx="8"/><text x="40" y="197" class="t" style="font-size:11.5px">VWAP Trend  (vwap_trend)</text><text x="40" y="216" class="s">fresh cross of intraday VWAP (Zarattini &amp; Aziz) · stop-and-reverse</text><text x="540" y="188" text-anchor="end" class="cue">◆</text></g>
 <g class="clk" data-nav="price_action"><rect class="bx" x="24" y="238" width="524" height="58" rx="8"/><text x="40" y="263" class="t" style="font-size:11.5px">Price Action  (price_action)</text><text x="40" y="282" class="s">market structure BOS/CHoCH + supply/demand zones · dynamic 3:1</text><text x="540" y="254" text-anchor="end" class="cue">◆</text></g>
 <g class="clk" data-nav="mean_rev0dte"><rect class="bx" x="24" y="304" width="524" height="58" rx="8"/><text x="40" y="329" class="t" style="font-size:11.5px">0DTE Mean Reversion  (mean_reversion_0dte)</text><text x="40" y="348" class="s">fade RSI extremes stretched from VWAP · snap-back to VWAP</text><text x="540" y="320" text-anchor="end" class="cue">◆</text></g>
@@ -307,15 +307,23 @@
 <g class="clk" data-nav="rsivwap"><rect class="bx" x="572" y="172" width="524" height="58" rx="8"/><text x="588" y="197" class="t" style="font-size:11.5px">Strict  (strict)</text><text x="588" y="216" class="s">RSI thresholds + VWAP confluence — tight entries</text><text x="1088" y="188" text-anchor="end" class="cue">◆</text></g>
 <g class="clk" data-nav="rsivwap"><rect class="bx" x="572" y="238" width="524" height="58" rx="8"/><text x="588" y="263" class="t" style="font-size:11.5px">Relaxed  (relaxed)</text><text x="588" y="282" class="s">RSI + VWAP — looser thresholds, more entries</text><text x="1088" y="254" text-anchor="end" class="cue">◆</text></g>
 <g class="clk" data-nav="ai"><rect class="bxp" x="572" y="304" width="524" height="58" rx="8"/><text x="588" y="329" class="t" style="font-size:11.5px">AI Adaptive  (ai_adaptive)</text><text x="588" y="348" class="s">per-symbol GradientBoosting — also the confirm/veto brain</text><text x="1088" y="320" text-anchor="end" class="cue">◆</text></g>
-<g class="clk" data-nav="levels_view"><rect class="bx" x="24" y="370" width="524" height="58" rx="8"/><text x="40" y="395" class="t" style="font-size:11.5px">Levels  (levels)</text><text x="40" y="414" class="s">intraday level map — PDH/PDL/PDC · opening range · rejection / breakout-retest</text><text x="540" y="386" text-anchor="end" class="cue">◆</text></g>
+<g class="clk" data-nav="levels_view"><rect class="bxg" x="24" y="370" width="524" height="58" rx="8"/><text x="40" y="395" class="t" style="font-size:11.5px">★ Levels  (levels) · LIVE — scalp 09:30–13:00, MON–THU only</text><text x="40" y="414" class="s">intraday level map — PDH/PDL/PDC · opening range · rejection / breakout-retest</text><text x="540" y="386" text-anchor="end" class="cue">◆</text></g>
 <g class="clk" data-nav="andre10"><rect class="bx" x="24" y="436" width="524" height="58" rx="8"/><text x="40" y="461" class="t" style="font-size:11.5px">Andre MTF 1.0  (andre_strategy · original config)</text><text x="40" y="480" class="s">swing-confirmed bias · strict ORB breakout + tight VWAP · HTF clearance — six andre_* settings</text><text x="540" y="452" text-anchor="end" class="cue">◆</text></g>
 <g class="clk" data-nav="choch_fvg"><rect class="bx" x="572" y="370" width="524" height="58" rx="8"/><text x="588" y="395" class="t" style="font-size:11.5px">CHoCH / FVG  (choch_fvg)</text><text x="588" y="414" class="s">change-of-character + FVG retrace · morning-only edge (09:30–11:00)</text><text x="1088" y="386" text-anchor="end" class="cue">◆</text></g>
-<text x="24" y="524" class="s">Every fired signal → AI confirm/veto → pre-entry gates → the CONTRACT ENGINE picks the option → sized → broker.</text>
-<g class="clk" data-nav="contracts"><rect class="bxb" x="24" y="536" width="290" height="30" rx="7"/><text x="40" y="556" class="s"><tspan class="t" style="font-size:10.5px">Contract engine</tspan> — scalp / swing ◆</text></g>
-<text x="330" y="556" class="s">Crypto RSI/vol is a separate live monitor (ETH/BTC). Scalps force-close by EOD.</text>
-<text x="24" y="594" class="s" style="fill:#3fb950">MULTI-STRATEGY ROSTER (2026-07-22): run MANY engines at once, each in its own ET window, per horizon — signals dedupe per symbol by</text>
-<text x="24" y="614" class="s" style="fill:#3fb950">roster order. Default (21-session validated): scalp = Order Flow 09:30–11:00 + Andre 2.0 09:45–16:00 · swing = Andre 2.0 09:45–16:00.</text>
-<text x="24" y="634" class="s" style="fill:#6e7681">Admin → Multi-Strategy Roster (toggle + editable tables). OFF = classic single signal_strategy, byte-identical behavior.</text>
+<rect class="bx" x="572" y="436" width="524" height="58" rx="8"/><text x="588" y="461" class="t" style="font-size:11.5px">MS Pullback  (ms_pullback)</text><text x="588" y="480" class="s">market-structure pullback continuation — selectable, no detail view yet</text>
+<rect class="bx" x="24" y="502" width="524" height="58" rx="8"/><text x="40" y="527" class="t" style="font-size:11.5px">Strats  (strats)</text><text x="40" y="546" class="s">composite/experimental harness — selectable, no detail view yet</text>
+<rect class="bx" x="572" y="502" width="524" height="58" rx="8"/><text x="588" y="527" class="t" style="font-size:11.5px;fill:#8b949e">Scalp AI model (ai_adaptive · scalp horizon)</text><text x="588" y="546" class="s">5-min bars, ~30min horizon — runs ALONGSIDE swing, gated by ai_scalp_live_enabled</text>
+
+<text x="24" y="596" class="s">Every fired signal → MTF structure gate → AI confirm/veto → 20 pre-entry gates → CONTRACT ENGINE → sized → broker.</text>
+<g class="clk" data-nav="gates"><rect class="bxb" x="24" y="608" width="240" height="30" rx="7"/><text x="40" y="628" class="s"><tspan class="t" style="font-size:10.5px">Pre-entry gates</tspan> — all 20 ◆</text></g>
+<g class="clk" data-nav="contracts"><rect class="bxb" x="280" y="608" width="290" height="30" rx="7"/><text x="296" y="628" class="s"><tspan class="t" style="font-size:10.5px">Contract engine</tspan> — scalp / swing ◆</text></g>
+<text x="586" y="628" class="s">Crypto RSI/vol is a separate live monitor (ETH/BTC). Scalps force-close 15:55.</text>
+
+<text x="24" y="672" class="ph">LIVE ROSTER as configured today (bot_mode.json → strategy_roster) — verified 2026-07-26</text>
+<rect class="bxg" x="24" y="684" width="1072" height="26" rx="7"/><text x="40" y="702" class="s"><tspan class="t" style="font-size:10.5px">scalp</tspan>  andre_strategy 09:30–16:00 all weekdays  ·  levels 09:30–13:00 MON–THU  ·  <tspan class="t" style="font-size:10.5px">swing</tspan>  andre_strategy 09:45–16:00 all weekdays</text>
+<text x="24" y="732" class="s" style="fill:#3fb950">MULTI-STRATEGY ROSTER: many engines at once, each in its own ET window AND day-of-week set, per horizon — signals dedupe per symbol by roster order.</text>
+<text x="24" y="752" class="s" style="fill:#d29922">Note: the mon–thu gate on Levels is operator choice, not data-driven. The 3-month study found TUESDAY weakest (+$14/trade) and FRIDAY strongest (+$484/trade).</text>
+<text x="24" y="772" class="s" style="fill:#6e7681">Admin → Multi-Strategy Roster (toggle + editable tables, Days column). OFF = classic single signal_strategy, byte-identical behavior.</text>
 </svg>
 </div>
 
@@ -562,20 +570,56 @@
 </svg>
 </div>
 
-<div class="view" data-id="gates" data-parent="overall" data-title="Pre-entry gates" data-desc="Every gate can reject the signal. Pass all → sizing.">
-<svg viewBox="0 0 1120 300" xmlns="http://www.w3.org/2000/svg">
-<defs><marker id="g1" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#58a6ff"/></marker></defs>
-<text x="24" y="26" class="ph">Checked in order — any fail → skip this symbol</text>
-<rect class="bx" x="24" y="44" width="176" height="60" rx="8"/><text x="112" y="70" text-anchor="middle" class="t">Per-type cap</text><text x="112" y="88" text-anchor="middle" class="s">max scalp / swing open</text>
-<rect class="bx" x="212" y="44" width="176" height="60" rx="8"/><text x="300" y="70" text-anchor="middle" class="t">Already holding?</text><text x="300" y="88" text-anchor="middle" class="s">no duplicate symbol</text>
-<rect class="bx" x="400" y="44" width="176" height="60" rx="8"/><text x="488" y="70" text-anchor="middle" class="t">Spread check</text><text x="488" y="88" text-anchor="middle" class="s">options spread ≤ 12%</text>
-<rect class="bxr" x="588" y="44" width="176" height="60" rx="8"/><text x="676" y="70" text-anchor="middle" class="t">Kill switch</text><text x="676" y="88" text-anchor="middle" class="s">halts ALL new entries</text>
-<rect class="bx" x="776" y="44" width="152" height="60" rx="8"/><text x="852" y="70" text-anchor="middle" class="t">Macro filter</text><text x="852" y="88" text-anchor="middle" class="s">FOMC/CPI/NFP</text>
-<rect class="bx" x="940" y="44" width="156" height="60" rx="8"/><text x="1018" y="70" text-anchor="middle" class="t">Earnings gate</text><text x="1018" y="88" text-anchor="middle" class="s">swing only</text>
-<line x1="560" y1="140" x2="560" y2="164" class="fw" marker-end="url(#g1)"/>
-<rect class="bxg" x="360" y="164" width="400" height="46" rx="9"/><text x="560" y="192" text-anchor="middle" class="t">Pass all → position sizing</text>
-<text x="24" y="250" class="lbl">Kill switch = circuit breaker on EQUITY drawdown (cash + open positions — not cash alone, so deploying capital isn't mistaken for a loss) or a losing streak; when engaged, nothing new opens (paper AND live) until manually cleared.</text>
-<text x="24" y="270" class="lbl">Macro filter can also half-size or warn instead of block, depending on the event window.</text>
+<div class="view" data-id="gates" data-parent="overall" data-title="Pre-entry gates — all 20, in code order" data-desc="Every gate that can stop an entry, drawn in the order main.py actually checks them. FOUR STAGES: loop-level (once per cycle) → roster admission → inside the signal engine → the per-signal execution chokepoint. Verified against main.py 2026-07-26. Any fail → this symbol is skipped.">
+<svg viewBox="0 0 1120 940" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="g1" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#58a6ff"/></marker><marker id="g1r" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#f85149"/></marker></defs>
+
+<text x="24" y="26" class="ph">① LOOP LEVEL — evaluated once per scan cycle, before anything is scanned</text>
+<rect class="bx" x="24" y="38" width="250" height="58" rx="8"/><text x="149" y="62" text-anchor="middle" class="t">Market session</text><text x="149" y="80" text-anchor="middle" class="s">is_market_day + is_market_open</text>
+<rect class="bxr" x="298" y="38" width="250" height="58" rx="8"/><text x="423" y="62" text-anchor="middle" class="t">Daily loss limit</text><text x="423" y="80" text-anchor="middle" class="s">scalp_max_daily_loss_pct 25%</text>
+<rect class="bx" x="572" y="38" width="250" height="58" rx="8"/><text x="697" y="62" text-anchor="middle" class="t">Global position cap</text><text x="697" y="80" text-anchor="middle" class="s">max_positions</text>
+<rect class="bx" x="846" y="38" width="250" height="58" rx="8"/><text x="971" y="62" text-anchor="middle" class="t">Per-horizon cap</text><text x="971" y="80" text-anchor="middle" class="s">scalp 35 · swing 5 — gates the scan</text>
+
+<text x="24" y="132" class="ph">② ROSTER ADMISSION — per strategy entry (strategy_roster), inside _collect_roster_signals</text>
+<rect class="bx" x="24" y="144" width="341" height="58" rx="8"/><text x="194" y="168" text-anchor="middle" class="t">Entry enabled?</text><text x="194" y="186" text-anchor="middle" class="s">roster entry "enabled": true</text>
+<rect class="bx" x="389" y="144" width="341" height="58" rx="8"/><text x="559" y="168" text-anchor="middle" class="t">Time window</text><text x="559" y="186" text-anchor="middle" class="s">andre 09:30–16:00 · levels 09:30–13:00</text>
+<rect class="bxa" x="754" y="144" width="342" height="58" rx="8"/><text x="925" y="168" text-anchor="middle" class="t">Day of week</text><text x="925" y="186" text-anchor="middle" class="s">levels = mon–thu · empty = all weekdays</text>
+
+<text x="24" y="238" class="ph">③ INSIDE THE SIGNAL ENGINE — a signal must survive these before it ever reaches execution</text>
+<rect class="bxa" x="24" y="250" width="341" height="58" rx="8"/><text x="194" y="274" text-anchor="middle" class="t">MTF structure gate</text><text x="194" y="292" text-anchor="middle" class="s">ai_confirm — vetoes fighting aligned D/4H/1H</text>
+<rect class="bxa" x="389" y="250" width="341" height="58" rx="8"/><text x="559" y="274" text-anchor="middle" class="t">AI confidence veto</text><text x="559" y="292" text-anchor="middle" class="s">per-symbol GBM probability threshold</text>
+<rect class="bxa" x="754" y="250" width="342" height="58" rx="8"/><text x="925" y="274" text-anchor="middle" class="t">Candle confirm</text><text x="925" y="292" text-anchor="middle" class="s">ai_adaptive swing — no spike-and-fade</text>
+
+<text x="24" y="344" class="ph">④ EXECUTION CHOKEPOINT — the per-signal loop in main.py, in exact code order</text>
+
+<rect class="bx" x="24" y="356" width="250" height="54" rx="8"/><text x="149" y="378" text-anchor="middle" class="t">1 · Per-type cap recheck</text><text x="149" y="396" text-anchor="middle" class="s">batch may have filled it</text>
+<rect class="bxb" x="298" y="356" width="250" height="54" rx="8"/><text x="423" y="378" text-anchor="middle" class="t">2 · Flow-reject referee</text><text x="423" y="396" text-anchor="middle" class="s" style="fill:#8b949e">DORMANT — shadow mode</text>
+<rect class="bx" x="572" y="356" width="250" height="54" rx="8"/><text x="697" y="378" text-anchor="middle" class="t">3 · Already holding?</text><text x="697" y="396" text-anchor="middle" class="s">per book — paper ≠ live</text>
+<rect class="bx" x="846" y="356" width="250" height="54" rx="8"/><text x="971" y="378" text-anchor="middle" class="t">4 · Spread gate</text><text x="971" y="396" text-anchor="middle" class="s">round-trip ≤ 15% of mid</text>
+
+<rect class="bxr" x="24" y="428" width="250" height="54" rx="8"/><text x="149" y="450" text-anchor="middle" class="t">5 · Kill switch</text><text x="149" y="468" text-anchor="middle" class="s">halts ALL new entries</text>
+<rect class="bx" x="298" y="428" width="250" height="54" rx="8"/><text x="423" y="450" text-anchor="middle" class="t">6 · Macro filter</text><text x="423" y="468" text-anchor="middle" class="s">block · half-size · warn</text>
+<rect class="bx" x="572" y="428" width="250" height="54" rx="8"/><text x="697" y="450" text-anchor="middle" class="t">7 · Earnings gate</text><text x="697" y="468" text-anchor="middle" class="s">swing only · block mode only</text>
+<rect class="bx" x="846" y="428" width="250" height="54" rx="8"/><text x="971" y="450" text-anchor="middle" class="t">8 · Market hours</text><text x="971" y="468" text-anchor="middle" class="s">9:30–16:00 ET, no pre/post</text>
+
+<rect class="bx" x="24" y="500" width="250" height="54" rx="8"/><text x="149" y="522" text-anchor="middle" class="t">9 · Cooldown — time</text><text x="149" y="540" text-anchor="middle" class="s">15 min between signals</text>
+<rect class="bx" x="298" y="500" width="250" height="54" rx="8"/><text x="423" y="522" text-anchor="middle" class="t">10 · Cooldown — losses</text><text x="423" y="540" text-anchor="middle" class="s">N losing signals today</text>
+<rect class="bx" x="572" y="500" width="250" height="54" rx="8"/><text x="697" y="522" text-anchor="middle" class="t">11 · Entry time-of-day</text><text x="697" y="540" text-anchor="middle" class="s">per-strategy → global fallback</text>
+<rect class="bx" x="846" y="500" width="250" height="54" rx="8"/><text x="971" y="522" text-anchor="middle" class="t">12 · Instrument × horizon</text><text x="971" y="540" text-anchor="middle" class="s">scalp = options only</text>
+
+<line x1="560" y1="562" x2="560" y2="590" class="fw" marker-end="url(#g1)"/>
+<rect class="bxg" x="330" y="590" width="460" height="52" rx="9"/><text x="560" y="614" text-anchor="middle" class="t">Pass all → contract engine → sizing</text><text x="560" y="632" text-anchor="middle" class="s">affordability / settled-cash clearance checked there</text>
+
+<text x="24" y="686" class="ph">The two branches that are NOT simple rejects</text>
+<rect class="bxa" x="24" y="698" width="530" height="72" rx="9"/><text x="289" y="722" text-anchor="middle" class="t">Spread gate → STOCK FALLBACK</text><text x="289" y="740" text-anchor="middle" class="s">Rejects the CONTRACT, not the idea. If _stock_fallback_allowed,</text><text x="289" y="756" text-anchor="middle" class="s">the signal is flagged and keeps walking every remaining gate.</text>
+<rect class="bxa" x="578" y="698" width="518" height="72" rx="9"/><text x="837" y="722" text-anchor="middle" class="t">Macro filter → HALF SIZE</text><text x="837" y="740" text-anchor="middle" class="s">block · half_size (×0.5 size_mult) · warn — depending on</text><text x="837" y="756" text-anchor="middle" class="s">the event window. Only "block" stops the entry.</text>
+
+<text x="24" y="806" class="lbl">Kill switch = circuit breaker on EQUITY drawdown (cash + open positions, so deploying capital isn't mistaken for a loss) or a losing streak. When engaged nothing new opens, paper AND live, until manually cleared.</text>
+<text x="24" y="826" class="lbl">Spread gate measures ROUND-TRIP cost from mid — entry pays 0.5 × cross × spread, exit pays 0.5 × spread — against SPREAD_MAX_PCT (0.15), NOT the raw quoted spread. order_max_cross_pct = 0.50.</text>
+<text x="24" y="846" class="lbl">Flow-reject referee is wired but DORMANT: it only vetoes when flow_reject_mode = "veto", on Levels entries, when the referee opposes with confidence ≥ flow_reject_veto_conf (0.65). Today it logs and nothing else.</text>
+<text x="24" y="866" class="lbl">Daily loss limit does NOT survive a restart — restarting main.py mid-session clears the day's counter and re-arms the breaker. Known open bug.</text>
+<text x="24" y="886" class="lbl">Stage ③ gates live inside the strategy engines (signals.py / swing_signals.py call ai_confirm.apply during scan_all), so a rejection there never reaches stage ④ and won't appear in the execution log.</text>
+<text x="24" y="912" class="s" style="fill:#8b949e">Verified against main.py on 2026-07-26. Order shown is the literal order of the checks in the per-signal loop.</text>
 </svg>
 </div>
 
