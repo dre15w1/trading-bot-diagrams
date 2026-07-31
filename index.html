@@ -108,7 +108,7 @@
     <span>Confluence</span><span style="color:#6e7681;font-weight:600">— Architecture Explorer</span>
   </h1>
   <span class="hint">Click any <span style="color:#58a6ff">◆ blue-cued</span> box to dig down · use Back / breadcrumb / the sidebar to move around.</span>
-  <span class="copyr">© 2026 Andre Walker · Walkers Software LLC</span>
+  <span class="copyr">© 2026 Andre Walker · Walkers Software LLC · <a style="color:#58a6ff;text-decoration:none;cursor:pointer" onclick="nav('sync')" title="Design-sync: which bot build this site describes">DS-2026-07-31-B</a></span>
 </header>
 <div class="wrap">
   <nav class="side" id="side"></nav>
@@ -127,32 +127,33 @@
 
 <!-- ================= VIEWS ================= -->
 <div id="views" style="display:none">
-
-<!-- L0 OVERALL -->
-<div class="view" data-id="overall" data-parent="system_context" data-title="Overall process (trading loop)" data-desc="The full trading loop — ① find through ⑨ retrain. Step ⑦ is the HARVEST STACK (everything after the fill). Click any phase to dig into it.">
-<svg viewBox="0 0 1120 430" xmlns="http://www.w3.org/2000/svg">
+<div class="view" data-id="overall" data-parent="system_context" data-title="Overall process" data-desc="The full trading loop as of 2026-07-31. Click any phase to dig into it.">
+<svg viewBox="0 0 1120 490" xmlns="http://www.w3.org/2000/svg">
 <defs><marker id="o1" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#58a6ff"/></marker></defs>
-<g class="clk" data-nav="candidates"><rect class="bx" x="24" y="30" width="200" height="66" rx="9"/><text x="124" y="56" text-anchor="middle" class="t">① Find</text><text x="124" y="73" text-anchor="middle" class="s">scan 74-symbol watchlist</text><text x="214" y="42" text-anchor="end" class="cue">◆</text></g>
-<g class="clk" data-nav="strategies"><rect class="bxb" x="256" y="30" width="200" height="66" rx="9"/><text x="356" y="53" text-anchor="middle" class="t">② Strategy signal</text><text x="356" y="70" text-anchor="middle" class="s">roster: Andre 2.0 + Levels ★</text><text x="356" y="84" text-anchor="middle" class="s">flow-reject referee (shadow)</text><text x="446" y="42" text-anchor="end" class="cue">◆</text></g>
-<g class="clk" data-nav="ai"><rect class="bxp" x="488" y="30" width="200" height="66" rx="9"/><text x="588" y="56" text-anchor="middle" class="t">③ AI confirm</text><text x="588" y="73" text-anchor="middle" class="s">GBM agrees / vetoes</text><text x="678" y="42" text-anchor="end" class="cue">◆</text></g>
+<g class="clk" data-nav="candidates"><rect class="bx" x="24" y="30" width="200" height="66" rx="9"/><text x="124" y="53" text-anchor="middle" class="t">① Findscan</text><text x="124" y="70" text-anchor="middle" class="s">watchlist scan</text><text x="124" y="84" text-anchor="middle" class="s">nightly swaps</text><text x="214" y="42" text-anchor="end" class="cue">◆</text></g>
+<g class="clk" data-nav="strategies"><rect class="bxb" x="256" y="30" width="200" height="66" rx="9"/><text x="356" y="53" text-anchor="middle" class="t">② 5-second scan</text><text x="356" y="70" text-anchor="middle" class="s">ONE batch-quote round trip</text><text x="356" y="84" text-anchor="middle" class="s">every enabled engine sees it</text><text x="446" y="42" text-anchor="end" class="cue">◆</text></g>
+<g class="clk" data-nav="ai"><rect class="bxp" x="488" y="30" width="200" height="66" rx="9"/><text x="588" y="53" text-anchor="middle" class="t">③ AI confirm/veto</text><text x="588" y="70" text-anchor="middle" class="s">+ sector-rotation filter</text><text x="588" y="84" text-anchor="middle" class="s">ladders re-included 07-31</text><text x="678" y="42" text-anchor="end" class="cue">◆</text></g>
 <g class="clk" data-nav="gates"><rect class="bxa" x="720" y="30" width="200" height="66" rx="9"/><text x="820" y="53" text-anchor="middle" class="t">④ Pre-entry gates</text><text x="820" y="70" text-anchor="middle" class="s">kill switch · macro ·</text><text x="820" y="84" text-anchor="middle" class="s">earnings · spread · caps</text><text x="910" y="42" text-anchor="end" class="cue">◆</text></g>
 <line x1="224" y1="63" x2="254" y2="63" class="fw" marker-end="url(#o1)"/><line x1="456" y1="63" x2="486" y2="63" class="fw" marker-end="url(#o1)"/><line x1="688" y1="63" x2="718" y2="63" class="fw" marker-end="url(#o1)"/>
 <text x="952" y="60" class="rej">fail →</text><text x="952" y="74" class="rej">skip</text>
 <path d="M820,96 L820,120 L124,120 L124,144" class="fw" marker-end="url(#o1)"/>
-<g class="clk" data-nav="contracts"><rect class="bxg" x="24" y="146" width="200" height="66" rx="9"/><text x="124" y="165" text-anchor="middle" class="t">⑤ Contract + size</text><text x="124" y="182" text-anchor="middle" class="s">engine picks option</text><text x="124" y="196" text-anchor="middle" class="s">(scalp/swing) → Kelly size</text><text x="214" y="158" text-anchor="end" class="cue">◆</text></g>
-<g class="clk" data-nav="brokers"><rect class="bxg" x="256" y="146" width="200" height="66" rx="9"/><text x="356" y="169" text-anchor="middle" class="t">⑥ Route order</text><text x="356" y="186" text-anchor="middle" class="s">Schwab live acct(s)</text><text x="356" y="200" text-anchor="middle" class="s">+ audit log</text><text x="446" y="158" text-anchor="end" class="cue">◆</text></g>
-<g class="clk" data-nav="scaling"><rect class="bxg" x="488" y="146" width="200" height="66" rx="9"/><text x="588" y="167" text-anchor="middle" class="t">⑦ HARVEST STACK</text><text x="588" y="183" text-anchor="middle" class="s">bank 25% @ +20% · trail peak</text><text x="588" y="196" text-anchor="middle" class="s">TP cap · booster runner · EOD</text><text x="678" y="158" text-anchor="end" class="cue">◆</text></g>
-<g class="clk" data-nav="close"><rect class="bx" x="720" y="146" width="200" height="66" rx="9"/><text x="820" y="169" text-anchor="middle" class="t">⑧ Close</text><text x="820" y="186" text-anchor="middle" class="s">realize P&amp;L · Discord</text><text x="820" y="200" text-anchor="middle" class="s">circuit-breaker check</text><text x="910" y="158" text-anchor="end" class="cue">◆</text></g>
+<g class="clk" data-nav="contracts"><rect class="bxg" x="24" y="146" width="200" height="66" rx="9"/><text x="124" y="169" text-anchor="middle" class="t">⑤ Contract + size</text><text x="124" y="186" text-anchor="middle" class="s">option legs → contract engine</text><text x="124" y="200" text-anchor="middle" class="s">shares → risk-true share size</text><text x="214" y="158" text-anchor="end" class="cue">◆</text></g>
+<g class="clk" data-nav="brokers"><rect class="bxg" x="256" y="146" width="200" height="66" rx="9"/><text x="356" y="169" text-anchor="middle" class="t">⑥ Route fan-out</text><text x="356" y="186" text-anchor="middle" class="s">paper + 4 Schwab</text><text x="356" y="200" text-anchor="middle" class="s">+ IBKR paper/live</text><text x="446" y="158" text-anchor="end" class="cue">◆</text></g>
+<g class="clk" data-nav="scaling"><rect class="bx" x="488" y="146" width="200" height="66" rx="9"/><text x="588" y="169" text-anchor="middle" class="t">⑦ Manage</text><text x="588" y="186" text-anchor="middle" class="s">HARVEST STACK + ladder structural exits</text><text x="588" y="200" text-anchor="middle" class="s">scale rules · EOD-protect</text><text x="678" y="158" text-anchor="end" class="cue">◆</text></g>
+<g class="clk" data-nav="close"><rect class="bx" x="720" y="146" width="200" height="66" rx="9"/><text x="820" y="169" text-anchor="middle" class="t">⑧ Close &amp; record</text><text x="820" y="186" text-anchor="middle" class="s">realize P&amp;L · journal</text><text x="820" y="200" text-anchor="middle" class="s">Discord · circuit-breaker</text><text x="910" y="158" text-anchor="end" class="cue">◆</text></g>
 <line x1="224" y1="179" x2="254" y2="179" class="fg" marker-end="url(#o1)"/><line x1="456" y1="179" x2="486" y2="179" class="fg" marker-end="url(#o1)"/><line x1="688" y1="179" x2="718" y2="179" class="fw" marker-end="url(#o1)"/>
 <path d="M820,212 L820,250 L560,250 L560,286" class="fw" marker-end="url(#o1)"/>
-<g class="clk" data-nav="retrain"><rect class="band" x="120" y="288" width="900" height="70" rx="10"/><text x="140" y="312" class="ph">⑨ Nightly retrain — 17:00 ET (swap → train)  ◆</text><text x="140" y="336" class="s">watchlist swaps + score  →  train GBM on 74 + contention  →  Kelly / ATR recs  →  publish models</text></g>
+<g class="clk" data-nav="retrain"><rect class="band" x="120" y="288" width="900" height="70" rx="10"/><text x="140" y="312" class="ph">⑨ Nightly — bar archive collection + prune → model retrain → ORB scoreboard → watchlist swaps  ◆</text><text x="140" y="336" class="s">archives the day's bars and prunes old data → retrains per-symbol GBMs → scores ORB → publishes fresh models + tomorrow's watchlist</text></g>
 <path d="M120,323 L60,323 L60,63 L22,63" class="fb" marker-end="url(#o1)"/>
 <text x="70" y="205" class="lbl" transform="rotate(-90 70 205)">fresh models feed tomorrow</text>
-<text x="24" y="392" class="lbl">⑦ is the HARVEST STACK — everything that happens AFTER the fill: the premium-driven exit ladder, the 30%-giveback trail, the +100% TP cap, and the 1-DTE booster runner it spawns on confirmed winners (which loops back through ⑤ contract selection for its own leg, then rejoins ⑦ with a structure trail instead of a target).</text>
-<text x="24" y="412" class="lbl">Order Flow is disabled in the roster (2026-07-24). The flow-reject engine watches levels in shadow mode alongside ②/③ — its phase-1 veto of Levels entries is wired but dormant (flow_reject_mode).</text>
+<g class="clk" data-nav="data"><rect class="bxb" x="120" y="374" width="440" height="42" rx="8"/><text x="136" y="392" class="t" style="font-size:11px">DATA layer ◆</text><text x="136" y="408" class="s">quotes, bars, archive — feeds every phase above</text></g>
+<g class="clk" data-nav="sync"><rect class="bxb" x="580" y="374" width="440" height="42" rx="8"/><text x="596" y="392" class="t" style="font-size:11px">Design-sync stamp ◆</text><text x="596" y="408" class="s">diagrams vs code — current stamp DS-2026-07-31-B</text></g>
+<text x="24" y="466" class="lbl">DESIGN-SYNC DS-2026-07-31-B · ② one batch-quote round trip per 5-second cycle; every enabled roster engine sees the same live print.</text>
 </svg>
 </div>
 
+
+<!-- L0 OVERALL -->
 <!-- OVERALL → system context (external systems) -->
 <div class="view" data-id="system_context" data-parent="" data-title="System context (start here)" data-desc="The highest-level view: everything Confluence talks to beyond its own process. Schwab is the ONLY broker that ever places real orders — the Robinhood toggle is market data only. Click the bot engine to open the full trading loop.">
 <svg viewBox="0 0 1120 660" xmlns="http://www.w3.org/2000/svg">
@@ -293,40 +294,6 @@
 </div>
 
 <!-- SIGNAL → strategies -->
-<div class="view" data-id="strategies" data-parent="overall" data-title="Strategies (14 engines · 15 configs)" data-desc="Every selectable signal engine in _KNOWN_STRATEGIES, verified against main.py 2026-07-26. Andre is listed twice because 1.0 and 2.0 are materially different configs. Only THREE roster entries are live today — the rest are selectable but dormant. Click any engine to drill in.">
-<svg viewBox="0 0 1120 780" xmlns="http://www.w3.org/2000/svg">
-<defs><marker id="st" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#58a6ff"/></marker></defs>
-<text x="24" y="24" class="ph">14 engines · 15 configs — green = LIVE in the roster today · red = deliberately disabled</text>
-<g class="clk" data-nav="order_flow"><rect class="bxr" x="24" y="40" width="524" height="58" rx="8"/><text x="40" y="65" class="t" style="font-size:11.5px">Order Flow / CVD  (order_flow) · DISABLED</text><text x="40" y="84" class="s">removed from the roster 2026-07-24 — lost money in the weekly A/B, gated and ungated</text><text x="540" y="56" text-anchor="end" class="cue">◆</text></g>
-<g class="clk" data-nav="andre"><rect class="bxg" x="24" y="106" width="524" height="58" rx="8"/><text x="40" y="131" class="t" style="font-size:11.5px">★ Andre MTF 2.0  (andre_strategy) · LIVE — scalp 09:30–16:00 + swing 09:45–16:00</text><text x="40" y="150" class="s">close-through bias · ORB retest or zone-bounce · intraday clearance · VWAP pullback</text><text x="540" y="122" text-anchor="end" class="cue">◆</text></g>
-<g class="clk" data-nav="vwap_trend"><rect class="bx" x="24" y="172" width="524" height="58" rx="8"/><text x="40" y="197" class="t" style="font-size:11.5px">VWAP Trend  (vwap_trend)</text><text x="40" y="216" class="s">fresh cross of intraday VWAP (Zarattini &amp; Aziz) · stop-and-reverse</text><text x="540" y="188" text-anchor="end" class="cue">◆</text></g>
-<g class="clk" data-nav="price_action"><rect class="bx" x="24" y="238" width="524" height="58" rx="8"/><text x="40" y="263" class="t" style="font-size:11.5px">Price Action  (price_action)</text><text x="40" y="282" class="s">market structure BOS/CHoCH + supply/demand zones · dynamic 3:1</text><text x="540" y="254" text-anchor="end" class="cue">◆</text></g>
-<g class="clk" data-nav="mean_rev0dte"><rect class="bx" x="24" y="304" width="524" height="58" rx="8"/><text x="40" y="329" class="t" style="font-size:11.5px">0DTE Mean Reversion  (mean_reversion_0dte)</text><text x="40" y="348" class="s">fade RSI extremes stretched from VWAP · snap-back to VWAP</text><text x="540" y="320" text-anchor="end" class="cue">◆</text></g>
-<g class="clk" data-nav="luxalgo"><rect class="bx" x="572" y="40" width="524" height="58" rx="8"/><text x="588" y="65" class="t" style="font-size:11.5px">LuxAlgo SMC  (luxalgo_smc)</text><text x="588" y="84" class="s">smart-money concepts — order blocks, liquidity sweeps</text><text x="1088" y="56" text-anchor="end" class="cue">◆</text></g>
-<g class="clk" data-nav="wyckoff"><rect class="bx" x="572" y="106" width="524" height="58" rx="8"/><text x="588" y="131" class="t" style="font-size:11.5px">Wyckoff  (wyckoff)</text><text x="588" y="150" class="s">spring / upthrust / sign-of-strength / sign-of-weakness</text><text x="1088" y="122" text-anchor="end" class="cue">◆</text></g>
-<g class="clk" data-nav="rsivwap"><rect class="bx" x="572" y="172" width="524" height="58" rx="8"/><text x="588" y="197" class="t" style="font-size:11.5px">Strict  (strict)</text><text x="588" y="216" class="s">RSI thresholds + VWAP confluence — tight entries</text><text x="1088" y="188" text-anchor="end" class="cue">◆</text></g>
-<g class="clk" data-nav="rsivwap"><rect class="bx" x="572" y="238" width="524" height="58" rx="8"/><text x="588" y="263" class="t" style="font-size:11.5px">Relaxed  (relaxed)</text><text x="588" y="282" class="s">RSI + VWAP — looser thresholds, more entries</text><text x="1088" y="254" text-anchor="end" class="cue">◆</text></g>
-<g class="clk" data-nav="ai"><rect class="bxp" x="572" y="304" width="524" height="58" rx="8"/><text x="588" y="329" class="t" style="font-size:11.5px">AI Adaptive  (ai_adaptive)</text><text x="588" y="348" class="s">per-symbol GradientBoosting — also the confirm/veto brain</text><text x="1088" y="320" text-anchor="end" class="cue">◆</text></g>
-<g class="clk" data-nav="levels_view"><rect class="bxg" x="24" y="370" width="524" height="58" rx="8"/><text x="40" y="395" class="t" style="font-size:11.5px">★ Levels  (levels) · LIVE — scalp 09:30–13:00, MON–THU only</text><text x="40" y="414" class="s">intraday level map — PDH/PDL/PDC · opening range · rejection / breakout-retest</text><text x="540" y="386" text-anchor="end" class="cue">◆</text></g>
-<g class="clk" data-nav="andre10"><rect class="bx" x="24" y="436" width="524" height="58" rx="8"/><text x="40" y="461" class="t" style="font-size:11.5px">Andre MTF 1.0  (andre_strategy · original config)</text><text x="40" y="480" class="s">swing-confirmed bias · strict ORB breakout + tight VWAP · HTF clearance — six andre_* settings</text><text x="540" y="452" text-anchor="end" class="cue">◆</text></g>
-<g class="clk" data-nav="choch_fvg"><rect class="bx" x="572" y="370" width="524" height="58" rx="8"/><text x="588" y="395" class="t" style="font-size:11.5px">CHoCH / FVG  (choch_fvg)</text><text x="588" y="414" class="s">change-of-character + FVG retrace · morning-only edge (09:30–11:00)</text><text x="1088" y="386" text-anchor="end" class="cue">◆</text></g>
-<rect class="bx" x="572" y="436" width="524" height="58" rx="8"/><text x="588" y="461" class="t" style="font-size:11.5px">MS Pullback  (ms_pullback)</text><text x="588" y="480" class="s">market-structure pullback continuation — selectable, no detail view yet</text>
-<rect class="bx" x="24" y="502" width="524" height="58" rx="8"/><text x="40" y="527" class="t" style="font-size:11.5px">Strats  (strats)</text><text x="40" y="546" class="s">composite/experimental harness — selectable, no detail view yet</text>
-<rect class="bx" x="572" y="502" width="524" height="58" rx="8"/><text x="588" y="527" class="t" style="font-size:11.5px;fill:#8b949e">Scalp AI model (ai_adaptive · scalp horizon)</text><text x="588" y="546" class="s">5-min bars, ~30min horizon — runs ALONGSIDE swing, gated by ai_scalp_live_enabled</text>
-
-<text x="24" y="596" class="s">Every fired signal → MTF structure gate → AI confirm/veto → 20 pre-entry gates → CONTRACT ENGINE → sized → broker.</text>
-<g class="clk" data-nav="gates"><rect class="bxb" x="24" y="608" width="240" height="30" rx="7"/><text x="40" y="628" class="s"><tspan class="t" style="font-size:10.5px">Pre-entry gates</tspan> — all 20 ◆</text></g>
-<g class="clk" data-nav="contracts"><rect class="bxb" x="280" y="608" width="290" height="30" rx="7"/><text x="296" y="628" class="s"><tspan class="t" style="font-size:10.5px">Contract engine</tspan> — scalp / swing ◆</text></g>
-<text x="586" y="628" class="s">Crypto RSI/vol is a separate live monitor (ETH/BTC). Scalps force-close 15:55.</text>
-
-<text x="24" y="672" class="ph">LIVE ROSTER as configured today (bot_mode.json → strategy_roster) — verified 2026-07-26</text>
-<rect class="bxg" x="24" y="684" width="1072" height="26" rx="7"/><text x="40" y="702" class="s"><tspan class="t" style="font-size:10.5px">scalp</tspan>  andre_strategy 09:30–16:00 all weekdays  ·  levels 09:30–13:00 MON–THU  ·  <tspan class="t" style="font-size:10.5px">swing</tspan>  andre_strategy 09:45–16:00 all weekdays</text>
-<text x="24" y="732" class="s" style="fill:#3fb950">MULTI-STRATEGY ROSTER: many engines at once, each in its own ET window AND day-of-week set, per horizon — signals dedupe per symbol by roster order.</text>
-<text x="24" y="752" class="s" style="fill:#d29922">Note: the mon–thu gate on Levels is operator choice, not data-driven. The 3-month study found TUESDAY weakest (+$14/trade) and FRIDAY strongest (+$484/trade).</text>
-<text x="24" y="772" class="s" style="fill:#6e7681">Admin → Multi-Strategy Roster (toggle + editable tables, Days column). OFF = classic single signal_strategy, byte-identical behavior.</text>
-</svg>
-</div>
-
 <!-- ANDRE detail (child of strategies) -->
 <div class="view" data-id="andre" data-parent="strategies" data-title="Andre MTF 2.0 (L1–L4)" data-desc="Andre's multi-timeframe strategy — 2.0 config (close_through bias · zone bounce · intraday clearance) — a worked example of the 4-layer AND-gate + 6-point score. One of the twelve selectable engines.">
 <svg viewBox="0 0 1120 372" xmlns="http://www.w3.org/2000/svg">
@@ -502,36 +469,6 @@
 </div>
 
 <!-- AI CONFIRM -->
-<div class="view" data-id="ai" data-parent="overall" data-title="AI confidence score" data-desc="Per-symbol GradientBoosting model → probability → confidence, size, exit mode. Click any box to drill in.">
-<svg viewBox="0 0 1120 470" xmlns="http://www.w3.org/2000/svg">
-<defs><marker id="ai1" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#bc8cff"/></marker><marker id="ai2" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#58a6ff"/></marker></defs>
-<text x="24" y="24" class="ph">Feature groups (swing 60 · scalp 59)</text><text x="322" y="24" class="cue">◆</text>
-<g class="clk" data-nav="ai_features">
-<rect class="bx" x="24" y="34" width="250" height="42" rx="8"/><text x="40" y="52" class="t" style="font-size:11px">45 core technicals — both</text><text x="40" y="68" class="s">returns, EMAs, RSI, MACD, Boll, ATR, vol, calendar</text>
-<rect class="bx" x="24" y="84" width="250" height="42" rx="8"/><text x="40" y="102" class="t" style="font-size:11px">9 external context — both</text><text x="40" y="118" class="s">VIX, SPY regime, days-to-earnings</text>
-<rect class="bxa" x="24" y="134" width="250" height="42" rx="8"/><text x="40" y="152" class="t" style="font-size:11px">6 4H-context — swing only</text><text x="40" y="168" class="s">h4 trend / vol / distance block</text>
-<rect class="bxp" x="24" y="184" width="250" height="42" rx="8"/><text x="40" y="202" class="t" style="font-size:11px">5 L2 order-book — scalp only *</text><text x="40" y="218" class="s">real-time only (imputed in training)</text>
-<rect class="bx" x="24" y="234" width="250" height="42" rx="8"/><text x="40" y="252" class="t" style="font-size:11px">Totals</text><text x="40" y="268" class="s">swing 45+9+6=60 · scalp 45+9+5=59</text></g>
-<g class="clk" data-nav="training"><rect class="bxp" x="330" y="110" width="210" height="110" rx="10"/><text x="435" y="150" text-anchor="middle" class="t">GradientBoosting</text><text x="435" y="168" text-anchor="middle" class="t">Classifier</text><text x="435" y="190" text-anchor="middle" class="s">per symbol · recency-weighted</text><text x="435" y="206" text-anchor="middle" class="s">newest bars ~12× weight</text><text x="532" y="126" text-anchor="end" class="cue">◆</text></g>
-<path d="M274,55 L300,55 L300,140 L328,140" class="fb" marker-end="url(#ai1)"/><path d="M274,155 L300,155 L300,165 L328,165" class="fb" marker-end="url(#ai1)"/><path d="M274,205 L300,205 L300,190 L328,190" class="fb" marker-end="url(#ai1)"/>
-<rect class="bx" x="580" y="128" width="200" height="74" rx="9"/><text x="680" y="156" text-anchor="middle" class="t">predict_proba</text><text x="680" y="176" text-anchor="middle" class="s">bull vs bear probability</text><text x="680" y="192" text-anchor="middle" class="s">confidence = max class %</text>
-<line x1="540" y1="165" x2="578" y2="165" class="fw" marker-end="url(#ai2)" style="stroke:#bc8cff"/>
-<text x="820" y="118" class="ph">Thresholds</text><text x="1096" y="118" text-anchor="end" class="cue">◆</text>
-<g class="clk" data-nav="ai_tuning">
-<rect class="bxr" x="820" y="128" width="276" height="30" rx="7"/><text x="836" y="148" class="s">&lt; 55% → LOW → no signal (self-tuning ↑)</text>
-<rect class="bxa" x="820" y="164" width="276" height="30" rx="7"/><text x="836" y="184" class="s">55–65% → MEDIUM</text>
-<rect class="bxg" x="820" y="200" width="276" height="30" rx="7"/><text x="836" y="220" class="s">≥ 65% → HIGH</text></g>
-<line x1="780" y1="165" x2="818" y2="165" class="fw" marker-end="url(#ai2)"/>
-<text x="330" y="280" class="ph">The confidence then drives:</text>
-<g class="clk" data-nav="sizing"><rect class="bx" x="330" y="292" width="250" height="48" rx="8"/><text x="346" y="312" class="t" style="font-size:11px">Size multiplier</text><text x="346" y="330" class="s">55→1×…65%+ up (frozen 1× pending calibration)</text><text x="572" y="308" text-anchor="end" class="cue">◆</text></g>
-<g class="clk" data-nav="exitmodes"><rect class="bx" x="596" y="292" width="250" height="48" rx="8"/><text x="612" y="312" class="t" style="font-size:11px">Exit mode</text><text x="612" y="330" class="s">RUNNER ≥65% · STANDARD · QUICK &lt;60%</text><text x="838" y="308" text-anchor="end" class="cue">◆</text></g>
-<g class="clk" data-nav="ai_l2"><rect class="bxp" x="862" y="292" width="234" height="48" rx="8"/><text x="878" y="312" class="t" style="font-size:11px">L2 wall upgrade</text><text x="878" y="330" class="s">bid/ask wall bumps MED→HIGH</text><text x="1088" y="308" text-anchor="end" class="cue">◆</text></g>
-<line x1="680" y1="230" x2="680" y2="290" class="fw" marker-end="url(#ai2)"/>
-<text x="24" y="380" class="s">* L2 features (scalp matrix only) exist at inference; imputed neutral during training. Swing drops L2 for a 4H-context block. Every prediction is logged for the self-tuning accuracy tracker.</text>
-<text x="24" y="402" class="s" style="fill:#d29922">Note: this ML confidence is separate from Andre's rule-based /6 score. Here it acts as the confirm/veto brain on a strategy setup.</text>
-</svg>
-</div>
-
 <!-- GATES (new) -->
 <!-- AI FEATURES leaf (child of ai) -->
 <div class="view" data-id="ai_features" data-parent="ai" data-title="Feature groups (swing 60 · scalp 59)" data-desc="What the per-symbol model sees — swing runs on HOURLY bars + a 4H-context block (no L2); scalp runs on 5-min bars + L2 (no 4H).">
@@ -639,32 +576,6 @@
 </div>
 
 <!-- BROKERS -->
-<div class="view" data-id="brokers" data-parent="overall" data-title="Order routing to brokers" data-desc="Data has a broker toggle; execution is always Schwab, per account.">
-<svg viewBox="0 0 1120 400" xmlns="http://www.w3.org/2000/svg">
-<defs><marker id="b1" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#58a6ff"/></marker><marker id="b1g" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#3fb950"/></marker></defs>
-<text x="24" y="24" class="ph">Market data (broker_router — live toggle)</text>
-<rect class="bx" x="24" y="34" width="210" height="46" rx="8"/><text x="129" y="54" text-anchor="middle" class="t">broker toggle</text><text x="129" y="70" text-anchor="middle" class="s">schwab ↔ robinhood</text>
-<rect class="bx" x="270" y="34" width="200" height="46" rx="8"/><text x="370" y="54" text-anchor="middle" class="t">quotes · bars</text><text x="370" y="70" text-anchor="middle" class="s">route to selected src</text>
-<line x1="234" y1="57" x2="268" y2="57" class="fw" marker-end="url(#b1)"/><text x="500" y="60" class="s">(data only — never affects execution)</text>
-<rect class="bxb" x="24" y="110" width="240" height="52" rx="9"/><text x="144" y="132" text-anchor="middle" class="t">Approved signal</text><text x="144" y="150" text-anchor="middle" class="s">passed gates + AI confirm</text>
-<rect class="bx" x="330" y="96" width="240" height="42" rx="8"/><text x="450" y="122" text-anchor="middle" class="t">paper_open() · always</text>
-<rect class="bxa" x="330" y="152" width="240" height="42" rx="8"/><text x="450" y="172" text-anchor="middle" class="t">live routed?</text><text x="450" y="187" text-anchor="middle" class="s">live_route_options / _stocks</text>
-<line x1="264" y1="130" x2="328" y2="117" class="fw" marker-end="url(#b1)"/><line x1="264" y1="140" x2="328" y2="173" class="fa" marker-end="url(#b1)" style="stroke:#d29922"/>
-<rect class="bxg" x="630" y="110" width="180" height="52" rx="9"/><text x="720" y="132" text-anchor="middle" class="t">Schwab (execution)</text><text x="720" y="150" text-anchor="middle" class="s">always — never robinhood</text>
-<line x1="570" y1="173" x2="628" y2="140" class="fg" marker-end="url(#b1g)"/>
-<rect class="bxg" x="860" y="80" width="236" height="52" rx="9"/><text x="978" y="102" text-anchor="middle" class="t">Cash account</text><text x="978" y="120" text-anchor="middle" class="s">sized to SETTLED cash</text>
-<rect class="bx" x="860" y="146" width="236" height="52" rx="9"/><text x="978" y="168" text-anchor="middle" class="t">Margin account</text><text x="978" y="186" text-anchor="middle" class="s">sized to buying power</text>
-<line x1="810" y1="128" x2="858" y2="104" class="fg" marker-end="url(#b1g)"/><line x1="810" y1="140" x2="858" y2="174" class="fg" marker-end="url(#b1g)"/>
-<rect class="bx" x="330" y="230" width="480" height="48" rx="9"/><text x="570" y="250" text-anchor="middle" class="t">Every live request → live_orders.jsonl audit log</text><text x="570" y="268" text-anchor="middle" class="s">open (BUY) · cancel · modify · close (SELL_TO_CLOSE)</text>
-<line x1="720" y1="162" x2="720" y2="228" class="fg" marker-end="url(#b1g)"/>
-<rect class="bxr" x="860" y="230" width="236" height="48" rx="9"/><text x="978" y="250" text-anchor="middle" class="t">Live close path</text><text x="978" y="268" text-anchor="middle" class="s">real SELL on every exit</text>
-<line x1="810" y1="254" x2="858" y2="254" class="fw" marker-end="url(#b1)"/>
-<text x="24" y="320" class="s">Sizing on CASH uses cashAvailableForWithdrawal (settled) — unsettled restores on T+1. Kill switch blocks ALL new entries (paper &amp; live).</text>
-<text x="24" y="348" class="s" style="fill:#3fb950">Order pricing (2026-07): MID-FIRST LADDER (order_pricing.py) — entries walk mid→ask, exits mid→bid (3 rungs, 10s each);</text>
-<text x="24" y="368" class="s" style="fill:#3fb950">urgent exits (stop / EOD / kill) go marketable immediately · spread gate = round-trip cost from mid · paper models the same fills.</text>
-</svg>
-</div>
-
 <!-- MANAGE → scaling -->
 <div class="view" data-id="scaling" data-parent="overall" data-title="Harvest Stack — scale-out, booster runner &amp; take-profit" data-desc="2026-07-24: the option PREMIUM is the only exit driver. Bank a quarter at +20%, trail the peak, cap at +100% — and instead of scaling IN, spawn a 1-DTE booster runner that trails stock structure.">
 <svg viewBox="0 0 1120 560" xmlns="http://www.w3.org/2000/svg">
@@ -912,6 +823,233 @@
 </svg>
 </div>
 
+<!-- STRATEGIES VIEW (DS-2026-07-31-B) -->
+<div class="view" data-id="strategies" data-parent="overall" data-title="Strategies — active roster" data-desc="Active roster after the 2026-07-31 registry prune — 16 legacy/dormant engines removed from the dropdown. Click a roster engine to drill in.">
+<svg viewBox="0 0 1120 552" xmlns="http://www.w3.org/2000/svg">
+<text x="24" y="24" class="ph">Strategies — active roster (registry pruned 2026-07-31; 16 legacy engines out of the dropdown, files kept on disk, re-addable by id)</text>
+<g class="clk" data-nav="orb"><rect class="bxb" x="24" y="40" width="1072" height="46" rx="8"/><text x="40" y="60" class="t" style="font-size:11.5px">Opening Range Breakout (5m RVOL)  (orb)</text><text x="40" y="77" class="s">5m opening-range break + RVOL confirm · window 09:35 · BOOK: default · own enable toggle</text><text x="1080" y="56" text-anchor="end" class="cue">◆</text></g>
+<g class="clk" data-nav="ladder15"><rect class="bxb" x="24" y="96" width="1072" height="46" rx="8"/><text x="40" y="116" class="t" style="font-size:11.5px">Andre's Ladder — 15min Options  (price_action_2)</text><text x="40" y="133" class="s">structure-based ladder on 15m, option legs · own enable toggle · trading window + BOOK pin per row</text><text x="1080" y="112" text-anchor="end" class="cue">◆</text></g>
+<g class="clk" data-nav="ladder5"><rect class="bxb" x="24" y="152" width="1072" height="46" rx="8"/><text x="40" y="172" class="t" style="font-size:11.5px">Andre's Ladder — 5min Shares  (pa_scalp)</text><text x="40" y="189" class="s">same ladder logic on 5m, SHARES book · own enable toggle · trading window + BOOK pin per row</text><text x="1080" y="168" text-anchor="end" class="cue">◆</text></g>
+<g class="clk" data-nav="ema_vwap"><rect class="bxb" x="24" y="208" width="1072" height="46" rx="8"/><text x="40" y="228" class="t" style="font-size:11.5px">EMA/VWAP Cross 3min  (ema_vwap)</text><text x="40" y="245" class="s">3m EMA/VWAP cross · BOOK: both (paper + live) · own enable toggle + trading window</text><text x="1080" y="224" text-anchor="end" class="cue">◆</text></g>
+<g class="clk" data-nav="hybrid"><rect class="bxb" x="24" y="264" width="1072" height="46" rx="8"/><text x="40" y="284" class="t" style="font-size:11.5px">Hybrid ORB/Flow/0DTE Spreads  (hybrid)</text><text x="40" y="301" class="s">ORB + flow confirm → 0DTE defined-risk spreads · BOOK: paper · window 09:35–15:30</text><text x="1080" y="280" text-anchor="end" class="cue">◆</text></g>
+<g class="clk" data-nav="reclaim"><rect class="bxb" x="24" y="320" width="1072" height="46" rx="8"/><text x="40" y="340" class="t" style="font-size:11.5px">Reclaim Continuation  (reclaim_cont)</text><text x="40" y="357" class="s">level-reclaim continuation · BOOK: paper · window 09:35–15:30 · forward observation</text><text x="1080" y="336" text-anchor="end" class="cue">◆</text></g>
+<text x="24" y="394" class="s">Each roster row carries its own enable toggle, trading window and BOOK pin (paper / live / both). A blank book pin does NOT mean live — locked in after the 07-30 SPY live-short incident.</text>
+<rect class="bx" x="24" y="408" width="1072" height="62" rx="8"/><text x="40" y="428" class="t" style="font-size:11.5px">Dormant — removed from the dropdown 2026-07-31 (files on disk, re-addable by id)</text><text x="40" y="445" class="s">order_flow · andre_strategy · vwap_trend · price_action · mean_reversion_0dte · luxalgo_smc · wyckoff · strict/relaxed</text><text x="40" y="462" class="s">levels · choch_fvg · ms_pullback · ai_adaptive · strats · flow_entry · ema_cross (removed 07-31) · pa_swing</text>
+<g class="clk" data-nav="order_flow"><rect class="bxb" x="24" y="482" width="320" height="30" rx="7"/><text x="40" y="502" class="s"><tspan class="t" style="font-size:10.5px">Legacy engine detail (dormant)</tspan> ◆</text></g>
+<text x="24" y="528" class="lbl">Scalps trade 09:30–16:00 ET only; swings may hold overnight. One signal may fan legs across paper + Schwab + IBKR accounts (see Order routing).</text>
+</svg>
+</div>
+<!-- LADDER15 VIEW (DS-2026-07-31-B) -->
+<div class="view" data-id="ladder15" data-parent="strategies" data-title="Andre's Ladder — 15min Options" data-desc="The flagship market-structure book (engine id price_action_2) — impulse, 98% origin retest, ladder stops rebuilt with structure.">
+<svg viewBox="0 0 1120 552" xmlns="http://www.w3.org/2000/svg">
+<text x="24" y="24" class="ph">15m impulse with BOS → 98% origin retest → ladder the stop up as structure rebuilds</text>
+<rect class="bx" x="24" y="36" width="1072" height="46" rx="8"/><text x="40" y="56" class="t" style="font-size:11.5px">SETUP — 15m impulse leg requiring break of structure (BOS)</text><text x="40" y="73" class="s">put: lower high (origin/anchor) → drive that CLOSES through the prior swing low → extreme · calls mirror · pivots k=3, RTH bars</text>
+<rect class="bx" x="24" y="92" width="524" height="46" rx="8"/><text x="40" y="112" class="t" style="font-size:11.5px">ENTRY — origin retest at 98% retrace of the leg</text><text x="40" y="129" class="s">resting-zone touch by the 5-second live-quote scan · tolerance pa2_entry_tol</text>
+<rect class="bx" x="572" y="92" width="524" height="46" rx="8"/><text x="588" y="112" class="t" style="font-size:11.5px">INSTRUMENT — 0-1DTE near-ATM options</text><text x="588" y="129" class="s">fanned across the linked accounts · premiums quoted, exits measured on the UNDERLYING</text>
+<rect class="bx" x="24" y="148" width="1072" height="46" rx="8"/><text x="40" y="168" class="t" style="font-size:11.5px">SWEEP TOLERANCE — wick = sweep, close = break</text><text x="40" y="185" class="s">initial stop = 105%-of-leg line BEYOND the origin · a WICK through the origin is a liquidity sweep (expected, often fuel) · only a completed 5m CLOSE beyond the 105% line is a true break → exit</text>
+<rect class="bx" x="24" y="204" width="1072" height="60" rx="8"/><text x="40" y="224" class="t" style="font-size:11.5px">LADDER STAGES — stop rebuilds with structure</text><text x="40" y="241" class="s">50% of leg reclaimed → stop to breakeven · 75% reclaimed → stop ratchets to the 50% level · full reclaim of the extreme → take profit · flat 15:55 ET</text><text x="40" y="256" class="s">scale-out / premium-trail overlays KEPT on this book (banked ASTS +$445 on 07-30) · EOD-protect overlay banks decaying winners into the close</text>
+<rect class="bxg" x="24" y="274" width="1072" height="60" rx="8"/><text x="40" y="294" class="t" style="font-size:11.5px">NEW 2026-07-31 — Leg invalidation</text><text x="40" y="311" class="s">the scan refuses any leg where a completed close already crossed its 105% line since the extreme</text><text x="40" y="326" class="s">fixes dead-leg re-arms: RKLB entered 95 min after its break · ASTS, MU, CRWV on 07-30</text>
+<rect class="bxg" x="24" y="344" width="1072" height="60" rx="8"/><text x="40" y="364" class="t" style="font-size:11.5px">NEW 2026-07-31 — Body structure</text><text x="40" y="381" class="s">pivots/legs read candle BODIES (max/min of open, close) · bodies = price acceptance, wicks = auction noise</text><text x="40" y="396" class="s">backtested +21% expectancy/trade · phantom one-wick extremes cease to exist</text>
+<rect class="bxg" x="24" y="414" width="1072" height="46" rx="8"/><text x="40" y="434" class="t" style="font-size:11.5px">NEW 2026-07-31 — Deep feed</text><text x="40" y="451" class="s">structure sees ≈15 days (local bar archive merged under the live week) instead of 5</text>
+<g class="clk" data-nav="ladder_struct"><rect class="bxb" x="24" y="470" width="524" height="38" rx="8"/><text x="40" y="494" class="s"><tspan class="t" style="font-size:11px">Structure semantics</tspan> — impulse / sweep / invalidation ◆</text></g>
+<g class="clk" data-nav="ladder5"><rect class="bxb" x="572" y="470" width="524" height="38" rx="8"/><text x="588" y="494" class="s"><tspan class="t" style="font-size:11px">Sibling</tspan> — 5min Shares book ◆</text></g>
+<text x="24" y="528" class="lbl">Validated +$497k / 7 mo sim on the 6-name list at $250 risk · live 07-30 first day exposed plumbing bugs (fixed) · NO higher-timeframe trend filter BY DESIGN (tested: cut profit 40-45%).</text>
+</svg>
+</div>
+<!-- LADDER5 VIEW (DS-2026-07-31-B) -->
+<div class="view" data-id="ladder5" data-parent="strategies" data-title="Andre's Ladder — 5min Shares" data-desc="The same ladder plan on 5-minute structure, traded in SHARES (engine id pa_scalp).">
+<svg viewBox="0 0 1120 452" xmlns="http://www.w3.org/2000/svg">
+<text x="24" y="24" class="ph">Same ladder plan on 5-minute structure — shares by design, pinned to the paper book</text>
+<rect class="bx" x="24" y="36" width="1072" height="46" rx="8"/><text x="40" y="56" class="t" style="font-size:11.5px">Same anatomy as the 15m book — on 5m pivots, NO BOS requirement (by design)</text><text x="40" y="73" class="s">origin → extreme → 98% origin retest, read on 5-minute structure pivots · impulse does not need a break of structure to arm</text>
+<rect class="bx" x="24" y="92" width="524" height="46" rx="8"/><text x="40" y="112" class="t" style="font-size:11.5px">SHARES by design</text><text x="40" y="129" class="s">option spread &gt; structural stop — options would burn the edge</text>
+<rect class="bx" x="572" y="92" width="524" height="46" rx="8"/><text x="588" y="112" class="t" style="font-size:11.5px">Signal pinned to the PAPER book</text><text x="588" y="129" class="s">_book=paper · the 07-30 SPY live-short incident made blank book pins illegal</text>
+<rect class="bx" x="24" y="148" width="524" height="46" rx="8"/><text x="40" y="168" class="t" style="font-size:11.5px">Risk-true sizing</text><text x="40" y="185" class="s">shares = $pas_risk_usd risked to the hard stop</text>
+<rect class="bx" x="572" y="148" width="524" height="46" rx="8"/><text x="588" y="168" class="t" style="font-size:11.5px">−2R INTRABAR disaster stop</text><text x="588" y="185" class="s">vs the live quote, behind the close-based structural stop · 15m book has no intrabar hard stop</text>
+<rect class="bx" x="24" y="204" width="1072" height="46" rx="8"/><text x="40" y="224" class="t" style="font-size:11.5px">Exemptions vs other strategies</text><text x="40" y="241" class="s">NO scale-out (exemption 07-30) · one entry per setup per day (in-memory) · 15-min signal cooldown</text>
+<rect class="bxg" x="24" y="260" width="1072" height="46" rx="8"/><text x="40" y="280" class="t" style="font-size:11.5px">Same three 2026-07-31 upgrades apply</text><text x="40" y="297" class="s">leg invalidation · body structure (bodies = acceptance, wicks = noise) · 15-day deep feed — the shares book shares the same structure cache</text>
+<rect class="bxr" x="24" y="316" width="1072" height="46" rx="8"/><text x="40" y="336" class="t" style="font-size:11.5px">KNOWN OPEN BUG — ladder state does NOT survive a bot restart</text><text x="40" y="353" class="s">an orphaned position falls back to generic monitoring · AAPL 07-30: −$50 instead of −$9 · fix queued</text>
+<g class="clk" data-nav="ladder_struct"><rect class="bxb" x="24" y="372" width="524" height="38" rx="8"/><text x="40" y="396" class="s"><tspan class="t" style="font-size:11px">Structure semantics</tspan> — impulse / sweep / invalidation ◆</text></g>
+<g class="clk" data-nav="ladder15"><rect class="bxb" x="572" y="372" width="524" height="38" rx="8"/><text x="588" y="396" class="s"><tspan class="t" style="font-size:11px">Sibling</tspan> — 15min Options book ◆</text></g>
+<text x="24" y="428" class="lbl">Same ladder stages as the 15m book (BE at 50% reclaim → ratchet at 75% → TP at full reclaim) — shares keep the structural stop honest where option spreads cannot.</text>
+</svg>
+</div>
+<!-- LADDER_STRUCT VIEW (DS-2026-07-31-B) -->
+<div class="view" data-id="ladder_struct" data-parent="ladder15" data-title="Ladder structure semantics" data-desc="The market-structure vocabulary both ladder books share (updated 2026-07-31).">
+<svg viewBox="0 0 1120 468" xmlns="http://www.w3.org/2000/svg">
+<text x="24" y="24" class="ph">Impulse → retracement → reclaim: the vocabulary both ladder books share</text>
+<rect class="bx" x="24" y="36" width="1072" height="46" rx="8"/><text x="40" y="56" class="t" style="font-size:11.5px">IMPULSE — origin → BOS → extreme</text><text x="40" y="73" class="s">the origin (lower high / higher low) is where the aggressive supply/demand sat — an order-block by another name</text>
+<rect class="bx" x="24" y="92" width="1072" height="60" rx="8"/><text x="40" y="112" class="t" style="font-size:11.5px">RETRACEMENT — the 98% journey back to the origin</text><text x="40" y="129" class="s">valid ONLY if no completed close crossed the 105% line since the extreme</text><text x="40" y="144" class="s">LEG INVALIDATION — added 2026-07-31 after RKLB / ASTS / MU / CRWV dead-leg entries</text>
+<rect class="bxg" x="24" y="162" width="524" height="46" rx="8"/><text x="40" y="182" class="t" style="font-size:11.5px">WICK beyond a line = sweep</text><text x="40" y="199" class="s">tolerated — often fuel</text>
+<rect class="bxr" x="572" y="162" width="524" height="46" rx="8"/><text x="588" y="182" class="t" style="font-size:11.5px">Completed CLOSE beyond = break</text><text x="588" y="199" class="s">act on it</text>
+<text x="24" y="230" class="s">Wick = sweep, close = break — applies to entries, stops, and invalidation alike.</text>
+<rect class="bxg" x="24" y="244" width="1072" height="60" rx="8"/><text x="40" y="264" class="t" style="font-size:11.5px">BODY STRUCTURE (2026-07-31)</text><text x="40" y="281" class="s">pivots and legs are computed from candle bodies (max/min of open &amp; close) — bodies are ACCEPTANCE, wicks are auction noise</text><text x="40" y="296" class="s">config pas_struct_source / pa2_struct_source ("wick" restores old behavior)</text>
+<rect class="bxg" x="24" y="314" width="1072" height="60" rx="8"/><text x="40" y="334" class="t" style="font-size:11.5px">DEEP FEED (2026-07-31) — structure window ≈15 days</text><text x="40" y="351" class="s">live broker week merged with the local bars_store archive (5m; resampled to 15m for the options book) · fail-open to the live week</text><text x="40" y="366" class="s">arm window unchanged: the extreme must be fresh (12 structure bars) for a signal</text>
+<rect class="bx" x="24" y="384" width="1072" height="46" rx="8"/><text x="40" y="404" class="t" style="font-size:11.5px">Internal vs external structure — no HTF bias filter by design</text><text x="40" y="421" class="s">books trade the structure-TF's INTERNAL structure · a ladder long on a red day is valid internal structure, not a mistake</text>
+<text x="24" y="444" class="lbl">Reclaim continuation (reverse trade on invalidated legs) runs as its own paper book — see Strategies.</text>
+</svg>
+</div>
+<!-- ORB VIEW (DS-2026-07-31-B) -->
+<div class="view" data-id="orb" data-parent="strategies" data-title="Opening Range Breakout (5m RVOL)" data-desc="Momentum book for the open — the natural catcher of gap-and-go runs.">
+<svg viewBox="0 0 1120 316" xmlns="http://www.w3.org/2000/svg">
+<text x="24" y="24" class="ph">ORB — break the opening range, but only on genuinely active names</text>
+<rect class="bx" x="24" y="36" width="1072" height="46" rx="8"/><text x="40" y="56" class="t" style="font-size:11.5px">Opening range</text><text x="40" y="73" class="s">defined from the first minutes of RTH — the high/low that the open prints becomes the breakout level</text>
+<rect class="bxg" x="24" y="92" width="524" height="46" rx="8"/><text x="40" y="112" class="t" style="font-size:11.5px">Breakout entry</text><text x="40" y="129" class="s">price clears the opening range → momentum entry in that direction</text>
+<rect class="bx" x="572" y="92" width="524" height="46" rx="8"/><text x="588" y="112" class="t" style="font-size:11.5px">RVOL gate</text><text x="588" y="129" class="s">relative volume must confirm — only genuinely active names fire</text>
+<rect class="bx" x="24" y="148" width="524" height="46" rx="8"/><text x="40" y="168" class="t" style="font-size:11.5px">Window starts 09:35</text><text x="40" y="185" class="s">lets the opening range complete before any breakout can trigger</text>
+<rect class="bxr" x="572" y="148" width="524" height="46" rx="8"/><text x="588" y="168" class="t" style="font-size:11.5px">Flat-time discipline</text><text x="588" y="185" class="s">scalp rules apply — scalps live 09:30–16:00 only, nothing held past</text>
+<rect class="bx" x="24" y="204" width="1072" height="46" rx="8"/><text x="40" y="224" class="t" style="font-size:11.5px">Nightly ORB scoreboard (built 2026-07-29)</text><text x="40" y="241" class="s">grades every day's ORB trades and parameters after the close — the book is audited nightly, not on faith</text>
+<text x="24" y="292" class="lbl">Complements the ladder books: days like MU 07-30 (gap +7%, straight-line run, no retrace) belong to ORB by design — not to the reversal books.</text>
+</svg>
+</div>
+<!-- EMA_VWAP VIEW (DS-2026-07-31-B) -->
+<div class="view" data-id="ema_vwap" data-parent="strategies" data-title="EMA/VWAP Cross 3min" data-desc="Operator-designed regime scalper (2026-07-30) — shares, paper+live book.">
+<svg viewBox="0 0 1120 316" xmlns="http://www.w3.org/2000/svg">
+<text x="24" y="24" class="ph">Buy the sweep of the mean while the 3m regime holds</text>
+<rect class="bx" x="24" y="36" width="1072" height="46" rx="8"/><text x="40" y="56" class="t" style="font-size:11.5px">Regime filter (3m)</text><text x="40" y="73" class="s">bullish regime = 3m close above session VWAP AND above the 9EMA · shorts fully mirrored</text>
+<rect class="bxg" x="24" y="92" width="524" height="46" rx="8"/><text x="40" y="112" class="t" style="font-size:11.5px">ENTRY — wick into VWAP</text><text x="40" y="129" class="s">live quote wicks into VWAP while regime holds: buying the sweep of the mean</text>
+<rect class="bxr" x="572" y="92" width="524" height="46" rx="8"/><text x="588" y="112" class="t" style="font-size:11.5px">EXIT — close through 9EMA</text><text x="588" y="129" class="s">first post-entry 3m CLOSE through the 9EMA ends the trade</text>
+<rect class="bx" x="24" y="148" width="1072" height="46" rx="8"/><text x="40" y="168" class="t" style="font-size:11.5px">House rule</text><text x="40" y="185" class="s">wick = sweep, close = break — entries key off wicks, exits key off completed closes</text>
+<rect class="bx" x="24" y="204" width="524" height="46" rx="8"/><text x="40" y="224" class="t" style="font-size:11.5px">Instrument &amp; routing</text><text x="40" y="241" class="s">shares · book="both" — runs on paper and live simultaneously</text>
+<rect class="bxg" x="572" y="204" width="524" height="46" rx="8"/><text x="588" y="224" class="t" style="font-size:11.5px">Exempt from AI-confirm veto</text><text x="588" y="241" class="s">validated without the veto layer — it trades its regime unfiltered</text>
+<text x="24" y="292" class="lbl">One of only three engines exempt from the veto layer (alongside hybrid and ai_adaptive).</text>
+</svg>
+</div>
+<!-- HYBRID VIEW (DS-2026-07-31-B) -->
+<div class="view" data-id="hybrid" data-parent="strategies" data-title="Hybrid ORB / Flow / 0DTE Spreads" data-desc="Operator XML-spec engine (2026-07-30) — three modules, one weighted combiner, credit-spread output.">
+<svg viewBox="0 0 1120 364" xmlns="http://www.w3.org/2000/svg">
+<text x="24" y="24" class="ph">Three signal modules → one weighted combiner → credit-spread orders</text>
+<rect class="bx" x="24" y="36" width="341" height="46" rx="8"/><text x="40" y="56" class="t" style="font-size:11.5px">Module 1 — ORB breakout</text><text x="40" y="73" class="s">opening-range momentum read</text>
+<rect class="bx" x="389" y="36" width="341" height="46" rx="8"/><text x="405" y="56" class="t" style="font-size:11.5px">Module 2 — order-flow imbalance</text><text x="405" y="73" class="s">aggressor pressure read</text>
+<rect class="bx" x="754" y="36" width="341" height="46" rx="8"/><text x="770" y="56" class="t" style="font-size:11.5px">Module 3 — 0DTE mean-reversion</text><text x="770" y="73" class="s">stretched-move fade read</text>
+<rect class="bx" x="24" y="92" width="1072" height="46" rx="8"/><text x="40" y="112" class="t" style="font-size:11.5px">Weighted combiner</text><text x="40" y="129" class="s">module outputs are weighted and merged — the combiner alone produces the final signal</text>
+<rect class="bxg" x="24" y="148" width="1072" height="46" rx="8"/><text x="40" y="168" class="t" style="font-size:11.5px">Output — CREDIT SPREADS</text><text x="40" y="185" class="s">emits defined-risk option spread orders, not single legs — max loss is known at entry</text>
+<rect class="bx" x="24" y="204" width="524" height="46" rx="8"/><text x="40" y="224" class="t" style="font-size:11.5px">Own trend gates (3-of-4 conditions)</text><text x="40" y="241" class="s">self-filtering → exempt from the AI veto AND the rotation layers</text>
+<rect class="bx" x="572" y="204" width="524" height="46" rx="8"/><text x="588" y="224" class="t" style="font-size:11.5px">Book &amp; window</text><text x="588" y="241" class="s">pinned to the paper book · trades 09:35–15:30</text>
+<rect class="bx" x="24" y="260" width="1072" height="46" rx="8"/><text x="40" y="280" class="t" style="font-size:11.5px">LIVE SYNC exemption (hy_spread)</text><text x="40" y="297" class="s">spread legs carry their own sync exemption so the Schwab account scan doesn't prune them</text>
+<text x="24" y="340" class="lbl">Operator XML-spec engine (2026-07-30) · modules never trade alone — only the weighted combiner fires · defined-risk by construction.</text>
+</svg>
+</div>
+<!-- RECLAIM VIEW (DS-2026-07-31-B) -->
+<div class="view" data-id="reclaim" data-parent="strategies" data-title="Reclaim Continuation (Ladder Reversal)" data-desc="When a ladder leg is invalidated, join the NEW impulse — Andre's concept from the 07-30 RKLB session; PAPER-ONLY forward observation.">
+<svg viewBox="0 0 1120 584" xmlns="http://www.w3.org/2000/svg">
+<text x="24" y="24" class="ph">A dead leg is information — trade the impulse that killed it</text>
+<rect class="bx" x="24" y="36" width="1072" height="46" rx="8"/><text x="40" y="56" class="t" style="font-size:11.5px">TRIGGER — a tracked leg dies</text><text x="40" y="73" class="s">completed 5m close beyond the leg's 105% line = opposing break of structure (BOS)</text>
+<rect class="bxg" x="24" y="92" width="524" height="46" rx="8"/><text x="40" y="112" class="t" style="font-size:11.5px">Dead PUT-leg → LONG</text><text x="40" y="129" class="s">downleg invalidated — join the new upward impulse</text>
+<rect class="bxr" x="572" y="92" width="524" height="46" rx="8"/><text x="588" y="112" class="t" style="font-size:11.5px">Dead CALL-leg → SHORT</text><text x="588" y="129" class="s">upleg invalidated — join the new downward impulse</text>
+<rect class="bx" x="24" y="148" width="1072" height="46" rx="8"/><text x="40" y="168" class="t" style="font-size:11.5px">Standalone leg detection</text><text x="40" y="185" class="s">detects legs itself from raw bars — never depends on the fade books' trades</text>
+<rect class="bx" x="24" y="204" width="1072" height="46" rx="8"/><text x="40" y="224" class="t" style="font-size:11.5px">ACCEPTANCE</text><text x="40" y="241" class="s">rc_accept_bars consecutive completed closes beyond the dead leg's ORIGIN confirm the reclaim</text>
+<rect class="bxr" x="24" y="260" width="1072" height="46" rx="8"/><text x="40" y="280" class="t" style="font-size:11.5px">One shot — no re-arms</text><text x="40" y="297" class="s">a close back inside cancels that leg permanently · re-arms tested across 3 months: EVERY config got worse, +457R → −290R</text>
+<rect class="bx" x="24" y="316" width="524" height="46" rx="8"/><text x="40" y="336" class="t" style="font-size:11.5px">ENTRY — chase cap</text><text x="40" y="353" class="s">only within rc_chase_cap (0.5 leg) of the origin</text>
+<rect class="bx" x="572" y="316" width="524" height="46" rx="8"/><text x="588" y="336" class="t" style="font-size:11.5px">Own flat-time gate</text><text x="588" y="353" class="s">no new entries after 15:30</text>
+<rect class="bx" x="24" y="372" width="1072" height="46" rx="8"/><text x="40" y="392" class="t" style="font-size:11.5px">EXITS — no new exit code</text><text x="40" y="409" class="s">emits a SYNTHETIC leg: anchor = dead leg's origin · extreme = origin + 1.0 leg measured move</text>
+<rect class="bx" x="24" y="428" width="1072" height="46" rx="8"/><text x="40" y="448" class="t" style="font-size:11.5px">Shared ladder machinery runs it</text><text x="40" y="465" class="s">stop(close) at the sweep line below the origin · BE at 50% · ratchet at 75% · TP at the projection · −2R intrabar</text>
+<rect class="bxr" x="24" y="484" width="1072" height="50" rx="8"/><text x="40" y="506" class="t" style="font-size:11.5px">HONEST STATUS — approximately breakeven in backtest</text><text x="40" y="524" class="s">3-mo / 90 symbols: −0.02R shipped config (best variant +0.06R, inside slippage) · pullback-entry raises win rate but flips expectancy negative — strong reclaims never pull back (adverse selection)</text>
+<text x="24" y="560" class="lbl">Shares · paper book · 09:35–15:30 · first session 2026-07-31 · shares the 5m book's bar cache and body-structure flag · will be re-judged on forward paper data.</text>
+</svg>
+</div>
+<!-- BROKERS VIEW (DS-2026-07-31-B) -->
+<div class="view" data-id="brokers" data-parent="overall" data-title="Order routing — multi-account fan-out" data-desc="One approved signal fans out to every enabled account — paper book, up to 4 Schwab accounts, IBKR paper and IBKR live (2026-07-31).">
+<svg viewBox="0 0 1120 552" xmlns="http://www.w3.org/2000/svg">
+<text x="24" y="24" class="ph">One signal → a leg in EVERY enabled account — one plan, per-leg markers</text>
+<rect class="bx" x="24" y="36" width="1072" height="48" rx="8"/><text x="40" y="56" class="t" style="font-size:11.5px">Approved signal fan-out</text><text x="40" y="73" class="s">a trade may be several fills — simultaneous legs in PAPER book + up to 4 Schwab accounts + IBKR Paper + IBKR Live · one plan, per-leg markers</text>
+<rect class="bxr" x="24" y="94" width="1072" height="48" rx="8"/><text x="40" y="114" class="t" style="font-size:11.5px">Book pin (_book=paper) — can only NARROW where a signal lands</text><text x="40" y="131" class="s">07-30 SPY incident: a blank pin let live SPY shorts out — blank can never again mean live</text>
+<rect class="bx" x="24" y="152" width="524" height="48" rx="8"/><text x="40" y="172" class="t" style="font-size:11.5px">PAPER book</text><text x="40" y="189" class="s">every approved signal always books a paper leg</text>
+<rect class="bx" x="572" y="152" width="524" height="48" rx="8"/><text x="588" y="172" class="t" style="font-size:11.5px">live_account_routing — per-account asset routing</text><text x="588" y="189" class="s">each account: opt / stock ticks + shorts toggle · shorts default OFF everywhere</text>
+<rect class="bx" x="24" y="210" width="256" height="52" rx="8"/><text x="40" y="230" class="t" style="font-size:11.5px">Schwab A</text><text x="40" y="247" class="s">options + stocks</text>
+<rect class="bx" x="296" y="210" width="256" height="52" rx="8"/><text x="312" y="230" class="t" style="font-size:11.5px">Schwab B</text><text x="312" y="247" class="s">stocks only</text>
+<rect class="bx" x="568" y="210" width="256" height="52" rx="8"/><text x="584" y="230" class="t" style="font-size:11.5px">Schwab C</text><text x="584" y="247" class="s">options + stocks</text>
+<rect class="bx" x="840" y="210" width="256" height="52" rx="8"/><text x="856" y="230" class="t" style="font-size:11.5px">Schwab D</text><text x="856" y="247" class="s">options — the workhorse options account</text>
+<rect class="bxg" x="24" y="272" width="524" height="52" rx="8"/><text x="40" y="292" class="t" style="font-size:11.5px">IBKR Paper — stocks only</text><text x="40" y="309" class="s">IB Gateway port 4002 · hard D-prefix (paper-only) account gate</text>
+<rect class="bxg" x="572" y="272" width="524" height="52" rx="8"/><text x="588" y="292" class="t" style="font-size:11.5px">IBKR Live — stocks only · REAL MONEY</text><text x="588" y="309" class="s">port 4001 · U-prefix gate · needs a second Gateway running (not yet running at build)</text>
+<rect class="bx" x="24" y="334" width="1072" height="48" rx="8"/><text x="40" y="354" class="t" style="font-size:11.5px">Schwab execution — mid-first ladder pricing</text><text x="40" y="371" class="s">entries walk mid→ask in 3 rungs, exits mid→bid, urgent exits market · TRIGGER brackets broker-held (stop+target) · disaster stops GTC behind everything · audit log live_orders.jsonl</text>
+<rect class="bxg" x="24" y="392" width="1072" height="48" rx="8"/><text x="40" y="412" class="t" style="font-size:11.5px">IBKR execution — ibkr_exec.py adapter (2026-07-31)</text><text x="40" y="429" class="s">connect-per-operation to IB Gateway, fail-open to "unavailable" (never hangs a scan) · native IB brackets (parent LMT + OCA stop/target) for Schwab parity · sized independently to each account's buying power, FAIL-CLOSED · options/futures via IBKR = future milestone</text>
+<rect class="bxr" x="24" y="450" width="1072" height="48" rx="8"/><text x="40" y="470" class="t" style="font-size:11.5px">Caveats</text><text x="40" y="487" class="s">no IBKR fill reconciliation yet — entry rows record the limit optimistically · BP-aware sizing honestly caps/skips names the live account cannot afford · PDT limit not tracked by the bot</text>
+<text x="24" y="528" class="lbl">Current routing (2026-07-31): Schwab A opt+stk · B stk · C opt+stk · D opt · IBKR Paper stk · IBKR Live stk — shorts OFF in every account.</text>
+</svg>
+</div>
+<!-- AI VIEW (DS-2026-07-31-B) -->
+<div class="view" data-id="ai" data-parent="overall" data-title="AI confidence &amp; veto layer" data-desc="Per-symbol GradientBoosting confidence + sector-rotation filter, and the dated history of which books it may veto.">
+<svg viewBox="0 0 1120 470" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="ai1" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#bc8cff"/></marker><marker id="ai2" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#58a6ff"/></marker></defs>
+<text x="24" y="24" class="ph">AI confidence &amp; veto layer — GBM second opinion on every roster signal</text>
+<rect class="bx" x="24" y="40" width="250" height="58" rx="8"/><text x="40" y="60" class="t" style="font-size:11px">Feature set (~46)</text><text x="40" y="77" class="s">24 core technicals · 4 calendar</text><text x="40" y="92" class="s">8 extended · 9 external context</text>
+<rect class="bx" x="24" y="108" width="250" height="42" rx="8"/><text x="40" y="126" class="t" style="font-size:11px">5 L2 order-book *</text><text x="40" y="142" class="s">real-time only (imputed in training)</text>
+<rect class="bxp" x="330" y="46" width="210" height="100" rx="10"/><text x="435" y="76" text-anchor="middle" class="t">GradientBoosting</text><text x="435" y="93" text-anchor="middle" class="t">Classifier</text><text x="435" y="113" text-anchor="middle" class="s">per symbol · recency-weighted</text><text x="435" y="128" text-anchor="middle" class="s">nightly retrain publishes models</text>
+<path d="M274,69 L300,69 L300,85 L328,85" class="fb" marker-end="url(#ai1)"/><path d="M274,129 L300,129 L300,110 L328,110" class="fb" marker-end="url(#ai1)"/>
+<rect class="bx" x="580" y="58" width="200" height="74" rx="9"/><text x="680" y="84" text-anchor="middle" class="t">predict_proba</text><text x="680" y="103" text-anchor="middle" class="s">bull vs bear probability</text><text x="680" y="118" text-anchor="middle" class="s">confidence = max class %</text>
+<line x1="540" y1="95" x2="578" y2="95" class="fw" marker-end="url(#ai2)" style="stroke:#bc8cff"/>
+<text x="820" y="48" class="ph">Thresholds (self-tuning)</text>
+<rect class="bxr" x="820" y="56" width="276" height="28" rx="7"/><text x="836" y="75" class="s">&lt; 55% → LOW → no signal (threshold ↑)</text>
+<rect class="bxa" x="820" y="90" width="276" height="28" rx="7"/><text x="836" y="109" class="s">55–65% → MEDIUM</text>
+<rect class="bxg" x="820" y="124" width="276" height="28" rx="7"/><text x="836" y="143" class="s">≥ 65% → HIGH</text>
+<line x1="780" y1="95" x2="818" y2="95" class="fw" marker-end="url(#ai2)"/>
+<text x="24" y="190" class="ph">Veto scope on the ladder books — dated</text>
+<rect class="bxa" x="24" y="200" width="524" height="58" rx="8"/><text x="40" y="220" class="t" style="font-size:11.5px">2026-07-30 — ladder books EXEMPTED from the veto</text><text x="40" y="237" class="s">it blocked 100% of counter-trend ladder entries on the first live morning</text>
+<rect class="bxr" x="572" y="200" width="524" height="58" rx="8"/><text x="588" y="220" class="t" style="font-size:11.5px">2026-07-31 — veto RESTORED for both ladder books</text><text x="588" y="237" class="s">−$490 first live day, unvalidated by backtest · funnel being watched</text>
+<rect class="bxg" x="24" y="270" width="1072" height="46" rx="8"/><text x="40" y="290" class="t" style="font-size:11.5px">Permanently exempt</text><text x="40" y="307" class="s">ai_adaptive (it IS the AI) · ema_vwap and hybrid (validated without it / carry their own trend gates)</text>
+<rect class="bx" x="24" y="328" width="1072" height="58" rx="8"/><text x="40" y="348" class="t" style="font-size:11.5px">Sector-rotation filter (RRG quadrant)</text><text x="40" y="365" class="s">same story — ladder exemption 07-30 → restored 07-31 · same permanent-exempt list (ai_adaptive, ema_vwap, hybrid)</text>
+<text x="24" y="412" class="s">* L2 features exist only at inference; imputed neutral during training. Every prediction is logged for the self-tuning accuracy tracker.</text>
+<text x="24" y="446" class="lbl">The veto layer is a second opinion — the raw engine stays the strategy tag on every trade.</text>
+</svg>
+</div>
+<!-- DATA VIEW (DS-2026-07-31-B) -->
+<div class="view" data-id="data" data-parent="overall" data-title="Data &amp; structure feeds" data-desc="Where bars, quotes and structure come from (redesigned 2026-07-31).">
+<svg viewBox="0 0 1120 576" xmlns="http://www.w3.org/2000/svg">
+<text x="24" y="24" class="ph">Schwab primary live feed · local archive is the permanent copy · deep structure merge</text>
+<rect class="bx" x="24" y="36" width="1072" height="48" rx="8"/><text x="40" y="56" class="t" style="font-size:11.5px">LIVE — Schwab primary</text><text x="40" y="73" class="s">bars + quotes + options chains · 120 req/min · two-tier polling</text>
+<rect class="bx" x="24" y="94" width="1072" height="48" rx="8"/><text x="40" y="114" class="t" style="font-size:11.5px">One batch-quote round trip per 5-second scan cycle</text><text x="40" y="131" class="s">feeds every engine's touch triggers — the live print decides entries, not stale bar closes</text>
+<rect class="bx" x="24" y="152" width="524" height="48" rx="8"/><text x="40" y="172" class="t" style="font-size:11.5px">Robinhood — data-only toggle</text><text x="40" y="189" class="s">alternate quote/bar source · never execution</text>
+<rect class="bx" x="572" y="152" width="524" height="48" rx="8"/><text x="588" y="172" class="t" style="font-size:11.5px">Yahoo — fallback context</text><text x="588" y="189" class="s">last-resort market context</text>
+<rect class="bx" x="24" y="210" width="524" height="48" rx="8"/><text x="40" y="230" class="t" style="font-size:11.5px">Schwab L2 streaming</text><text x="40" y="247" class="s">order-book features for the flow layer</text>
+<rect class="bxr" x="572" y="210" width="524" height="48" rx="8"/><text x="588" y="230" class="t" style="font-size:11.5px">IBKR tick-by-tick — wired, no market-data entitlement</text><text x="588" y="247" class="s">flow-reject runs in shadow mode on a SYNTHETIC tape (8 symbols) until a data sub exists</text>
+<rect class="bx" x="24" y="268" width="1072" height="48" rx="8"/><text x="40" y="288" class="t" style="font-size:11.5px">LOCAL ARCHIVE — bars_store / bars_history.db</text><text x="40" y="305" class="s">nightly collection of 5m bars for the watchlist · Schwab retention is only ~200 days and rolls off — the archive is the permanent copy</text>
+<rect class="bxr" x="24" y="326" width="1072" height="48" rx="8"/><text x="40" y="346" class="t" style="font-size:11.5px">Retention capped at ~2 months — bars_retention_days=60 (operator decision 2026-07-31)</text><text x="40" y="363" class="s">pruned 2.28M rows · caveat: the scalp AI trainer reads this archive — pruned rows are unrecoverable</text>
+<rect class="bx" x="24" y="384" width="1072" height="48" rx="8"/><text x="40" y="404" class="t" style="font-size:11.5px">DEEP STRUCTURE MERGE (2026-07-31)</text><text x="40" y="421" class="s">both ladder books' structure feed = live broker week MERGED with the archive → ~15 days of pivots/legs (pas_struct_days / pa2_struct_days) · 5m resampled to 15m for the options book · fail-open to live-only</text>
+<rect class="bxg" x="24" y="442" width="1072" height="48" rx="8"/><text x="40" y="462" class="t" style="font-size:11.5px">IBKR HISTORICAL — validated on the paper login</text><text x="40" y="479" class="s">2 weeks of 5m bars per request, NO market-data subscription required · earmarked as the archive's backfill source</text>
+<g class="clk" data-nav="ladder_struct"><rect class="bxb" x="24" y="500" width="520" height="38" rx="8"/><text x="40" y="524" class="s"><tspan class="t" style="font-size:11px">Ladder structure</tspan> — how pivots/legs are built from these feeds ◆</text></g>
+<text x="560" y="524" class="s">Structure consumers read candle bodies (acceptance), not wicks.</text>
+<text x="24" y="552" class="lbl">Live: Schwab 120 req/min, one batch quote per 5s scan · Archive: 60-day cap since 2026-07-31 · Structure: ~15-day merged depth, body-based.</text>
+</svg>
+</div>
+<!-- SYNC VIEW (DS-2026-07-31-B) -->
+<div class="view" data-id="sync" data-parent="overall" data-title="Design-sync changelog" data-desc="Which build of the bot this site describes — checked and stamped every publish.">
+<svg viewBox="0 0 1120 570" xmlns="http://www.w3.org/2000/svg">
+<text x="24" y="24" class="ph">Every publish carries a DESIGN-SYNC id — site and code verifiable against each other</text>
+<rect class="bx" x="24" y="36" width="1072" height="48" rx="8"/><text x="40" y="56" class="t" style="font-size:11.5px">How it works</text><text x="40" y="73" class="s">each site publish carries a DESIGN-SYNC identifier · the bot repo carries the matching DESIGN_SYNC.json (same id, bot git HEAD, key-file fingerprints) · any future session can verify site ↔ code alignment on request</text>
+<rect class="bxg" x="24" y="94" width="1072" height="56" rx="8"/><text x="40" y="114" class="t" style="font-size:11.5px">Current stamp: DS-2026-07-31-B</text><text x="40" y="131" class="s">bot repo HEAD 9076a27 (2026-07-29) + uncommitted operator deploys of 07-29→07-31 (ladder books, invalidation check, body structure, deep feed, reclaim book, IBKR adapters, bars_store retention)</text><text x="40" y="146" class="s">site commit: this publish</text>
+<rect class="bx" x="24" y="160" width="1072" height="48" rx="8"/><text x="40" y="180" class="t" style="font-size:11.5px">Prior published state: commit a483559 (2026-07-27)</text><text x="40" y="197" class="s">documented the pre-ladder 14-engine roster &amp; Harvest Stack era — everything between 07-27 and 07-31 is what this publish adds</text>
+<rect class="bx" x="24" y="218" width="1072" height="36" rx="8"/><text x="40" y="241" class="s"><tspan class="t" style="font-size:11px">07-31</tspan> — body structure + 15-day deep feed + archive retention cap (60 days)</text>
+<rect class="bx" x="24" y="262" width="1072" height="36" rx="8"/><text x="40" y="285" class="s"><tspan class="t" style="font-size:11px">07-31</tspan> — leg-invalidation check on both ladder books</text>
+<rect class="bx" x="24" y="306" width="1072" height="36" rx="8"/><text x="40" y="329" class="s"><tspan class="t" style="font-size:11px">07-31</tspan> — reclaim_cont paper book · registry pruned to the active roster</text>
+<rect class="bx" x="24" y="350" width="1072" height="36" rx="8"/><text x="40" y="373" class="s"><tspan class="t" style="font-size:11px">07-31</tspan> — IBKR paper + live stock execution wired</text>
+<rect class="bx" x="24" y="394" width="1072" height="36" rx="8"/><text x="40" y="417" class="s"><tspan class="t" style="font-size:11px">07-30</tspan> — ladder books' first live day · AI-veto / rotation / scale-out exemptions (later partly restored) · book pins · margin-aware sizing · broker-held stops</text>
+<rect class="bx" x="24" y="438" width="1072" height="36" rx="8"/><text x="40" y="461" class="s"><tspan class="t" style="font-size:11px">07-30</tspan> — EMA/VWAP 3m + hybrid engines</text>
+<rect class="bx" x="24" y="482" width="1072" height="36" rx="8"/><text x="40" y="505" class="s"><tspan class="t" style="font-size:11px">07-29</tspan> — ORB + scoreboard · 5-second scan · batch quotes · roster book routing · MFE ratchet dead-band</text>
+<text x="24" y="546" class="lbl">Rule for future sessions: when design changes deploy, bump the DS id in BOTH repos — or flag drift.</text>
+</svg>
+</div>
+<!-- LADDER_EXITS VIEW (DS-2026-07-31-B) -->
+<div class="view" data-id="ladder_exits" data-parent="scaling" data-title="Ladder books — structural exits" data-desc="How the ladder books exit (2026-07-30/31) vs the P&amp;L-based Harvest Stack the legacy option books keep.">
+<svg viewBox="0 0 1120 536" xmlns="http://www.w3.org/2000/svg">
+<text x="24" y="24" class="ph">Position management &amp; exits — two regimes side by side</text>
+<text x="24" y="48" class="ph">LEGACY / OPTION books — P&amp;L-based (premium %)</text>
+<rect class="bxg" x="24" y="56" width="524" height="46" rx="8"/><text x="40" y="76" class="t" style="font-size:11.5px">+60% → SCALE-OUT half</text><text x="40" y="93" class="s">bank half the position at +60% premium</text>
+<rect class="bx" x="24" y="112" width="524" height="46" rx="8"/><text x="40" y="132" class="t" style="font-size:11.5px">+20% → arm SCALE-IN</text><text x="40" y="149" class="s">add on a winning pullback, once · stop → breakeven</text>
+<rect class="bx" x="24" y="168" width="524" height="46" rx="8"/><text x="40" y="188" class="t" style="font-size:11.5px">Premium trails</text><text x="40" y="205" class="s">post-scale-out trail closes remainder on peak giveback</text>
+<g class="clk" data-nav="exitmodes"><rect class="bxb" x="24" y="224" width="524" height="46" rx="8"/><text x="40" y="244" class="t" style="font-size:11.5px">Three ML-picked exit modes ◆</text><text x="40" y="261" class="s">RUNNER · STANDARD · QUICK — chosen by confidence</text></g>
+<rect class="bxr" x="24" y="280" width="524" height="46" rx="8"/><text x="40" y="300" class="t" style="font-size:11.5px">Always on</text><text x="40" y="317" class="s">hard stop · EOD force-close ~15:55 · overnight theta-lock</text>
+<text x="572" y="48" class="ph">LADDER books — STRUCTURE-based (2026-07-30/31)</text>
+<rect class="bx" x="572" y="56" width="524" height="46" rx="8"/><text x="588" y="76" class="t" style="font-size:11.5px">No P&amp;L ladder — stop is the 105% sweep line</text><text x="588" y="93" class="s">close-only structural stop on the underlying</text>
+<rect class="bx" x="572" y="112" width="524" height="46" rx="8"/><text x="588" y="132" class="t" style="font-size:11.5px">Stages</text><text x="588" y="149" class="s">50% → BE · 75% → ratchet · full reclaim → TP</text>
+<rect class="bx" x="572" y="168" width="524" height="46" rx="8"/><text x="588" y="188" class="t" style="font-size:11.5px">5m shares book</text><text x="588" y="205" class="s">−2R intrabar disaster stop · NO scale-out (exemption) · one entry per setup/day</text>
+<rect class="bx" x="572" y="224" width="524" height="46" rx="8"/><text x="588" y="244" class="t" style="font-size:11.5px">15m options book</text><text x="588" y="261" class="s">KEEPS scale-out + premium trail overlays</text>
+<rect class="bxg" x="572" y="280" width="524" height="46" rx="8"/><text x="588" y="300" class="t" style="font-size:11.5px">EOD-PROTECT overlay</text><text x="588" y="317" class="s">peak ≥ threshold and giveback ≥ 20% near close → bank it (e.g. CRWV +$57, 07-30)</text>
+<rect class="bx" x="572" y="336" width="524" height="46" rx="8"/><text x="588" y="356" class="t" style="font-size:11.5px">MFE giveback ratchet dead-band (07-29)</text><text x="588" y="373" class="s">for trail books — no churn inside the dead-band</text>
+<rect class="bxg" x="24" y="396" width="1072" height="40" rx="8"/><text x="40" y="414" class="t" style="font-size:11.5px">Broker-held stops for ALL strategies (2026-07-30)</text><text x="40" y="430" class="s">stops rest at the broker, not only in the bot loop</text>
+<rect class="bxr" x="24" y="448" width="1072" height="40" rx="8"/><text x="40" y="466" class="t" style="font-size:11.5px">OPEN ITEM</text><text x="40" y="482" class="s">generic broker OCO on 15m-book stock legs is ±15%, not the structural level</text>
+<text x="24" y="512" class="lbl">Exits are measured on the UNDERLYING for option ladder trades; the journal records exit levels.</text>
+</svg>
+</div>
 </div><!-- /views -->
 
 <footer class="legal">© 2026 <b>Andre Walker</b> · <b>Walkers Software LLC</b>. All rights reserved. Proprietary &amp; confidential — unauthorized use, reproduction, or distribution is prohibited.</footer>
