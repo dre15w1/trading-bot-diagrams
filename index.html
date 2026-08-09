@@ -127,7 +127,7 @@
 
 <!-- ================= VIEWS ================= -->
 <div id="views" style="display:none">
-<div class="view" data-id="market_intelligence" data-parent="ai" data-title="Market Intelligence Engine (new)" data-desc="DS-2026-08-09-R · The replacement intelligence architecture. One shared trunk describes the market once; three separately-calibrated heads forecast it for three different identities; everything downstream consumes one versioned contract. The legacy AI stack (ai_confirm, rotation_bias, ai_adaptive) is decommissioned — it was dark behind five independent locks and its confidence score was measured ANTI-calibrated (44.8% accurate overall, 40.2% above 0.80). Click a head to see why the three tracks cannot share a model.">
+<div class="view" data-id="market_intelligence" data-parent="ai" data-title="Market Intelligence Engine (new)" data-desc="DS-2026-08-09-R · The replacement intelligence architecture. One shared trunk describes the market once; three separately-calibrated heads forecast it for three different identities; everything downstream consumes one versioned contract. The legacy AI stack (ai_confirm, rotation_bias, ai_adaptive) is decommissioned — it was dark behind five independent locks and its confidence score was measured ANTI-calibrated (44.8% accurate overall, 40.2% above 0.80). Each head owns its labels, its horizons and its own calibration curve; no consumer ever sees a model, a feature vector or a pickle. Click a head to see why the three tracks cannot share a model.">
 <svg viewBox="0 0 1120 790" xmlns="http://www.w3.org/2000/svg">
 <defs><marker id="mi1" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#58a6ff"/></marker></defs>
 
@@ -156,7 +156,7 @@
 <path d="M560,294 L560,326" stroke="#58a6ff" stroke-width="2" marker-end="url(#mi1)"/>
 <path d="M920,294 L920,326" stroke="#58a6ff" stroke-width="2" marker-end="url(#mi1)"/>
 
-<text x="32" y="318" class="lbl">THREE IDENTITIES — own labels, own horizons, own calibration curve</text>
+<text x="32" y="318" class="lbl">THREE IDENTITIES</text>
 
 <g class="clk" data-nav="mi_tracks"><rect class="bxb" x="32" y="328" width="336" height="96" rx="9"/>
 <text x="200" y="352" text-anchor="middle" class="t">SCALP HEAD</text>
@@ -201,7 +201,7 @@
 <path d="M690,592 L690,620" stroke="#58a6ff" stroke-width="2" marker-end="url(#mi1)"/>
 <path d="M950,592 L950,620" stroke="#58a6ff" stroke-width="2" marker-end="url(#mi1)"/>
 
-<text x="32" y="612" class="lbl">CONSUMERS — none of them sees a model, a feature vector or a pickle</text>
+<text x="32" y="612" class="lbl">CONSUMERS</text>
 
 <g><rect class="bx" x="32" y="622" width="276" height="72" rx="9"/>
 <text x="170" y="646" text-anchor="middle" class="t">LEGACY BOT</text>
