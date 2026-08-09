@@ -127,6 +127,186 @@
 
 <!-- ================= VIEWS ================= -->
 <div id="views" style="display:none">
+<div class="view" data-id="market_intelligence" data-parent="ai" data-title="Market Intelligence Engine (new)" data-desc="DS-2026-08-09-R · The replacement intelligence architecture. One shared trunk describes the market once; three separately-calibrated heads forecast it for three different identities; everything downstream consumes one versioned contract. The legacy AI stack (ai_confirm, rotation_bias, ai_adaptive) is decommissioned — it was dark behind five independent locks and its confidence score was measured ANTI-calibrated (44.8% accurate overall, 40.2% above 0.80). Click a head to see why the three tracks cannot share a model.">
+<svg viewBox="0 0 1120 790" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="mi1" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#58a6ff"/></marker></defs>
+
+<rect class="band" x="16" y="8" width="1088" height="286" rx="10"/>
+<text x="32" y="28" class="lbl">SHARED TRUNK — built once, consumed by every head</text>
+
+<g><rect class="bx" x="32" y="40" width="1056" height="50" rx="9"/>
+<text x="560" y="62" text-anchor="middle" class="t">MARKET DATA SOURCES</text>
+<text x="560" y="80" text-anchor="middle" class="s">Schwab REST + WebSocket (L1/L2) · IBKR gateway · yfinance · ThetaData NBBO archive · Coinbase</text></g>
+<path d="M560,90 L560,106" stroke="#58a6ff" stroke-width="2" marker-end="url(#mi1)"/>
+
+<g><rect class="bxg" x="32" y="108" width="1056" height="54" rx="9"/>
+<text x="560" y="130" text-anchor="middle" class="t">CANONICAL DATA + CLOCK GUARD</text>
+<text x="560" y="148" text-anchor="middle" class="s">require_utc() rejects naive timestamps · dual-clock detector · as-of join with explicit availability lag (no same-session close on an intraday bar)</text></g>
+<path d="M560,162 L560,178" stroke="#58a6ff" stroke-width="2" marker-end="url(#mi1)"/>
+
+<g><rect class="bxg" x="32" y="180" width="1056" height="56" rx="9"/>
+<text x="560" y="202" text-anchor="middle" class="t">MARKET SNAPSHOT — one schema, versioned</text>
+<text x="560" y="220" text-anchor="middle" class="s">price · trend · volatility · liquidity · order flow (is_real flag) · options · auction · breadth · temporal · event — every block carries its own BlockQuality</text></g>
+<path d="M560,236 L560,250" stroke="#58a6ff" stroke-width="2" marker-end="url(#mi1)"/>
+
+<g><rect class="bxg" x="32" y="252" width="1056" height="34" rx="9"/>
+<text x="560" y="274" text-anchor="middle" class="t">MARKET STATE · REGIME · PHASE — deterministic, computed ONCE · multi-dimensional · UNCERTAIN is first-class</text></g>
+
+<path d="M200,294 L200,326" stroke="#58a6ff" stroke-width="2" marker-end="url(#mi1)"/>
+<path d="M560,294 L560,326" stroke="#58a6ff" stroke-width="2" marker-end="url(#mi1)"/>
+<path d="M920,294 L920,326" stroke="#58a6ff" stroke-width="2" marker-end="url(#mi1)"/>
+
+<text x="32" y="318" class="lbl">THREE IDENTITIES — own labels, own horizons, own calibration curve</text>
+
+<g class="clk" data-nav="mi_tracks"><rect class="bxb" x="32" y="328" width="336" height="96" rx="9"/>
+<text x="200" y="352" text-anchor="middle" class="t">SCALP HEAD</text>
+<text x="200" y="371" text-anchor="middle" class="s">5 / 15 / 30 / 60 minutes</text>
+<text x="200" y="387" text-anchor="middle" class="s">statistical · 10⁵–10⁶ labelled samples</text>
+<text x="200" y="403" text-anchor="middle" class="s">horizons derived from measured holding periods</text>
+<text x="200" y="418" text-anchor="middle" class="s">FIRST integration target</text>
+<text x="358" y="344" text-anchor="end" class="cue">◆</text></g>
+
+<g class="clk" data-nav="mi_tracks"><rect class="bxb" x="392" y="328" width="336" height="96" rx="9"/>
+<text x="560" y="352" text-anchor="middle" class="t">SWING HEAD</text>
+<text x="560" y="371" text-anchor="middle" class="s">1 / 3 / 5 sessions</text>
+<text x="560" y="387" text-anchor="middle" class="s">statistical · 10²–10³ samples</text>
+<text x="560" y="403" text-anchor="middle" class="s">wider abstention band for the smaller sample</text>
+<text x="560" y="418" text-anchor="middle" class="s">roster currently empty — decide before building</text>
+<text x="718" y="344" text-anchor="end" class="cue">◆</text></g>
+
+<g class="clk" data-nav="mi_tracks"><rect class="bxp" x="752" y="328" width="336" height="96" rx="9"/>
+<text x="920" y="352" text-anchor="middle" class="t">LONG-TERM HEAD</text>
+<text x="920" y="371" text-anchor="middle" class="s">1 / 3 months · NOT a trained forecaster</text>
+<text x="920" y="387" text-anchor="middle" class="s">deterministic evidence scorer + LLM annotator</text>
+<text x="920" y="403" text-anchor="middle" class="s">k-sample vote on the SCORE · asymmetric hysteresis</text>
+<text x="920" y="418" text-anchor="middle" class="s">~10¹ outcomes/yr is not learnable</text>
+<text x="1078" y="344" text-anchor="end" class="cue">◆</text></g>
+
+<path d="M200,424 L200,446" stroke="#58a6ff" stroke-width="2" marker-end="url(#mi1)"/>
+<path d="M560,424 L560,446" stroke="#58a6ff" stroke-width="2" marker-end="url(#mi1)"/>
+<path d="M920,424 L920,446" stroke="#58a6ff" stroke-width="2" marker-end="url(#mi1)"/>
+
+<g><rect class="bxa" x="32" y="448" width="1056" height="52" rx="9"/>
+<text x="560" y="470" text-anchor="middle" class="t">CALIBRATION (a SEPARATE curve per head) → ABSTENTION POLICY</text>
+<text x="560" y="488" text-anchor="middle" class="s">isotonic / Platt · reliability diagrams · anti-calibration detector · a scalp 0.70 and a swing 0.70 are not the same 0.70</text></g>
+<path d="M560,500 L560,516" stroke="#58a6ff" stroke-width="2" marker-end="url(#mi1)"/>
+
+<g><rect class="bxp" x="32" y="518" width="1056" height="74" rx="9"/>
+<text x="560" y="542" text-anchor="middle" class="t">MARKET INTELLIGENCE CONTRACT v1.0.0</text>
+<text x="560" y="561" text-anchor="middle" class="s">track · venue · horizon-specific p_up / p_down / p_neutral · expected move · uncertainty · regime · phase · data_quality_score · warning_flags · primary_drivers</text>
+<text x="560" y="580" text-anchor="middle" class="s">recommended_posture: STRONGLY_SUPPORT · SUPPORT · NEUTRAL · DOWNWEIGHT · VETO — VETO stays disabled until DOWNWEIGHT earns it</text></g>
+
+<path d="M170,592 L170,620" stroke="#58a6ff" stroke-width="2" marker-end="url(#mi1)"/>
+<path d="M430,592 L430,620" stroke="#58a6ff" stroke-width="2" marker-end="url(#mi1)"/>
+<path d="M690,592 L690,620" stroke="#58a6ff" stroke-width="2" marker-end="url(#mi1)"/>
+<path d="M950,592 L950,620" stroke="#58a6ff" stroke-width="2" marker-end="url(#mi1)"/>
+
+<text x="32" y="612" class="lbl">CONSUMERS — none of them sees a model, a feature vector or a pickle</text>
+
+<g><rect class="bx" x="32" y="622" width="276" height="72" rx="9"/>
+<text x="170" y="646" text-anchor="middle" class="t">LEGACY BOT</text>
+<text x="170" y="664" text-anchor="middle" class="s">thin contract client</text>
+<text x="170" y="681" text-anchor="middle" class="s">SHADOW → DOWNWEIGHT → VETO</text></g>
+
+<g><rect class="bx" x="322" y="622" width="216" height="72" rx="9"/>
+<text x="430" y="646" text-anchor="middle" class="t">RISK</text>
+<text x="430" y="664" text-anchor="middle" class="s">posture → size multiplier</text>
+<text x="430" y="681" text-anchor="middle" class="s">never sizes itself</text></g>
+
+<g><rect class="bx" x="552" y="622" width="276" height="72" rx="9"/>
+<text x="690" y="646" text-anchor="middle" class="t">PREDICTION JOURNAL</text>
+<text x="690" y="664" text-anchor="middle" class="s">append-only + outcome write-back</text>
+<text x="690" y="681" text-anchor="middle" class="s">accuracy BY confidence bucket</text></g>
+
+<g><rect class="bx" x="842" y="622" width="246" height="72" rx="9"/>
+<text x="965" y="646" text-anchor="middle" class="t">FUTURE v3</text>
+<text x="965" y="664" text-anchor="middle" class="s">same contract, second client</text>
+<text x="965" y="681" text-anchor="middle" class="s">two consumers = a real boundary</text></g>
+
+<g><rect class="bxa" x="32" y="712" width="1056" height="62" rx="9"/>
+<text x="560" y="734" text-anchor="middle" class="t">OFFLINE — EVALUATION HARNESS (the one thing salvaged from the legacy AI)</text>
+<text x="560" y="752" text-anchor="middle" class="s">purged k-fold + embargo · uniqueness weights · shuffle control with a CONTROL_ITSELF_SUSPECT verdict · edge-over-majority-baseline · stratified by regime / horizon / time-of-day</text>
+<text x="560" y="768" text-anchor="middle" class="s">REJECTED-SET counterfactual + PRE-STATED kill criteria — the previous veto blocked 100% of entries on day one and nobody measured it until it was live</text></g>
+</svg>
+</div>
+
+<div class="view" data-id="mi_tracks" data-parent="market_intelligence" data-title="Why three identities, not one model" data-desc="DS-2026-08-09-R · Scalp, swing and long-term are not three settings of one model. They differ in the four ways below, and two of those differences make a shared model impossible rather than merely inconvenient.">
+<svg viewBox="0 0 1120 620" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="mi2" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#58a6ff"/></marker></defs>
+
+<text x="32" y="26" class="lbl">"TRACK" IS FOUR DIFFERENT THINGS THAT HAPPEN TO CORRELATE</text>
+
+<rect class="band" x="16" y="36" width="1088" height="250" rx="10"/>
+<text x="150" y="62" text-anchor="middle" class="t">—</text>
+<text x="430" y="62" text-anchor="middle" class="t">SCALP</text>
+<text x="700" y="62" text-anchor="middle" class="t">SWING</text>
+<text x="960" y="62" text-anchor="middle" class="t">LONG-TERM</text>
+
+<text x="36" y="94" class="s">Forecast horizon</text>
+<text x="430" y="94" text-anchor="middle" class="s">5–60 minutes</text>
+<text x="700" y="94" text-anchor="middle" class="s">1–10 sessions</text>
+<text x="960" y="94" text-anchor="middle" class="s">1–4 quarters</text>
+
+<text x="36" y="128" class="s">Information timescale</text>
+<text x="430" y="128" text-anchor="middle" class="s">microstructure, flow, session position</text>
+<text x="700" y="128" text-anchor="middle" class="s">daily structure, IV term</text>
+<text x="960" y="128" text-anchor="middle" class="s">fundamentals, macro</text>
+
+<text x="36" y="162" class="s">Label definition</text>
+<text x="430" y="162" text-anchor="middle" class="s">barrier touch inside the session</text>
+<text x="700" y="162" text-anchor="middle" class="s">multi-day signed drift</text>
+<text x="960" y="162" text-anchor="middle" class="s">multi-quarter total return</text>
+
+<text x="36" y="196" class="s">Decision cadence</text>
+<text x="430" y="196" text-anchor="middle" class="s">seconds, inside the scan loop</text>
+<text x="700" y="196" text-anchor="middle" class="s">daily, near the open</text>
+<text x="960" y="196" text-anchor="middle" class="s">weekly, offline</text>
+
+<text x="36" y="238" class="t">Labelled samples</text>
+<text x="430" y="238" text-anchor="middle" class="t">10⁵ – 10⁶</text>
+<text x="700" y="238" text-anchor="middle" class="t">10² – 10³</text>
+<text x="960" y="238" text-anchor="middle" class="t">10¹ – 10²</text>
+
+<text x="36" y="268" class="t">Kind of object</text>
+<text x="430" y="268" text-anchor="middle" class="s">statistical forecaster</text>
+<text x="700" y="268" text-anchor="middle" class="s">statistical, more conservative</text>
+<text x="960" y="268" text-anchor="middle" class="s">evidence scorer + LLM annotator</text>
+
+<g><rect class="bxr" x="32" y="304" width="516" height="118" rx="9"/>
+<text x="290" y="328" text-anchor="middle" class="t">WHY NOT ONE MODEL WITH A "track" FEATURE</text>
+<text x="290" y="350" text-anchor="middle" class="s">The target is a DIFFERENT RANDOM VARIABLE per track — different base rates,</text>
+<text x="290" y="367" text-anchor="middle" class="s">noise floors and autocorrelation. A joint model optimises a weighted average</text>
+<text x="290" y="384" text-anchor="middle" class="s">of three unrelated losses, and the weight is set by whichever track has the</text>
+<text x="290" y="401" text-anchor="middle" class="s">most rows — the scalp track, by four orders of magnitude.</text>
+<text x="290" y="416" text-anchor="middle" class="s">The result would be a scalp model wearing a hat.</text></g>
+
+<g><rect class="bxr" x="572" y="304" width="516" height="118" rx="9"/>
+<text x="830" y="328" text-anchor="middle" class="t">WHY NOT THREE INDEPENDENT STACKS</text>
+<text x="830" y="350" text-anchor="middle" class="s">Three stacks means three definitions of "trending", three of "high volatility",</text>
+<text x="830" y="367" text-anchor="middle" class="s">three drift monitors and three calibration regimes. They diverge within a</text>
+<text x="830" y="384" text-anchor="middle" class="s">month and the divergence is invisible. This codebase already has the disease</text>
+<text x="830" y="401" text-anchor="middle" class="s">in miniature: THREE incompatible value-area implementations, and two</text>
+<text x="830" y="416" text-anchor="middle" class="s">completely disjoint feature pipelines.</text></g>
+
+<g><rect class="bxg" x="32" y="440" width="516" height="150" rx="9"/>
+<text x="290" y="464" text-anchor="middle" class="t">SHARED — exactly one implementation</text>
+<text x="290" y="486" text-anchor="middle" class="s">canonical data + the timestamp guarantee</text>
+<text x="290" y="504" text-anchor="middle" class="s">the Market Snapshot schema and feature computation</text>
+<text x="290" y="522" text-anchor="middle" class="s">market state, regime and phase — computed ONCE</text>
+<text x="290" y="540" text-anchor="middle" class="s">the contract, its versioning and serialisation</text>
+<text x="290" y="558" text-anchor="middle" class="s">calibration machinery, observability, drift, journal</text>
+<text x="290" y="578" text-anchor="middle" class="s">the ability to abstain</text></g>
+
+<g><rect class="bxb" x="572" y="440" width="516" height="150" rx="9"/>
+<text x="830" y="464" text-anchor="middle" class="t">PER-TRACK — necessarily separate</text>
+<text x="830" y="486" text-anchor="middle" class="s">the label definition and the labelling code</text>
+<text x="830" y="504" text-anchor="middle" class="s">the forecast horizons</text>
+<text x="830" y="522" text-anchor="middle" class="s">the trained model and its hyperparameters</text>
+<text x="830" y="540" text-anchor="middle" class="s">the fitted calibration CURVE</text>
+<text x="830" y="558" text-anchor="middle" class="s">the abstention threshold</text>
+<text x="830" y="578" text-anchor="middle" class="s">the posture mapping</text></g>
+</svg>
+</div>
 <div class="view" data-id="overall" data-parent="system_context" data-title="Overall process" data-desc="The full trading loop as of 2026-08-08. Click any phase to dig into it, or jump to crypto / futures / the copier — three tracks and products that sit alongside this loop.">
 <svg viewBox="0 0 1120 580" xmlns="http://www.w3.org/2000/svg">
 <defs><marker id="o1" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#58a6ff"/></marker></defs>
