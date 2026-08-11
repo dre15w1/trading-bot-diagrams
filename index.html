@@ -340,7 +340,7 @@
 <!-- L0 OVERALL -->
 <!-- OVERALL → system context (external systems) -->
 <div class="view" data-id="system_context" data-parent="" data-title="System context (start here)" data-desc="The highest-level view: everything Confluence v1 talks to beyond its own process. Schwab is the ONLY broker that ever places real orders — the Robinhood toggle is market data only. Click the bot engine to open the full trading loop. A second codebase (v2) and three more processes/products (crypto, futures, the copier) are appended below — none of them are v1 and none of v1 lives in them.">
-<svg viewBox="0 0 1120 1052" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 1120 1120" xmlns="http://www.w3.org/2000/svg">
 <defs>
 <marker id="sc1" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#58a6ff"/></marker>
 <marker id="sca" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#d29922"/></marker>
@@ -401,7 +401,9 @@
 <g class="clk" data-nav="crypto_engine"><rect class="bxp" x="24" y="950" width="349" height="46" rx="8"/><text x="40" y="970" class="t" style="font-size:11px">Crypto Engine</text><text x="40" y="987" class="s">crypto_bot.py · own 24/7 process, own ledger, 4 strategies ◆</text></g>
 <g class="clk" data-nav="futures_track"><rect class="bxp" x="385" y="950" width="349" height="46" rx="8"/><text x="401" y="970" class="t" style="font-size:11px">Futures Track</text><text x="401" y="987" class="s">CME micros via IBKR · Phase 0+1 shipped, fully gated ◆</text></g>
 <g class="clk" data-nav="copier"><rect class="bxp" x="746" y="950" width="349" height="46" rx="8"/><text x="762" y="970" class="t" style="font-size:11px">Friends &amp; Family Copier</text><text x="762" y="987" class="s">separate repo · runs on subscribers' own machines ◆</text></g>
-<text x="24" y="1028" class="lbl">These are not part of v1 or v2 above — Crypto Engine and Futures Track are separate processes on this same machine; the Copier is a wholly separate product/repo.</text>
+<text x="24" y="1015" class="ph">IN-PROCESS SHADOW SUBSYSTEM -- inside v1's own repo, not a separate process</text>
+<g class="clk" data-nav="vol_arb"><rect class="bxa" x="24" y="1027" width="1072" height="46" rx="8"/><text x="40" y="1047" class="t" style="font-size:11px">Vol Arb -- options volatility arbitrage engine</text><text x="40" y="1064" class="s">vol_arb_project/  ::  /vol-arb dashboard  ::  nightly job  ::  submit() raises unconditionally, nothing live consults it &#9670;</text></g>
+<text x="24" y="1100" class="lbl">These are not part of v1 or v2 above — Crypto Engine and Futures Track are separate processes on this same machine; the Copier is a wholly separate product/repo.</text>
 </svg>
 </div>
 
@@ -1700,6 +1702,64 @@
 <rect class="bxa" x="572" y="552" width="524" height="70" rx="8"/><text x="588" y="572" class="t" style="font-size:11.5px">Backtester — built, not trustworthy yet</text><text x="588" y="589" class="s">event-driven harness with ORB + EMA/VWAP reference strategies</text><text x="588" y="606" class="s">audited result: best cell indistinguishable from noise (P=0.449) · not wired to any live path</text>
 <rect class="bxr" x="24" y="634" width="1072" height="70" rx="8"/><text x="40" y="654" class="t" style="font-size:11.5px">Cost/margin correction invalidates every pre-2026-08-08 backtest artifact</text><text x="40" y="671" class="s">commission and margin constants were wrong by up to ~40× (margin modeled at $60–250 vs real IBKR $1,875–6,488)</text><text x="40" y="688" class="s">the prior futures_survey.csv result ('14 of 28 net-positive') does not survive recosting — treat all older futures backtest output as void</text>
 <text x="24" y="722" class="lbl">Planned (not yet built): futures as its OWN OS process talking to the equities Trading Core over a Control API, mirroring the crypto split — today futures still runs inline, just fully gated off.</text>
+</svg>
+</div>
+
+<div class="view" data-id="vol_arb" data-parent="system_context" data-title="Vol Arb -- options volatility arbitrage (shadow-only)" data-desc="Built 2026-08-10/11 on branch feature/vol-arb (HEAD b60e81f), integrated into the legacy bot's backtest engine, nightly pipeline and dashboard. Lives INSIDE v1's own repo -- not a separate process like Crypto Engine or Futures Track. Still shadow-only: the order path does not exist, and the branch is not yet merged into the running trading_bot.">
+<svg viewBox="0 0 1120 820" xmlns="http://www.w3.org/2000/svg">
+
+<text x="24" y="24" class="ph">vol_arb_project/vol_arb/ -- capture, forecasting, structures, execution, storage and replay own the domain</text>
+
+<rect class="bxg" x="24" y="36" width="1072" height="110" rx="8"/>
+<text x="40" y="58" class="t" style="font-size:11.5px">Core package -- SHIPPED (vol_arb_project/vol_arb/)</text>
+<text x="40" y="75" class="s">capture/ -- NBBO snapshot ingestion  ::  intel/ -- RV/IV forecasting models</text>
+<text x="40" y="92" class="s">structures/ -- builders, greeks, payoff, chain, quality (n-leg structure construction, ~2,500 lines)</text>
+<text x="40" y="109" class="s">execution/ -- order_plan.py, schwab_orders.py (submit() is typed NoReturn)  ::  storage/ -- surface_store, positions_store, archive_facade</text>
+<text x="40" y="126" class="s">replay/ -- engine.py, archive_bars.py  ::  analytics/  ::  attribution/  ::  manage/  ::  observability/  ::  clock/config/contracts/errors/cli</text>
+
+<rect class="bxb" x="24" y="156" width="1072" height="110" rx="8"/>
+<text x="40" y="178" class="t" style="font-size:11.5px">Legacy-bot integration -- 5 artifacts (2026-08-10/11), each copying an in-repo precedent</text>
+<text x="40" y="195" class="s">backtest_vol_arb.py -- copies backtest_kay_orb_options.py's result contract, drives vol_arb.replay.ReplayEngine</text>
+<text x="40" y="212" class="s">vol_arb_bridge.py -- copies mi_client.py's fail-open read-only client pattern</text>
+<text x="40" y="229" class="s">dashboard/volarb_page.py + templates/volarb.html -- copies crypto_engine_page.py  ::  /vol-arb + 7 /api/volarb/* routes</text>
+<text x="40" y="246" class="s">theta_collect.py -- new -- ThetaData v2 archive collector, all 5 DTE buckets (0/1/7/30/60)</text>
+
+<rect class="band" x="24" y="276" width="1072" height="93" rx="8"/>
+<text x="40" y="298" class="t" style="font-size:11.5px">Registered, not wired to trading</text>
+<text x="40" y="315" class="s">run_nightly.JOBS["vol_arb"] + a side_specs step run_volarb_daily (SPY, QQQ, IWM)</text>
+<text x="40" y="332" class="s">dashboard/backtests.BACKTESTS["vol_arb"] -- deliberately ABSENT from _OPTIMIZER_SUPPORTED (it owns its own walk-forward)</text>
+<text x="40" y="349" class="s">/vol-arb nav link + 7 /api/volarb/* routes registered in dashboard/__init__.py</text>
+
+<rect class="bxr" x="24" y="379" width="1072" height="76" rx="8"/>
+<text x="40" y="401" class="t" style="font-size:11.5px">Hard shadow boundary -- why nothing can trade</text>
+<text x="40" y="418" class="s">schwab_orders.submit() is typed NoReturn and raises unconditionally -- no order path exists</text>
+<text x="40" y="435" class="s">signals.py and main.py contain ZERO references to vol_arb  ::  order_plan.py defaults shadow=True everywhere</text>
+
+<rect class="bx" x="24" y="465" width="524" height="93" rx="8"/>
+<text x="40" y="487" class="t" style="font-size:11.5px">Two blockers fixed, 2026-08-10/11</text>
+<text x="40" y="504" class="s">bars_history.db naive timestamps dropped ALL 156,817 rows -&gt; MODEL_UNAVAILABLE every step -&gt; 0 trades</text>
+<text x="40" y="521" class="s">fixed: ArchiveBarsProvider derives tz-correct bars from option_snapshots.underlying_price -&gt; 4 trades, 1,470 lookahead checks passed</text>
+<text x="40" y="538" class="s">adversarial review found and fixed 8 more defects, incl. gamma understated 6.08x on half-day expiries</text>
+
+<rect class="bxa" x="572" y="465" width="524" height="93" rx="8"/>
+<text x="588" y="487" class="t" style="font-size:11.5px">Archive coverage -- thinner than the handoff claimed</text>
+<text x="588" y="504" class="s">options_history.db is 0DTE-only  ::  iv populated in only 5 of 25 months</text>
+<text x="588" y="521" class="s">usable sessions: SPY 116/503 (two blocks, split by an 18-month hole)  ::  QQQ/IWM 63/503</text>
+<text x="588" y="538" class="s">swing engine (5-30 DTE) cannot trade this archive at all -- only intraday is testable</text>
+
+<rect class="bxa" x="24" y="568" width="1072" height="93" rx="8"/>
+<text x="40" y="590" class="t" style="font-size:11.5px">ThetaData v2 rebuild -- built, not yet run</text>
+<text x="40" y="607" class="s">theta_collect.py pulls all 5 DTE buckets (0/1/7/30/60) @5m via the official thetadata pip package -- no Theta Terminal, no JVM needed</text>
+<text x="40" y="624" class="s">~9.4h at --workers 5  ::  ~35.7M rows / ~11.8GB  ::  writes a NEW options_history_v2.db (does not touch options_history.db)</text>
+<text x="40" y="641" class="s" style="fill:#d29922">NOT LAUNCHED YET -- options_history_v2.db does not exist on disk as of 2026-08-11</text>
+
+<rect class="bxr" x="24" y="671" width="1072" height="93" rx="8"/>
+<text x="40" y="693" class="t" style="font-size:11.5px">NOT merged into production</text>
+<text x="40" y="710" class="s">feature/vol-arb HEAD b60e81f (8 commits ahead of main)  ::  pre-verified merge staged on integration/vol-arb-merge (5285c9f)</text>
+<text x="40" y="727" class="s">merge verified conflict-free from a clean GitHub clone  ::  1,425 tests pass</text>
+<text x="40" y="744" class="s" style="fill:#f85149">withheld deliberately: main.py was RUNNING live when this was built -- the merge rewrites dashboard/__init__.py, dashboard/backtests.py, templates/index.html</text>
+
+<text x="24" y="794" class="lbl">Honest status: the largest replay to date is 4 trades over 1 session, -$218.97, verdict INSUFFICIENT_DATA -- the validator working, not evidence of edge. Next milestone: run theta_collect.py, replay the v2 archive, see whether edge survives friction.</text>
 </svg>
 </div>
 
