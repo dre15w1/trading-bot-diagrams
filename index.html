@@ -108,7 +108,7 @@
     <span>Confluence</span><span style="color:#6e7681;font-weight:600">— Architecture Explorer</span>
   </h1>
   <span class="hint">Click any <span style="color:#58a6ff">◆ blue-cued</span> box to dig down · use Back / breadcrumb / the sidebar to move around.</span>
-  <span class="copyr">© 2026 Andre Walker · Walkers Software LLC · <a style="color:#58a6ff;text-decoration:none;cursor:pointer" onclick="nav('sync')" title="Design-sync: which bot build this site describes">DS-2026-08-09-Q</a></span>
+  <span class="copyr">© 2026 Andre Walker · Walkers Software LLC · <a style="color:#58a6ff;text-decoration:none;cursor:pointer" onclick="nav('sync')" title="Design-sync: which bot build this site describes">DS-2026-08-14-T</a></span>
 </header>
 <div class="wrap">
   <nav class="side" id="side"></nav>
@@ -327,19 +327,19 @@
 <path d="M120,323 L60,323 L60,63 L22,63" class="fb" marker-end="url(#o1)"/>
 <text x="70" y="205" class="lbl" transform="rotate(-90 70 205)">fresh models feed tomorrow</text>
 <g class="clk" data-nav="data"><rect class="bxb" x="120" y="374" width="440" height="42" rx="8"/><text x="136" y="392" class="t" style="font-size:11px">DATA layer ◆</text><text x="136" y="408" class="s">quotes, bars, archive — feeds every phase above</text></g>
-<g class="clk" data-nav="sync"><rect class="bxb" x="580" y="374" width="440" height="42" rx="8"/><text x="596" y="392" class="t" style="font-size:11px">Design-sync stamp ◆</text><text x="596" y="408" class="s">diagrams vs code — current stamp DS-2026-08-09-Q</text></g>
+<g class="clk" data-nav="sync"><rect class="bxb" x="580" y="374" width="440" height="42" rx="8"/><text x="596" y="392" class="t" style="font-size:11px">Design-sync stamp ◆</text><text x="596" y="408" class="s">diagrams vs code — current stamp DS-2026-08-14-T</text></g>
 <g class="clk" data-nav="longterm"><rect class="bxb" x="120" y="426" width="900" height="42" rx="8"/><text x="136" y="444" class="t" style="font-size:11px">LONG-TERM BOOK &#9670;</text><text x="136" y="460" class="s">a separate book on its own clock &#8212; nightly S&amp;P 500 screen, LLM thesis, LEAP or shares, and a position doctor. Exempt from every intraday exit rule.</text></g>
 <g class="clk" data-nav="crypto_engine"><rect class="bxp" x="120" y="480" width="292" height="40" rx="8"/><text x="136" y="498" class="t" style="font-size:10.5px">Crypto Engine</text><text x="136" y="514" class="s">own 24/7 process ◆</text></g>
 <g class="clk" data-nav="futures_track"><rect class="bxp" x="422" y="480" width="292" height="40" rx="8"/><text x="438" y="498" class="t" style="font-size:10.5px">Futures Track</text><text x="438" y="514" class="s">Phase 0+1, fully gated ◆</text></g>
 <g class="clk" data-nav="copier"><rect class="bxp" x="724" y="480" width="296" height="40" rx="8"/><text x="740" y="498" class="t" style="font-size:10.5px">Friends &amp; Family Copier</text><text x="740" y="514" class="s">separate product ◆</text></g>
-<text x="24" y="556" class="lbl">DESIGN-SYNC DS-2026-08-09-Q · ② one batch-quote round trip per 5-second cycle; every enabled roster engine sees the same live print.</text>
+<text x="24" y="556" class="lbl">DESIGN-SYNC DS-2026-08-14-T · ② one batch-quote round trip per 5-second cycle; every enabled roster engine sees the same live print.</text>
 </svg>
 </div>
 
 
 <!-- L0 OVERALL -->
 <!-- OVERALL → system context (external systems) -->
-<div class="view" data-id="system_context" data-parent="" data-title="System context (start here)" data-desc="The highest-level view: everything Confluence v1 talks to beyond its own process. Schwab is the ONLY broker that ever places real orders — the Robinhood toggle is market data only. Click the bot engine to open the full trading loop. A second codebase (v2) and three more processes/products (crypto, futures, the copier) are appended below — none of them are v1 and none of v1 lives in them.">
+<div class="view" data-id="system_context" data-parent="" data-title="System context (start here)" data-desc="The highest-level view: everything Confluence v1 talks to beyond its own process. Equities and options can route through Schwab or an enabled IBKR book; futures are IBKR-only. Massive supplies observed consolidated stock tape for the real-flow path. Click the bot engine to open the full trading loop; the separate products and isolated Vol Arb execution lane are mapped below.">
 <svg viewBox="0 0 1120 1120" xmlns="http://www.w3.org/2000/svg">
 <defs>
 <marker id="sc1" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#58a6ff"/></marker>
@@ -368,15 +368,15 @@
 <line x1="962" y1="354" x2="962" y2="370" class="fb"/>
 
 <!-- LEFT: data / broker -->
-<g class="clk" data-nav="brokers"><rect class="bxb" x="24" y="40" width="250" height="88" rx="9"/><text x="40" y="62" class="t">Charles Schwab — Trader API</text><text x="40" y="80" class="s">bars · quotes · option chains · L2 stream · accounts</text><text x="40" y="96" class="s" style="fill:#3fb950;font-weight:700">★ the ONLY broker that places real orders</text><text x="40" y="112" class="s">120 req/min cap — two-tier polling protects it</text><text x="264" y="52" text-anchor="end" class="cue">◆</text></g>
-<rect class="bx" x="24" y="150" width="250" height="62" rx="9"/><text x="40" y="172" class="t">Robinhood (unofficial)</text><text x="40" y="190" class="s">market DATA only, via the dashboard broker toggle</text><text x="40" y="204" class="s" style="fill:#f85149">never places orders</text>
+<g class="clk" data-nav="brokers"><rect class="bxb" x="24" y="40" width="250" height="88" rx="9"/><text x="40" y="62" class="t">Charles Schwab — Trader API</text><text x="40" y="80" class="s">bars · quotes · option chains · L2 stream · accounts</text><text x="40" y="96" class="s" style="fill:#3fb950;font-weight:700">equities/options + explicitly armed Vol Arb</text><text x="40" y="112" class="s">120 req/min cap — two-tier polling protects it</text><text x="264" y="52" text-anchor="end" class="cue">◆</text></g>
+<rect class="bx" x="24" y="150" width="250" height="62" rx="9"/><text x="40" y="172" class="t">Massive Stocks WebSocket</text><text x="40" y="190" class="s">real consolidated prints + NBBO for hot symbols</text><text x="40" y="204" class="s" style="fill:#3fb950">mandatory real tape for Order Flow Momentum</text>
 <rect class="bx" x="24" y="238" width="250" height="62" rx="9"/><text x="40" y="260" class="t">Yahoo Finance (yfinance)</text><text x="40" y="278" class="s">fallback bars (hourly swing history)</text><text x="40" y="292" class="s">VIX / SPY market-context features</text>
-<rect class="bx" x="24" y="314" width="250" height="76" rx="9"/><text x="40" y="336" class="t">IBKR TWS / Gateway (paper)</text><text x="40" y="354" class="s">futures paper (ibkr_data · clientId 7)</text><text x="40" y="368" class="s">★ tick-by-tick TIME &amp; SALES for the</text><text x="40" y="382" class="s">flow-reject engine (ibkr_ticks · clientId 71)</text>
+<rect class="bx" x="24" y="314" width="250" height="76" rx="9"/><text x="40" y="336" class="t">IBKR TWS / Gateway</text><text x="40" y="354" class="s">paper/live books for stocks, options and futures</text><text x="40" y="368" class="s">futures are IBKR-only; routing is gated by book</text><text x="40" y="382" class="s">also supplies historical bars and tick feeds</text>
 
 <!-- CENTER: the machine -->
 <g class="clk" data-nav="overall"><rect class="bxg" x="350" y="46" width="360" height="98" rx="9"/><text x="366" y="68" class="t">main.py — bot engine</text><text x="366" y="86" class="s">scan loop · single or MULTI-strategy roster</text><text x="366" y="100" class="s">AI veto → gates → contract engine → execution</text><text x="366" y="114" class="s">position monitor · live-sync with Schwab</text><text x="366" y="132" class="s" style="fill:#8b949e">premium exits · booster runner · flow-reject (shadow) · fast/slow polling</text><text x="700" y="58" text-anchor="end" class="cue">◆</text></g>
 <rect class="bx" x="350" y="170" width="360" height="70" rx="9"/><text x="366" y="192" class="t">Flask dashboard (localhost)</text><text x="366" y="210" class="s">admin · positions · manual orders · Deeper Dive</text><text x="366" y="226" class="s" style="fill:#f85149">no auth — LAN only, never port-forward (SECURITY_PLAN)</text>
-<g class="clk" data-nav="retrain"><rect class="bxp" x="350" y="266" width="360" height="80" rx="9"/><text x="366" y="288" class="t">run_nightly.py — nightly pipeline</text><text x="366" y="306" class="s">AI trainer (74 symbols) · parallel Deeper Dives (12h cap)</text><text x="366" y="322" class="s">bars_store 5-min archive collection</text><text x="366" y="338" class="s" style="fill:#d29922">auto-apply of validated settings is opt-in — default: nothing</text><text x="700" y="278" text-anchor="end" class="cue">◆</text></g>
+<g class="clk" data-nav="retrain"><rect class="bxp" x="350" y="266" width="360" height="80" rx="9"/><text x="366" y="288" class="t">run_nightly.py — nightly pipeline</text><text x="366" y="306" class="s">fail-closed Schwab capital resolution before any job</text><text x="366" y="322" class="s">trainer · Deeper Dives · bars · swing scan · Vol Arb</text><text x="366" y="338" class="s" style="fill:#d29922">incomplete account balances abort the entire run</text><text x="700" y="278" text-anchor="end" class="cue">◆</text></g>
 <rect class="band" x="350" y="372" width="360" height="56" rx="9"/><text x="366" y="394" class="t">Local state (no cloud)</text><text x="366" y="412" class="s">bot_mode.json · admin_settings · SQLite · bars_store · ai_models/</text>
 <line x1="530" y1="144" x2="530" y2="168" class="fb"/><line x1="530" y1="240" x2="530" y2="264" class="fb"/><line x1="530" y1="346" x2="530" y2="370" class="fb"/>
 <text x="366" y="452" class="lbl">bot ⇄ dashboard ⇄ nightly all share the same local state files.</text>
@@ -401,8 +401,8 @@
 <g class="clk" data-nav="crypto_engine"><rect class="bxp" x="24" y="950" width="349" height="46" rx="8"/><text x="40" y="970" class="t" style="font-size:11px">Crypto Engine</text><text x="40" y="987" class="s">crypto_bot.py · own 24/7 process, own ledger, 4 strategies ◆</text></g>
 <g class="clk" data-nav="futures_track"><rect class="bxp" x="385" y="950" width="349" height="46" rx="8"/><text x="401" y="970" class="t" style="font-size:11px">Futures Track</text><text x="401" y="987" class="s">CME micros via IBKR · Phase 0+1 shipped, fully gated ◆</text></g>
 <g class="clk" data-nav="copier"><rect class="bxp" x="746" y="950" width="349" height="46" rx="8"/><text x="762" y="970" class="t" style="font-size:11px">Friends &amp; Family Copier</text><text x="762" y="987" class="s">separate repo · runs on subscribers' own machines ◆</text></g>
-<text x="24" y="1015" class="ph">IN-PROCESS SHADOW SUBSYSTEM -- inside v1's own repo, not a separate process</text>
-<g class="clk" data-nav="vol_arb"><rect class="bxa" x="24" y="1027" width="1072" height="46" rx="8"/><text x="40" y="1047" class="t" style="font-size:11px">Vol Arb -- options volatility arbitrage engine</text><text x="40" y="1064" class="s">vol_arb_project/  ::  /vol-arb dashboard  ::  nightly job  ::  submit() raises unconditionally, nothing live consults it &#9670;</text></g>
+<text x="24" y="1015" class="ph">IN-REPO VOLATILITY SUBSYSTEM -- shadow-first; paper and explicitly armed CLI execution stay isolated from main.py</text>
+<g class="clk" data-nav="vol_arb"><rect class="bxa" x="24" y="1027" width="1072" height="46" rx="8"/><text x="40" y="1047" class="t" style="font-size:11px">Vol Arb -- options volatility arbitrage engine</text><text x="40" y="1064" class="s">research + nightly + dashboard  ::  paper ledger  ::  audited live gate + injected Schwab transport  ::  not in the strategy scan &#9670;</text></g>
 <text x="24" y="1100" class="lbl">These are not part of v1 or v2 above — Crypto Engine and Futures Track are separate processes on this same machine; the Copier is a wholly separate product/repo.</text>
 </svg>
 </div>
@@ -429,7 +429,7 @@
 <rect class="bxr" x="392" y="318" width="340" height="64" rx="9"/><text x="408" y="340" class="t">Kill conditions (as coded)</text><text x="408" y="358" class="s" style="fill:#8b949e">−50% leg premium floor · parent STOP, not parent TP</text><text x="408" y="374" class="s" style="fill:#8b949e">flat 15:55 — overnight conversion tested NEGATIVE</text>
 <line x1="562" y1="98" x2="562" y2="118" class="fb"/><line x1="562" y1="198" x2="562" y2="218" class="fb"/><line x1="562" y1="298" x2="562" y2="318" class="fb"/>
 
-<rect class="bx" x="760" y="34" width="336" height="76" rx="9"/><text x="776" y="56" class="t">Data: real tape when IBKR is up</text><text x="776" y="74" class="s">ibkr_ticks: tick-by-tick AllLast + BidAsk (clientId 71)</text><text x="776" y="90" class="s">fallback: synthetic tape from Schwab L1 volume deltas</text><text x="776" y="104" class="s">book refresh/depletion: Schwab NASDAQ TotalView L2</text>
+<rect class="bx" x="760" y="34" width="336" height="76" rx="9"/><text x="776" y="56" class="t">Observed flow -- no synthetic fallback</text><text x="776" y="74" class="s">Massive: consolidated stock prints + NBBO</text><text x="776" y="90" class="s">bounded hot pool: candidates + every held position</text><text x="776" y="104" class="s">book refresh/depletion: Schwab NASDAQ TotalView L2</text>
 <g class="clk" data-nav="flow_reject_view"><rect class="bxb" x="760" y="122" width="336" height="92" rx="9"/><text x="776" y="144" class="t">Six evidence features (0..1) at a LEVEL</text><text x="1082" y="138" text-anchor="end" class="cue">◆</text></g><g><text x="776" y="162" class="s" style="fill:#3fb950">HOLD: absorption · delta-flip · book-refresh</text><text x="776" y="178" class="s" style="fill:#f85149">BREAK: depletion · acceleration · sweep · acceptance</text><text x="776" y="194" class="s">levels: PDH/PDL/PDC · opening range · rounds (0.15×ATR band)</text><text x="776" y="208" class="s">weighted scores → REJECT (fade) / BREAK (go with) / WAIT</text>
 </g><rect class="bxp" x="760" y="226" width="336" height="72" rx="9"/><text x="776" y="248" class="t">SHADOW MODE — decides, never trades</text><text x="776" y="266" class="s">every call ≥0.50 conf → flow_reject_calls.jsonl</text><text x="776" y="282" class="s">grade a week of calls vs outcomes → tune → then a roster row</text>
 <line x1="928" y1="110" x2="928" y2="122" class="fb"/><line x1="928" y1="214" x2="928" y2="226" class="fw" marker-end="url(#ex1)"/>
@@ -1486,8 +1486,8 @@
 <svg viewBox="0 0 1120 1254" xmlns="http://www.w3.org/2000/svg">
 <text x="24" y="24" class="ph">Every publish carries a DESIGN-SYNC id — site and code verifiable against each other</text>
 <rect class="bx" x="24" y="36" width="1072" height="48" rx="8"/><text x="40" y="56" class="t" style="font-size:11.5px">How it works</text><text x="40" y="73" class="s">each site publish carries a DESIGN-SYNC identifier · the bot repo carries the matching DESIGN_SYNC.json (same id, bot git HEAD, key-file fingerprints) · any future session can verify site &#8596; code alignment</text>
-<rect class="bxg" x="24" y="94" width="1072" height="56" rx="8"/><text x="40" y="114" class="t" style="font-size:11.5px">Current stamp: DS-2026-08-09-Q</text><text x="40" y="131" class="s">four new subsystems drawn for the first time: Crypto Engine, Futures Track, the Friends &amp; Family Copier, and the 0DTE RAW_SIMPLE suite (8 engines)</text><text x="40" y="146" class="s">plus corrections to ORB and EMA/VWAP (both changed their entry timing/logic 08-04) and to sizing&#39;s spread/fallback ordering</text>
-<rect class="bx" x="24" y="160" width="1072" height="48" rx="8"/><text x="40" y="180" class="t" style="font-size:11.5px">Prior published state: commit 9b71712 — DS-2026-08-03-O (2026-08-03)</text><text x="40" y="197" class="s">O drew the long-term subsystem for the first time but did not revisit strategy views touched afterward — that is where the ORB/EMA-VWAP staleness below was found</text>
+<rect class="bxg" x="24" y="94" width="1072" height="56" rx="8"/><text x="40" y="114" class="t" style="font-size:11.5px">Current stamp: DS-2026-08-14-T</text><text x="40" y="131" class="s">Vol Arb merged execution plane: idempotent paper broker, audited Admin arming, central risk, live ledger, reconciliation and injected Schwab transport</text><text x="40" y="146" class="s">real Massive tape + Schwab L2 hot pool/persistence drawn; nightly capital now resolves linked-account balances before any job and fails closed</text>
+<rect class="bx" x="24" y="160" width="1072" height="48" rx="8"/><text x="40" y="180" class="t" style="font-size:11.5px">Prior published state: commit 291e908 — DS-2026-08-11-S (2026-08-11)</text><text x="40" y="197" class="s">S introduced Vol Arb as branch-only and shadow-only; T replaces that snapshot with the merged, explicitly controlled paper/live architecture</text>
 <rect class="bx" x="24" y="218" width="1072" height="36" rx="8"/><text x="40" y="241" class="s"><tspan class="t" style="font-size:11px">08-08</tspan> &#8212; Friends &amp; Family Copier hardened to v0.3.1 (v0.1.0&#8211;v0.2.2 were DOA) — subscriber controls, admin UI, PDT guard rewritten for the FINRA repeal; engine hook still NOT wired in</text>
 <rect class="bx" x="24" y="262" width="1072" height="36" rx="8"/><text x="40" y="285" class="s"><tspan class="t" style="font-size:11px">08-08</tspan> &#8212; Crypto Engine split into its own 24/7 process — own ledger, Control API, 4 strategies · legacy crypto left running, additive · first backtest: fees = 101% of net loss</text>
 <rect class="bx" x="24" y="306" width="1072" height="36" rx="8"/><text x="40" y="329" class="s"><tspan class="t" style="font-size:11px">08-08</tspan> &#8212; Futures Track Phase 0+1 shipped (552 tests) — 10 defects fixed incl. B10 (stops inert overnight, now STP LMT+outsideRth) · cost/margin corrected, voiding pre-08-08 backtests</text>
@@ -1705,61 +1705,61 @@
 </svg>
 </div>
 
-<div class="view" data-id="vol_arb" data-parent="system_context" data-title="Vol Arb -- options volatility arbitrage (shadow-only)" data-desc="Built 2026-08-10/11 on branch feature/vol-arb (HEAD b60e81f), integrated into the legacy bot's backtest engine, nightly pipeline and dashboard. Lives INSIDE v1's own repo -- not a separate process like Crypto Engine or Futures Track. Still shadow-only: the order path does not exist, and the branch is not yet merged into the running trading_bot.">
+<div class="view" data-id="vol_arb" data-parent="system_context" data-title="Vol Arb -- research, paper and gated live execution" data-desc="Merged into the trading_bot repository while remaining an isolated domain. Capture, forecasting, structure selection, replay and monitoring are shadow-first. Paper execution has its own broker ledger; live execution is CLI-driven and can reach Schwab only through the audited Admin gate, central risk, idempotent order ledger and injected transport. It is not called by main.py's strategy scan.">
 <svg viewBox="0 0 1120 820" xmlns="http://www.w3.org/2000/svg">
 
 <text x="24" y="24" class="ph">vol_arb_project/vol_arb/ -- capture, forecasting, structures, execution, storage and replay own the domain</text>
 
 <rect class="bxg" x="24" y="36" width="1072" height="110" rx="8"/>
-<text x="40" y="58" class="t" style="font-size:11.5px">Core package -- SHIPPED (vol_arb_project/vol_arb/)</text>
+<text x="40" y="58" class="t" style="font-size:11.5px">Core package -- merged (vol_arb_project/vol_arb/)</text>
 <text x="40" y="75" class="s">capture/ -- NBBO snapshot ingestion  ::  intel/ -- RV/IV forecasting models</text>
 <text x="40" y="92" class="s">structures/ -- builders, greeks, payoff, chain, quality (n-leg structure construction, ~2,500 lines)</text>
-<text x="40" y="109" class="s">execution/ -- order_plan.py, schwab_orders.py (submit() is typed NoReturn)  ::  storage/ -- surface_store, positions_store, archive_facade</text>
+<text x="40" y="109" class="s">execution/ -- validated order plans + paper broker/coordinator  ::  live_orders/live_coordinator -- durable live state machine</text>
 <text x="40" y="126" class="s">replay/ -- engine.py, archive_bars.py  ::  analytics/  ::  attribution/  ::  manage/  ::  observability/  ::  clock/config/contracts/errors/cli</text>
 
 <rect class="bxb" x="24" y="156" width="1072" height="110" rx="8"/>
-<text x="40" y="178" class="t" style="font-size:11.5px">Legacy-bot integration -- 5 artifacts (2026-08-10/11), each copying an in-repo precedent</text>
+<text x="40" y="178" class="t" style="font-size:11.5px">Bot integration -- read-only research surface plus a separately controlled execution plane</text>
 <text x="40" y="195" class="s">backtest_vol_arb.py -- copies backtest_kay_orb_options.py's result contract, drives vol_arb.replay.ReplayEngine</text>
 <text x="40" y="212" class="s">vol_arb_bridge.py -- copies mi_client.py's fail-open read-only client pattern</text>
-<text x="40" y="229" class="s">dashboard/volarb_page.py + templates/volarb.html -- copies crypto_engine_page.py  ::  /vol-arb + 7 /api/volarb/* routes</text>
-<text x="40" y="246" class="s">theta_collect.py -- new -- ThetaData v2 archive collector, all 5 DTE buckets (0/1/7/30/60)</text>
+<text x="40" y="229" class="s">dashboard/volarb_page.py + templates/volarb.html -- /vol-arb research/status APIs remain read-only</text>
+<text x="40" y="246" class="s">dashboard/volarb_admin.py -- audited shadow/live control, account selection, contract cap and live-order cancellation</text>
 
 <rect class="band" x="24" y="276" width="1072" height="93" rx="8"/>
-<text x="40" y="298" class="t" style="font-size:11.5px">Registered, not wired to trading</text>
+<text x="40" y="298" class="t" style="font-size:11.5px">Research and scheduling lane</text>
 <text x="40" y="315" class="s">run_nightly.JOBS["vol_arb"] + a side_specs step run_volarb_daily (SPY, QQQ, IWM)</text>
 <text x="40" y="332" class="s">dashboard/backtests.BACKTESTS["vol_arb"] -- deliberately ABSENT from _OPTIMIZER_SUPPORTED (it owns its own walk-forward)</text>
-<text x="40" y="349" class="s">/vol-arb nav link + 7 /api/volarb/* routes registered in dashboard/__init__.py</text>
+<text x="40" y="349" class="s">main.py's strategy registry never invokes Vol Arb; execution is an explicit CLI/Admin-controlled workflow</text>
 
-<rect class="bxr" x="24" y="379" width="1072" height="76" rx="8"/>
-<text x="40" y="401" class="t" style="font-size:11.5px">Hard shadow boundary -- why nothing can trade</text>
-<text x="40" y="418" class="s">schwab_orders.submit() is typed NoReturn and raises unconditionally -- no order path exists</text>
-<text x="40" y="435" class="s">signals.py and main.py contain ZERO references to vol_arb  ::  order_plan.py defaults shadow=True everywhere</text>
+<rect class="bxg" x="24" y="379" width="1072" height="76" rx="8"/>
+<text x="40" y="401" class="t" style="font-size:11.5px">Two execution branches -- both re-run central risk and persist durable truth</text>
+<text x="40" y="418" class="s">PAPER: CLI → PaperExecutionCoordinator → CentralRisk → PaperBroker ledger → PositionsStore (open / close / roll; idempotent)</text>
+<text x="40" y="435" class="s">LIVE: CLI → LiveExecutionCoordinator → CentralRisk → LiveGate → LiveOrderRouter → injected SchwabLiveTransport</text>
 
 <rect class="bx" x="24" y="465" width="524" height="93" rx="8"/>
-<text x="40" y="487" class="t" style="font-size:11.5px">Two blockers fixed, 2026-08-10/11</text>
-<text x="40" y="504" class="s">bars_history.db naive timestamps dropped ALL 156,817 rows -&gt; MODEL_UNAVAILABLE every step -&gt; 0 trades</text>
-<text x="40" y="521" class="s">fixed: ArchiveBarsProvider derives tz-correct bars from option_snapshots.underlying_price -&gt; 4 trades, 1,470 lookahead checks passed</text>
-<text x="40" y="538" class="s">adversarial review found and fixed 8 more defects, incl. gamma understated 6.08x on half-day expiries</text>
+<text x="40" y="487" class="t" style="font-size:11.5px">Audited live arming gate -- fail closed</text>
+<text x="40" y="504" class="s">one linked Schwab account + written reason + exact ENABLE VOL ARB LIVE phrase + contract cap</text>
+<text x="40" y="521" class="s">durable intent is audited before mode activation; generic settings cannot mutate the protected keys</text>
+<text x="40" y="538" class="s">defined-risk allowlist only; persisted package config remains shadow-first</text>
 
 <rect class="bxa" x="572" y="465" width="524" height="93" rx="8"/>
-<text x="588" y="487" class="t" style="font-size:11.5px">Archive coverage -- thinner than the handoff claimed</text>
-<text x="588" y="504" class="s">options_history.db is 0DTE-only  ::  iv populated in only 5 of 25 months</text>
-<text x="588" y="521" class="s">usable sessions: SPY 116/503 (two blocks, split by an 18-month hole)  ::  QQQ/IWM 63/503</text>
-<text x="588" y="538" class="s">swing engine (5-30 DTE) cannot trade this archive at all -- only intraday is testable</text>
+<text x="588" y="487" class="t" style="font-size:11.5px">Live order state and reconciliation</text>
+<text x="588" y="504" class="s">SQLite live_orders: SUBMITTING → WORKING → terminal; duplicate requests return the original order</text>
+<text x="588" y="521" class="s">uncertain submissions are never blindly retried; account-wide reconciliation must resolve exact shape</text>
+<text x="588" y="538" class="s">poll and cancel flow through the same router/transport; position reservation is deterministic</text>
 
 <rect class="bxa" x="24" y="568" width="1072" height="93" rx="8"/>
-<text x="40" y="590" class="t" style="font-size:11.5px">ThetaData v2 rebuild -- built, not yet run</text>
-<text x="40" y="607" class="s">theta_collect.py pulls all 5 DTE buckets (0/1/7/30/60) @5m via the official thetadata pip package -- no Theta Terminal, no JVM needed</text>
-<text x="40" y="624" class="s">~9.4h at --workers 5  ::  ~35.7M rows / ~11.8GB  ::  writes a NEW options_history_v2.db (does not touch options_history.db)</text>
-<text x="40" y="641" class="s" style="fill:#d29922">NOT LAUNCHED YET -- options_history_v2.db does not exist on disk as of 2026-08-11</text>
+<text x="40" y="590" class="t" style="font-size:11.5px">Data and model path -- independent stores, no invented values</text>
+<text x="40" y="607" class="s">Schwab chain capture → append-only surface store → IV/RV series → skilled forecasts or explicit abstention</text>
+<text x="40" y="624" class="s">signal engines → defined-risk structure builders → payoff/greek validation → central risk → preview/paper/live branch</text>
+<text x="40" y="641" class="s" style="fill:#d29922">forward option surfaces cannot be backfilled; missing IV rank or model skill remains missing</text>
 
 <rect class="bxr" x="24" y="671" width="1072" height="93" rx="8"/>
-<text x="40" y="693" class="t" style="font-size:11.5px">NOT merged into production</text>
-<text x="40" y="710" class="s">feature/vol-arb HEAD b60e81f (8 commits ahead of main)  ::  pre-verified merge staged on integration/vol-arb-merge (5285c9f)</text>
-<text x="40" y="727" class="s">merge verified conflict-free from a clean GitHub clone  ::  1,425 tests pass</text>
-<text x="40" y="744" class="s" style="fill:#f85149">withheld deliberately: main.py was RUNNING live when this was built -- the merge rewrites dashboard/__init__.py, dashboard/backtests.py, templates/index.html</text>
+<text x="40" y="693" class="t" style="font-size:11.5px">Boundaries that still matter</text>
+<text x="40" y="710" class="s">vol_arb_bridge and /vol-arb research APIs never construct broker clients or write package databases</text>
+<text x="40" y="727" class="s">the package's schwab_orders.submit() remains a non-sender; the network adapter lives at the bot boundary</text>
+<text x="40" y="744" class="s" style="fill:#f85149">live capability is not evidence of edge: arming, risk approval, data quality and validation are separate gates</text>
 
-<text x="24" y="794" class="lbl">Honest status: the largest replay to date is 4 trades over 1 session, -$218.97, verdict INSUFFICIENT_DATA -- the validator working, not evidence of edge. Next milestone: run theta_collect.py, replay the v2 archive, see whether edge survives friction.</text>
+<text x="24" y="794" class="lbl">Capability status is configuration-derived at runtime: shadow is the default. Live execution exists, but only the explicit CLI lane can use it after Admin arming; the ordinary bot scan cannot.</text>
 </svg>
 </div>
 
@@ -1789,12 +1789,12 @@
 <rect class="bxb" x="24" y="170" width="1072" height="53" rx="8"/><text x="40" y="190" class="t" style="font-size:11.5px">vwap_mean_reversion  ·  vwap_mean_reversion_signals.py</text><text x="40" y="207" class="s">≥0.5% extension away from VWAP, then a reclaim back toward it</text>
 <rect class="bxb" x="24" y="235" width="1072" height="53" rx="8"/><text x="40" y="255" class="t" style="font-size:11.5px">liquidity_sweep_reclaim  ·  liquidity_sweep_reclaim_signals.py</text><text x="40" y="272" class="s">sweep of a swing/prior-day level, then a reclaim within the lsr_sweep_bars window</text>
 <rect class="bxb" x="24" y="300" width="1072" height="53" rx="8"/><text x="40" y="320" class="t" style="font-size:11.5px">compression_breakout  ·  compression_breakout_signals.py</text><text x="40" y="337" class="s">breakout of a fixed 12-bar (60min) consolidation box, %-width capped</text>
-<rect class="bxr" x="24" y="365" width="1072" height="53" rx="8"/><text x="40" y="385" class="t" style="font-size:11.5px">order_flow_momentum  ·  order_flow_momentum_signals.py</text><text x="40" y="402" class="s">CVD-proxy breakout of local swing structure (close-vs-open-sign × volume) — trades LIVE with no shadow gate, though the spec called for shadow-only</text>
+<rect class="bxg" x="24" y="365" width="1072" height="53" rx="8"/><text x="40" y="385" class="t" style="font-size:11.5px">order_flow_momentum  ·  real-flow upgrade</text><text x="40" y="402" class="s">Massive prints/NBBO → flow_provider → bounded Schwab L2 hot pool → local-level break/reject evidence; stale or missing entry evidence fails closed</text>
 <rect class="bxb" x="24" y="430" width="1072" height="53" rx="8"/><text x="40" y="450" class="t" style="font-size:11.5px">late_day_momentum  ·  late_day_momentum_signals.py</text><text x="40" y="467" class="s">VWAP-side trend continuation — entry window restricted to the final hour, 15:00–16:00 ET only</text>
 <rect class="bxa" x="24" y="495" width="1072" height="70" rx="8"/><text x="40" y="515" class="t" style="font-size:11.5px">gamma_level_reaction  ·  gamma_level_reaction_signals.py</text><text x="40" y="532" class="s">reacts to call-wall / put-wall / max-pain / flip-level from the positioning filter's regime read — roster window starts at 12:00 ET, not 9:30</text><text x="40" y="549" class="s">real gamma-wall data exists for SPY/QQQ only — every other symbol silently returns no signal</text>
 <rect class="bxg" x="24" y="577" width="1072" height="70" rx="8"/><text x="40" y="597" class="t" style="font-size:11.5px">ema_vwap restored alongside the 8 — same day</text><text x="40" y="614" class="s">roster id ema_vwap · EMA9/VWAP 3-min cross-reclaim · new gate added requiring price outside the opening range</text><text x="40" y="631" class="s">live today alongside the RAW_SIMPLE 8, but was not part of that batch — see its own strategy view for the full 2026-08-04 rebuild</text>
 <rect class="bxr" x="24" y="659" width="1072" height="70" rx="8"/><text x="40" y="679" class="t" style="font-size:11.5px">Superseded — do not confuse with a live gated ZDTE framework</text><text x="40" y="696" class="s">a full framework (typed signal contracts, a 7-label regime classifier, 12 hard gates, a SignalBus, RESEARCH→SHADOW→PAPER→CANARY→LIVE governance) shipped 438 tests green on 2026-08-05</text><text x="40" y="713" class="s">reverted ~26 minutes later — an operator complexity call, not a defect. Recoverable from an archive tag; none of it is current architecture</text>
-<rect class="band" x="24" y="741" width="1072" height="70" rx="8"/><text x="40" y="761" class="t" style="font-size:11.5px">Open data gaps across the suite</text><text x="40" y="778" class="s">no real historical tick/L2 archive anywhere — order_flow_momentum's flow read is live-tape-only and cannot be backtested</text><text x="40" y="795" class="s">no shared indicator layer across the 8 — no common ATR/EMA/ADX/Bollinger/RVOL module yet</text>
+<rect class="band" x="24" y="741" width="1072" height="70" rx="8"/><text x="40" y="761" class="t" style="font-size:11.5px">Real-flow persistence and limits</text><text x="40" y="778" class="s">events/snapshots → bounded async queue → market_data/flow/YYYY-MM-DD/*.jsonl; daily profiles live under market_data/flow_profiles</text><text x="40" y="795" class="s">historical coverage begins only when persistence is enabled; gaps remain gaps and unavailable live evidence never falls back to OHLCV synthesis</text>
 <text x="24" y="829" class="lbl">Standard scalp window 9:30–16:00 ET unless noted above. All 8 currently hardcode a 0.35/0.70 stop/target on option premium, not derived from entry/stop geometry.</text>
 </svg>
 </div>
