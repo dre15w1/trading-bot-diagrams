@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1050" viewBox="0 0 1600 1050" role="img" aria-labelledby="title desc">
+  <title id="title">Live multi-leg position manager in the overall trading architecture</title>
+  <desc id="desc">Market data and strategies feed the position manager. An audited live gate promotes a package into the main bot parent ledger and an atomic broker order. Schema version two distributes the exact package to the copier, which manages per-account child positions. Fill and reconciliation data return to lifecycle management.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#061321"/><stop offset="1" stop-color="#16243c"/></linearGradient>
+    <linearGradient id="mgr" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#174a69"/><stop offset="1" stop-color="#263f70"/></linearGradient>
+    <filter id="shadow"><feDropShadow dx="0" dy="6" stdDeviation="7" flood-opacity=".32"/></filter>
+    <marker id="arrow" markerWidth="11" markerHeight="11" refX="9" refY="3.5" orient="auto"><path d="M0 0L0 7L10 3.5z" fill="#73d5ff"/></marker>
+    <marker id="greenArrow" markerWidth="11" markerHeight="11" refX="9" refY="3.5" orient="auto"><path d="M0 0L0 7L10 3.5z" fill="#5de0ae"/></marker>
+    <style>
+      .title{font:700 34px system-ui;fill:#f5fbff}.subtitle{font:400 16px system-ui;fill:#b9cede}
+      .box{rx:18;stroke-width:1.6;filter:url(#shadow)}.data{fill:#123548;stroke:#3f829c}.strategy{fill:#26334f;stroke:#6479a7}
+      .manager{fill:url(#mgr);stroke:#76b7df;stroke-width:2.5}.gate{fill:#513d22;stroke:#e7ad4e}.live{fill:#183f38;stroke:#5fc8a4}
+      .copier{fill:#392f55;stroke:#a88cdd}.danger{fill:#512b32;stroke:#f07683}.head{font:700 19px system-ui;fill:#f7fbff}
+      .cap{font:700 12px system-ui;letter-spacing:1px;fill:#9abdd0}.text{font:400 14px system-ui;fill:#cee0ea}.small{font:400 12px system-ui;fill:#bad0dc}
+      .flow{fill:none;stroke:#73d5ff;stroke-width:3;marker-end:url(#arrow)}.feedback{fill:none;stroke:#5de0ae;stroke-width:3;stroke-dasharray:10 7;marker-end:url(#greenArrow)}
+      .stop{fill:none;stroke:#f07683;stroke-width:3;stroke-dasharray:9 7}.pill{rx:16;fill:#d5faeb}.pillText{font:800 12px system-ui;fill:#075f48}
+    </style>
+  </defs>
+  <rect width="1600" height="1050" fill="url(#bg)"/>
+  <text x="55" y="58" class="title">Live Multi-Leg Position Manager — Overall Architecture</text>
+  <text x="55" y="88" class="subtitle">The bot chooses and manages one parent package; the copier executes and reconciles exact per-account child packages.</text>
+
+  <rect x="55" y="130" width="255" height="240" class="box data"/>
+  <text x="80" y="165" class="cap">SYNCHRONIZED INPUTS</text><text x="80" y="203" class="head">Market + Portfolio Data</text>
+  <text x="80" y="238" class="text">Underlying bars and regime</text><text x="80" y="266" class="text">Option chains and NBBO</text>
+  <text x="80" y="294" class="text">Greeks, liquidity, events</text><text x="80" y="322" class="text">Buying power and exposure</text>
+  <text x="80" y="349" class="small">Stale or incomplete → NO_TRADE</text>
+
+  <rect x="55" y="420" width="255" height="255" class="box strategy"/>
+  <text x="80" y="455" class="cap">STRATEGY ENGINES</text><text x="80" y="493" class="head">TradeThesis</text>
+  <text x="80" y="528" class="text">0DTE scalps</text><text x="80" y="556" class="text">Weekly premium</text>
+  <text x="80" y="584" class="text">Post-FOMC swings</text><text x="80" y="612" class="text">Volatility premium</text>
+  <text x="80" y="647" class="small">Direction • horizon • risk • exit</text>
+
+  <rect x="375" y="185" width="470" height="420" class="box manager"/>
+  <text x="405" y="225" class="cap">MULTI-LEG POSITION MANAGER</text><text x="405" y="270" class="head">Select, Size and Manage the Package</text>
+  <text x="405" y="310" class="text">Scalp: ATM/OTM 0DTE preferred</text><text x="405" y="338" class="text">Conditional ITM 0DTE or 1DTE fallback</text>
+  <text x="405" y="378" class="text">Swing: jointly rank expiration + strikes + width</text><text x="405" y="406" class="text">Vertical • iron condor • iron butterfly</text>
+  <text x="405" y="446" class="text">Executable package price • max loss • Greeks</text><text x="405" y="474" class="text">Overlap • buying power • events • latency</text>
+  <text x="405" y="514" class="text">Lifecycle: HOLD or atomic CLOSE_*</text>
+  <rect x="405" y="545" width="170" height="34" class="pill"/><text x="431" y="567" class="pillText">SCALP ≤ 500 ms</text>
+  <rect x="590" y="545" width="160" height="34" class="pill"/><text x="620" y="567" class="pillText">SWING ≤ 5 s</text>
+
+  <rect x="905" y="130" width="300" height="220" class="box gate"/>
+  <text x="930" y="165" class="cap">AUDITED LIVE PROMOTION</text><text x="930" y="203" class="head">Every Gate Explicitly True</text>
+  <text x="930" y="238" class="text">Operator approval</text><text x="930" y="266" class="text">Qualification passed</text>
+  <text x="930" y="294" class="text">Broker capability confirmed</text><text x="930" y="322" class="small">Default OFF • approval expires</text>
+
+  <rect x="905" y="400" width="300" height="275" class="box live"/>
+  <text x="930" y="435" class="cap">MAIN BOT — PARENT GROUP</text><text x="930" y="473" class="head">Durable Live Position</text>
+  <text x="930" y="508" class="text">Actual filled and remaining legs</text><text x="930" y="536" class="text">Broker order IDs and state</text>
+  <text x="930" y="564" class="text">Restart reconciliation</text><text x="930" y="592" class="text">Atomic entry and group exit</text>
+  <text x="930" y="628" class="small">Never closes requested quantity blindly</text>
+
+  <rect x="1270" y="130" width="275" height="220" class="box live"/>
+  <text x="1295" y="165" class="cap">PRIMARY BROKER</text><text x="1295" y="203" class="head">Native Complex Order</text>
+  <text x="1295" y="238" class="text">One atomic submission</text><text x="1295" y="266" class="text">2 or 4 exact OCC legs</text>
+  <text x="1295" y="294" class="text">Net debit or net credit</text><text x="1295" y="322" class="small">Unsupported → reject whole group</text>
+
+  <rect x="1270" y="420" width="275" height="255" class="box copier"/>
+  <text x="1295" y="455" class="cap">EXTERNAL COPIER — SCHEMA V2</text><text x="1295" y="493" class="head">Child Group Manager</text>
+  <text x="1295" y="528" class="text">Per subscriber/account ledger</text><text x="1295" y="556" class="text">Actual child fills and remaining</text>
+  <text x="1295" y="584" class="text">Restart reconciliation</text><text x="1295" y="612" class="text">Atomic child entry and exit</text>
+  <text x="1295" y="647" class="small">Executes; never reselects contracts</text>
+
+  <rect x="905" y="760" width="640" height="190" class="box danger"/>
+  <text x="930" y="798" class="cap">SAFETY AND QUALIFICATION BOUNDARY</text><text x="930" y="838" class="head">Paper → Sandbox → Shadow Live → Limited Canary → Approved Live</text>
+  <text x="930" y="875" class="text">No sequential legs • no naked exposure • no v1 downgrade • no guessed close</text>
+  <text x="930" y="907" class="text">Unknown/mismatched/unequal partial groups are quarantined, not “fixed” locally.</text>
+
+  <path d="M310 245H375" class="flow"/><path d="M310 545H375" class="flow"/><path d="M845 300H905" class="flow"/>
+  <path d="M1055 350V400" class="flow"/><path d="M1205 490H1270V270" class="flow"/><path d="M1205 555H1270" class="flow"/>
+  <path d="M1407 350V420" class="feedback"/><path d="M1270 620H1205" class="feedback"/>
+  <path d="M1055 675V760" class="stop"/><path d="M1407 675V760" class="stop"/>
+  <path d="M1270 310H1225V705H760V605" class="feedback"/>
+</svg>

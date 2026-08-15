@@ -36,7 +36,9 @@
  .desc{color:var(--mut);font-size:13px;margin:0 0 10px;}
  .canvas{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px;overflow-x:auto;}
  .view{display:none;} .view.on{display:block;}
- .canvas svg{display:block;width:100%;height:auto;min-width:760px;}
+ .canvas svg,.canvas img.diagram-img{display:block;width:100%;height:auto;min-width:760px;}
+ .diagram-status{margin:0 0 12px;padding:12px 14px;border:1px solid var(--border);border-radius:9px;background:#0d1117;color:var(--mut);font-size:12px;line-height:1.55;}
+ .diagram-status strong{color:var(--tx);}
  header h1 svg{width:30px;height:30px;min-width:0;flex:0 0 auto;}
  .drillnote{margin-top:10px;color:var(--dim);font-size:11px;}
  /* SVG element classes */
@@ -74,7 +76,7 @@
    .menuBtn{display:inline-block;}
    .mobtip{display:block;color:var(--dim);font-size:11px;margin:0 0 10px;line-height:1.5;}
    .canvas{padding:10px;}
-   .canvas svg{min-width:860px;}  /* keep dense diagram text legible — pan sideways */
+   .canvas svg,.canvas img.diagram-img{min-width:860px;}  /* keep dense diagram text legible — pan sideways */
    header h1 svg{width:26px;height:26px;}
    h2{font-size:16px;} .desc{font-size:12px;}
    .bar{gap:6px;}
@@ -82,7 +84,7 @@
    .side a{padding:10px 10px;font-size:13px;}
    .drillnote{font-size:12px;line-height:1.9;}
  }
- @media (max-width:420px){ .canvas svg{min-width:720px;} }
+ @media (max-width:420px){ .canvas svg,.canvas img.diagram-img{min-width:720px;} }
 </style>
 </head>
 <body>
@@ -108,7 +110,7 @@
     <span>Confluence</span><span style="color:#6e7681;font-weight:600">— Architecture Explorer</span>
   </h1>
   <span class="hint">Click any <span style="color:#58a6ff">◆ blue-cued</span> box to dig down · use Back / breadcrumb / the sidebar to move around.</span>
-  <span class="copyr">© 2026 Andre Walker · Walkers Software LLC · <a style="color:#58a6ff;text-decoration:none;cursor:pointer" onclick="nav('sync')" title="Design-sync: which bot build this site describes">DS-2026-08-14-T</a></span>
+  <span class="copyr">© 2026 Andre Walker · Walkers Software LLC · <a style="color:#58a6ff;text-decoration:none;cursor:pointer" onclick="nav('sync')" title="Design-sync: which bot build this site describes">DS-2026-08-15-U</a></span>
 </header>
 <div class="wrap">
   <nav class="side" id="side"></nav>
@@ -307,8 +309,8 @@
 <text x="830" y="578" text-anchor="middle" class="s">the posture mapping</text></g>
 </svg>
 </div>
-<div class="view" data-id="overall" data-parent="system_context" data-title="Overall process" data-desc="The full trading loop as of 2026-08-08. Click any phase to dig into it, or jump to crypto / futures / the copier — three tracks and products that sit alongside this loop.">
-<svg viewBox="0 0 1120 580" xmlns="http://www.w3.org/2000/svg">
+<div class="view" data-id="overall" data-parent="system_context" data-title="Overall process" data-desc="The full trading loop as of 2026-08-15. Click any phase to dig into it, including the default-off live multi-leg package manager and its broker-reconciled lifecycle.">
+<svg viewBox="0 0 1120 650" xmlns="http://www.w3.org/2000/svg">
 <defs><marker id="o1" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#58a6ff"/></marker></defs>
 <g class="clk" data-nav="candidates"><rect class="bx" x="24" y="30" width="200" height="66" rx="9"/><text x="124" y="53" text-anchor="middle" class="t">① Findscan</text><text x="124" y="70" text-anchor="middle" class="s">watchlist scan</text><text x="124" y="84" text-anchor="middle" class="s">nightly swaps</text><text x="214" y="42" text-anchor="end" class="cue">◆</text></g>
 <g class="clk" data-nav="strategies"><rect class="bxb" x="256" y="30" width="200" height="66" rx="9"/><text x="356" y="53" text-anchor="middle" class="t">② 5-second scan</text><text x="356" y="70" text-anchor="middle" class="s">ONE batch-quote round trip</text><text x="356" y="84" text-anchor="middle" class="s">every enabled engine sees it</text><text x="446" y="42" text-anchor="end" class="cue">◆</text></g>
@@ -327,20 +329,21 @@
 <path d="M120,323 L60,323 L60,63 L22,63" class="fb" marker-end="url(#o1)"/>
 <text x="70" y="205" class="lbl" transform="rotate(-90 70 205)">fresh models feed tomorrow</text>
 <g class="clk" data-nav="data"><rect class="bxb" x="120" y="374" width="440" height="42" rx="8"/><text x="136" y="392" class="t" style="font-size:11px">DATA layer ◆</text><text x="136" y="408" class="s">quotes, bars, archive — feeds every phase above</text></g>
-<g class="clk" data-nav="sync"><rect class="bxb" x="580" y="374" width="440" height="42" rx="8"/><text x="596" y="392" class="t" style="font-size:11px">Design-sync stamp ◆</text><text x="596" y="408" class="s">diagrams vs code — current stamp DS-2026-08-14-T</text></g>
+<g class="clk" data-nav="sync"><rect class="bxb" x="580" y="374" width="440" height="42" rx="8"/><text x="596" y="392" class="t" style="font-size:11px">Design-sync stamp ◆</text><text x="596" y="408" class="s">diagrams vs code — current stamp DS-2026-08-15-U</text></g>
 <g class="clk" data-nav="longterm"><rect class="bxb" x="120" y="426" width="900" height="42" rx="8"/><text x="136" y="444" class="t" style="font-size:11px">LONG-TERM BOOK &#9670;</text><text x="136" y="460" class="s">a separate book on its own clock &#8212; nightly S&amp;P 500 screen, LLM thesis, LEAP or shares, and a position doctor. Exempt from every intraday exit rule.</text></g>
 <g class="clk" data-nav="crypto_engine"><rect class="bxp" x="120" y="480" width="292" height="40" rx="8"/><text x="136" y="498" class="t" style="font-size:10.5px">Crypto Engine</text><text x="136" y="514" class="s">own 24/7 process ◆</text></g>
 <g class="clk" data-nav="futures_track"><rect class="bxp" x="422" y="480" width="292" height="40" rx="8"/><text x="438" y="498" class="t" style="font-size:10.5px">Futures Track</text><text x="438" y="514" class="s">Phase 0+1, fully gated ◆</text></g>
 <g class="clk" data-nav="copier"><rect class="bxp" x="724" y="480" width="296" height="40" rx="8"/><text x="740" y="498" class="t" style="font-size:10.5px">Friends &amp; Family Copier</text><text x="740" y="514" class="s">separate product ◆</text></g>
-<text x="24" y="556" class="lbl">DESIGN-SYNC DS-2026-08-14-T · ② one batch-quote round trip per 5-second cycle; every enabled roster engine sees the same live print.</text>
+<g class="clk" data-nav="multileg_manager"><rect class="bxg" x="120" y="538" width="900" height="54" rx="8"/><text x="136" y="558" class="t" style="font-size:11.5px">Live Multi-Leg Position Manager ◆</text><text x="136" y="576" class="s">exact 0DTE/swing packages → bounded live approval → one atomic complex order → durable fill reconciliation → group exit</text></g>
+<text x="24" y="626" class="lbl">DESIGN-SYNC DS-2026-08-15-U · multi-leg live execution is built default-OFF; external copier schema-v2 execution remains a separate qualification boundary.</text>
 </svg>
 </div>
 
 
 <!-- L0 OVERALL -->
 <!-- OVERALL → system context (external systems) -->
-<div class="view" data-id="system_context" data-parent="" data-title="System context (start here)" data-desc="The highest-level view: everything Confluence v1 talks to beyond its own process. Equities and options can route through Schwab or an enabled IBKR book; futures are IBKR-only. Massive supplies observed consolidated stock tape for the real-flow path. Click the bot engine to open the full trading loop; the separate products and isolated Vol Arb execution lane are mapped below.">
-<svg viewBox="0 0 1120 1120" xmlns="http://www.w3.org/2000/svg">
+<div class="view" data-id="system_context" data-parent="" data-title="System context (start here)" data-desc="The highest-level view of Confluence v1 and its external boundaries. The main bot now includes a default-off live multi-leg package manager with atomic Schwab execution and durable reconciliation; the external copier remains a separate schema-v2 child-position implementation boundary.">
+<svg viewBox="0 0 1120 1180" xmlns="http://www.w3.org/2000/svg">
 <defs>
 <marker id="sc1" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#58a6ff"/></marker>
 <marker id="sca" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#d29922"/></marker>
@@ -391,19 +394,20 @@
 <text x="24" y="540" class="lbl">Solid blue = live trading-hours traffic · dashed = data/fallback &amp; nightly-only · amber = scheduler trigger. Click the BOT ENGINE for the full trading loop · Schwab → order routing · nightly box → retrain.</text>
 <g class="clk" data-nav="code_map"><rect class="bxp" x="24" y="556" width="1072" height="40" rx="9"/><text x="44" y="581" class="t">🗺 Code map — every vital path by function name</text><text x="700" y="581" class="s">real module + function names, wired as they call each other</text><text x="1086" y="571" text-anchor="end" class="cue">◆</text></g>
 <g class="clk" data-nav="exit_stack_2026"><rect class="bxg" x="24" y="608" width="1072" height="40" rx="9"/><text x="44" y="633" class="t">⚙ HARVEST STACK — premium exits · booster runner · flow-reject</text><text x="700" y="633" class="s">premium exits, the disabled booster leg, the shadow referee</text><text x="1086" y="623" text-anchor="end" class="cue">◆</text></g>
+<g class="clk" data-nav="multileg_manager"><rect class="bxg" x="24" y="654" width="1072" height="32" rx="8"/><text x="44" y="675" class="t" style="font-size:11.5px">Live Multi-Leg Position Manager — 0DTE + swing package selection, atomic entry/exit, restart reconciliation ◆</text></g>
 
-<text x="24" y="690" class="ph">SECOND CODEBASE — the v2 rebuild (parallel · receives landed code · does NOT trade)</text>
-<rect class="bx" x="24" y="700" width="1072" height="82" rx="8"/><text x="40" y="720" class="t" style="font-size:11.5px">v2 — a hexagonal-architecture rebuild, running alongside v1 above</text><text x="40" y="737" class="s">the ORB rule module was extracted BYTE-IDENTICAL, so one rule implementation now serves v1 live, v1 backtest and v2</text><text x="40" y="754" class="s">in v2 it is exposed as an orb_rvol plugin on a Strategy contract, with its own registry registration and 157 tests</text><text x="40" y="771" class="s" style="fill:#8b949e">a parallel rebuild — nothing in v2 is live and nothing in v2 trades</text>
-<rect class="bxa" x="24" y="792" width="1072" height="82" rx="8"/><text x="40" y="812" class="t" style="font-size:11.5px">v2 architecture constrains design — per-strategy book routing is DEFERRED</text><text x="40" y="829" class="s">bootstrap picks ONE broker for the whole process · there is ONE portfolio · mode is a global paper-or-live flag · there is no paper-mirror concept</text><text x="40" y="846" class="s">its reconciler compares broker positions against that single portfolio</text><text x="40" y="863" class="s" style="fill:#d29922">so v1's per-strategy book routing cannot be ported without a dual broker plus portfolio and a per-book reconciler — deferred for now</text>
+<text x="24" y="730" class="ph">SECOND CODEBASE — the v2 rebuild (parallel · receives landed code · does NOT trade)</text>
+<rect class="bx" x="24" y="740" width="1072" height="82" rx="8"/><text x="40" y="760" class="t" style="font-size:11.5px">v2 — a hexagonal-architecture rebuild, running alongside v1 above</text><text x="40" y="777" class="s">the ORB rule module was extracted BYTE-IDENTICAL, so one rule implementation now serves v1 live, v1 backtest and v2</text><text x="40" y="794" class="s">in v2 it is exposed as an orb_rvol plugin on a Strategy contract, with its own registry registration and 157 tests</text><text x="40" y="811" class="s" style="fill:#8b949e">a parallel rebuild — nothing in v2 is live and nothing in v2 trades</text>
+<rect class="bxa" x="24" y="832" width="1072" height="82" rx="8"/><text x="40" y="852" class="t" style="font-size:11.5px">v2 architecture constrains design — per-strategy book routing is DEFERRED</text><text x="40" y="869" class="s">bootstrap picks ONE broker for the whole process · there is ONE portfolio · mode is a global paper-or-live flag · there is no paper-mirror concept</text><text x="40" y="886" class="s">its reconciler compares broker positions against that single portfolio</text><text x="40" y="903" class="s" style="fill:#d29922">so v1's per-strategy book routing cannot be ported without a dual broker plus portfolio and a per-book reconciler — deferred for now</text>
 
-<text x="24" y="906" class="lbl">v1 above is the system that trades · v2 is a parallel rebuild that receives landed code · the extracted ORB rule module is the single implementation shared by both.</text>
-<text x="24" y="938" class="ph">OTHER PROCESSES &amp; PRODUCTS — alongside v1, not part of it</text>
-<g class="clk" data-nav="crypto_engine"><rect class="bxp" x="24" y="950" width="349" height="46" rx="8"/><text x="40" y="970" class="t" style="font-size:11px">Crypto Engine</text><text x="40" y="987" class="s">crypto_bot.py · own 24/7 process, own ledger, 4 strategies ◆</text></g>
-<g class="clk" data-nav="futures_track"><rect class="bxp" x="385" y="950" width="349" height="46" rx="8"/><text x="401" y="970" class="t" style="font-size:11px">Futures Track</text><text x="401" y="987" class="s">CME micros via IBKR · Phase 0+1 shipped, fully gated ◆</text></g>
-<g class="clk" data-nav="copier"><rect class="bxp" x="746" y="950" width="349" height="46" rx="8"/><text x="762" y="970" class="t" style="font-size:11px">Friends &amp; Family Copier</text><text x="762" y="987" class="s">separate repo · runs on subscribers' own machines ◆</text></g>
-<text x="24" y="1015" class="ph">IN-REPO VOLATILITY SUBSYSTEM -- shadow-first; paper and explicitly armed CLI execution stay isolated from main.py</text>
-<g class="clk" data-nav="vol_arb"><rect class="bxa" x="24" y="1027" width="1072" height="46" rx="8"/><text x="40" y="1047" class="t" style="font-size:11px">Vol Arb -- options volatility arbitrage engine</text><text x="40" y="1064" class="s">research + nightly + dashboard  ::  paper ledger  ::  audited live gate + injected Schwab transport  ::  not in the strategy scan &#9670;</text></g>
-<text x="24" y="1100" class="lbl">These are not part of v1 or v2 above — Crypto Engine and Futures Track are separate processes on this same machine; the Copier is a wholly separate product/repo.</text>
+<text x="24" y="946" class="lbl">v1 above is the system that trades · v2 is a parallel rebuild that receives landed code · the extracted ORB rule module is the single implementation shared by both.</text>
+<text x="24" y="978" class="ph">OTHER PROCESSES &amp; PRODUCTS — alongside v1, not part of it</text>
+<g class="clk" data-nav="crypto_engine"><rect class="bxp" x="24" y="990" width="349" height="46" rx="8"/><text x="40" y="1010" class="t" style="font-size:11px">Crypto Engine</text><text x="40" y="1027" class="s">crypto_bot.py · own 24/7 process, own ledger, 4 strategies ◆</text></g>
+<g class="clk" data-nav="futures_track"><rect class="bxp" x="385" y="990" width="349" height="46" rx="8"/><text x="401" y="1010" class="t" style="font-size:11px">Futures Track</text><text x="401" y="1027" class="s">CME micros via IBKR · Phase 0+1 shipped, fully gated ◆</text></g>
+<g class="clk" data-nav="copier"><rect class="bxp" x="746" y="990" width="349" height="46" rx="8"/><text x="762" y="1010" class="t" style="font-size:11px">Friends &amp; Family Copier</text><text x="762" y="1027" class="s">separate repo · runs on subscribers' own machines ◆</text></g>
+<text x="24" y="1055" class="ph">IN-REPO VOLATILITY SUBSYSTEM -- shadow-first; paper and explicitly armed CLI execution stay isolated from main.py</text>
+<g class="clk" data-nav="vol_arb"><rect class="bxa" x="24" y="1067" width="1072" height="46" rx="8"/><text x="40" y="1087" class="t" style="font-size:11px">Vol Arb -- options volatility arbitrage engine</text><text x="40" y="1104" class="s">research + nightly + dashboard  ::  paper ledger  ::  audited live gate + injected Schwab transport  ::  not in the strategy scan &#9670;</text></g>
+<text x="24" y="1140" class="lbl">These are not part of v1 or v2 above — Crypto Engine and Futures Track are separate processes on this same machine; the Copier is a wholly separate product/repo.</text>
 </svg>
 </div>
 
@@ -1486,9 +1490,9 @@
 <svg viewBox="0 0 1120 1254" xmlns="http://www.w3.org/2000/svg">
 <text x="24" y="24" class="ph">Every publish carries a DESIGN-SYNC id — site and code verifiable against each other</text>
 <rect class="bx" x="24" y="36" width="1072" height="48" rx="8"/><text x="40" y="56" class="t" style="font-size:11.5px">How it works</text><text x="40" y="73" class="s">each site publish carries a DESIGN-SYNC identifier · the bot repo carries the matching DESIGN_SYNC.json (same id, bot git HEAD, key-file fingerprints) · any future session can verify site &#8596; code alignment</text>
-<rect class="bxg" x="24" y="94" width="1072" height="56" rx="8"/><text x="40" y="114" class="t" style="font-size:11.5px">Current stamp: DS-2026-08-14-T</text><text x="40" y="131" class="s">Vol Arb merged execution plane: idempotent paper broker, audited Admin arming, central risk, live ledger, reconciliation and injected Schwab transport</text><text x="40" y="146" class="s">real Massive tape + Schwab L2 hot pool/persistence drawn; nightly capital now resolves linked-account balances before any job and fails closed</text>
-<rect class="bx" x="24" y="160" width="1072" height="48" rx="8"/><text x="40" y="180" class="t" style="font-size:11.5px">Prior published state: commit 291e908 — DS-2026-08-11-S (2026-08-11)</text><text x="40" y="197" class="s">S introduced Vol Arb as branch-only and shadow-only; T replaces that snapshot with the merged, explicitly controlled paper/live architecture</text>
-<rect class="bx" x="24" y="218" width="1072" height="36" rx="8"/><text x="40" y="241" class="s"><tspan class="t" style="font-size:11px">08-08</tspan> &#8212; Friends &amp; Family Copier hardened to v0.3.1 (v0.1.0&#8211;v0.2.2 were DOA) — subscriber controls, admin UI, PDT guard rewritten for the FINRA repeal; engine hook still NOT wired in</text>
+<rect class="bxg" x="24" y="94" width="1072" height="56" rx="8"/><text x="40" y="114" class="t" style="font-size:11.5px">Current stamp: DS-2026-08-15-U</text><text x="40" y="131" class="s">Live multi-leg manager: package selection, bounded promotion, atomic Schwab adapter, durable parent state, reconciliation and lifecycle exits</text><text x="40" y="146" class="s">schema-v2 producer is wired; external copier child execution is explicitly marked as a separate incomplete and default-OFF qualification boundary</text>
+<rect class="bx" x="24" y="160" width="1072" height="48" rx="8"/><text x="40" y="180" class="t" style="font-size:11.5px">Prior published state: commit 687dbf6 — DS-2026-08-14-T (2026-08-14)</text><text x="40" y="197" class="s">T synchronized Vol Arb, Massive real tape and nightly capital; U adds the live multi-leg parent manager and corrected copier boundary</text>
+<rect class="bx" x="24" y="218" width="1072" height="36" rx="8"/><text x="40" y="241" class="s"><tspan class="t" style="font-size:11px">08-15</tspan> &#8212; main-bot schema-v2 producer wired; external copier multi-leg child ledger, atomic execution, reconciliation, qualification and operations PDF remain pending</text>
 <rect class="bx" x="24" y="262" width="1072" height="36" rx="8"/><text x="40" y="285" class="s"><tspan class="t" style="font-size:11px">08-08</tspan> &#8212; Crypto Engine split into its own 24/7 process — own ledger, Control API, 4 strategies · legacy crypto left running, additive · first backtest: fees = 101% of net loss</text>
 <rect class="bx" x="24" y="306" width="1072" height="36" rx="8"/><text x="40" y="329" class="s"><tspan class="t" style="font-size:11px">08-08</tspan> &#8212; Futures Track Phase 0+1 shipped (552 tests) — 10 defects fixed incl. B10 (stops inert overnight, now STP LMT+outsideRth) · cost/margin corrected, voiding pre-08-08 backtests</text>
 <rect class="bx" x="24" y="350" width="1072" height="36" rx="8"/><text x="40" y="373" class="s"><tspan class="t" style="font-size:11px">08-07</tspan> &#8212; /futures dashboard page + an event-driven futures backtester built (audited: not yet statistically reliable) · IBKR reconciler and roster-schedule work landed</text>
@@ -1763,20 +1767,30 @@
 </svg>
 </div>
 
+<div class="view" data-id="multileg_manager" data-parent="system_context" data-title="Live Multi-Leg Position Manager" data-desc="DS-2026-08-15-U. The main bot selects exact defined-risk packages, applies bounded live-promotion gates, submits one broker-native complex order, persists the parent group, and manages exits from actual reconciled fills. Live remains default-OFF; the external copier child manager shown here is the separately qualified target architecture.">
+  <div class="diagram-status"><strong>Current boundary:</strong> main-bot selection, promotion, atomic Schwab adapter, durable parent ledger, lifecycle worker, Admin controls, and schema-v2 publication are implemented and test-backed. <strong>Still separate:</strong> the external copier must implement and qualify per-account child groups before it can execute these packages live. No paper intent is silently promoted and no multi-leg order is decomposed into naked sequential legs.</div>
+  <img class="diagram-img" src="multileg-position-manager-live-overview.svg" alt="Overall architecture showing market data and strategies feeding the multi-leg position manager, live approval, main-bot parent execution, and external copier child positions">
+</div>
+
+<div class="view" data-id="multileg_lifecycle" data-parent="multileg_manager" data-title="Multi-Leg Parent + Child Lifecycle" data-desc="The group state machine from exact package selection through approval, atomic submission, actual-fill reconciliation, monitoring, atomic exit, and final flat confirmation. Missing, partial-ratio, manual, or mismatched broker facts quarantine the group instead of guessing.">
+  <div class="diagram-status"><strong>Main-bot states:</strong> PENDING &rarr; OPEN &rarr; CLOSE_PENDING &rarr; CLOSED, with QUARANTINED as a fail-closed terminal intervention state. Entry and exit idempotency survive restart; exit quantities come from actual remaining fills, never from the original requested quantity.</div>
+  <img class="diagram-img" src="multileg-position-manager-live-lifecycle.svg" alt="Lifecycle diagram for multi-leg parent and copier child groups with atomic broker orders, reconciliation, monitoring, closing, and quarantine paths">
+</div>
+
 <div class="view" data-id="copier" data-parent="system_context" data-title="Friends &amp;amp; Family Trade Copier — separate product (v0.3.1, public download)" data-desc="A standalone app in its OWN repo — not part of trading_bot. Each subscriber runs the agent on their own machine with their own Schwab credentials; Andre never holds subscriber keys or touches subscriber accounts.">
 <svg viewBox="0 0 1120 805" xmlns="http://www.w3.org/2000/svg">
 
 <text x="24" y="30" class="ph">engine → publisher (entitle, seal, sign) → git-backed bus → each subscriber&#39;s own agent → their own Schwab account</text>
-<rect class="bxr" x="24" y="40" width="1072" height="70" rx="8"/><text x="40" y="60" class="t" style="font-size:11.5px">main.py — NOT YET WIRED to the copier</text><text x="40" y="77" class="s">a two-line, never-raises/never-blocks hook exists in copier/publisher/hook.py's docstring, ready to paste in</text><text x="40" y="94" class="s">until it's pasted into main.py, the live bot emits NO copier signals — the pipeline below is built but not fed</text>
+<rect class="bxa" x="24" y="40" width="1072" height="70" rx="8"/><text x="40" y="60" class="t" style="font-size:11.5px">main.py — schema-v2 multi-leg producer is wired; external consumer upgrade is still pending</text><text x="40" y="77" class="s">accepted, non-duplicate parent entry/exit envelopes cross a never-raises publication callback only after source-broker acceptance</text><text x="40" y="94" class="s">the legacy v1 copier must not downgrade a grouped package into independent legs; its v2 child-position manager is a separate build and qualification boundary</text>
 <rect class="bx" x="24" y="122" width="524" height="70" rx="8"/><text x="40" y="142" class="t" style="font-size:11.5px">copier.publisher — entitlement, seal, sign</text><text x="40" y="159" class="s">hook copies the signal dict to a background thread with a bounded queue — a publish failure can never become a trading failure</text><text x="40" y="176" class="s">works out who is entitled to the strategy, seals one copy per subscriber, signs the whole envelope</text>
 <rect class="band" x="572" y="122" width="524" height="70" rx="8"/><text x="588" y="142" class="t" style="font-size:11.5px">git-backed signal bus</text><text x="588" y="159" class="s">signals/YYYY/MM/DD/*.json + manifest.json</text><text x="588" y="176" class="s">subscribers pull every ~20s (git pull / GitHub Contents API)</text>
 <rect class="bxg" x="24" y="204" width="1072" height="87" rx="8"/><text x="40" y="224" class="t" style="font-size:11.5px">Security model — cryptographic entitlement, not access control</text><text x="40" y="241" class="s">Ed25519 signs every envelope — agents pin the publisher's public key at install and refuse anything that fails to verify</text><text x="40" y="258" class="s">X25519 seals one copy per recipient — a subscriber with full repo read access still can't open signals they aren't entitled to</text><text x="40" y="275" class="s">revocation = stop sealing to them, not an access-list edit · verification is signature-FIRST, then decrypt</text>
-<rect class="bxb" x="24" y="303" width="1072" height="87" rx="8"/><text x="40" y="323" class="t" style="font-size:11.5px">copier.agent — runs on the subscriber&#39;s OWN machine</text><text x="40" y="340" class="s">verify signature → open sealed box → PDT guard → sizing → contract selection → their own Schwab account, their own credentials</text><text x="40" y="357" class="s">approve-first is the default; auto-execute is the subscriber's own local choice — entries only, exits always execute (never left for an approval nobody answers)</text><text x="40" y="374" class="s">a revoked subscriber still receives EXITS for positions already held — a sticky-recipient ledger with a 7-day TTL</text>
+<rect class="bxb" x="24" y="303" width="1072" height="87" rx="8"/><text x="40" y="323" class="t" style="font-size:11.5px">copier.agent — subscriber-owned execution; multi-leg v2 target remains default-OFF</text><text x="40" y="340" class="s">v1 verifies/decrypts independent signals; v2 must persist parent position_group_id → exact per-account child legs, broker IDs, fills and replacement lineage</text><text x="40" y="357" class="s">entries and exits use broker-native atomic complex orders only; exits reverse verified actual remaining child quantities, never reselect contracts</text><text x="40" y="374" class="s">unknown, partial-ratio, mismatched or manually changed groups quarantine; no naked-leg fallback and no v1 downgrade</text>
 <rect class="bxg" x="24" y="402" width="524" height="87" rx="8"/><text x="40" y="422" class="t" style="font-size:11.5px">Subscriber controls — v0.2.2/v0.3.1</text><text x="40" y="439" class="s">per-position close + master close-everything (bid/ask walking ladder vendored from the engine)</text><text x="40" y="456" class="s">entries go out as bracket orders with a stop-loss child — no position is ever naked</text><text x="40" y="473" class="s">live P&amp;L, trade journal, per-strategy on/off filter, a relink flow that needs no terminal</text>
 <rect class="bxg" x="572" y="402" width="524" height="87" rx="8"/><text x="588" y="422" class="t" style="font-size:11.5px">Publisher admin UI — v0.3.0, SHIPPED</text><text x="588" y="439" class="s">a local web UI for Andre: every subscriber with key fingerprint, strategy count, master on/off</text><text x="588" y="456" class="s">toggle individual strategies per subscriber · never touches the signing key (enforced by a test)</text><text x="588" y="473" class="s">registry re-read on every request — no caching, no stale-permission risk</text>
 <rect class="bxa" x="24" y="501" width="1072" height="87" rx="8"/><text x="40" y="521" class="t" style="font-size:11.5px">PDT guard rewritten for a REAL regulatory change</text><text x="40" y="538" class="s">FINRA SR-2025-017 (SEC-approved) took effect 2026-06-04 — the old 4-day-trades-in-5-days test and $25,000 threshold are gone industry-wide</text><text x="40" y="555" class="s">replaced by ordinary FINRA 4210 margin minimums ($2,000) — the guard now checks Schwab's own account flag and warns (not blocks) cash accounts on settlement</text><text x="40" y="572" class="s">trading_bot itself never implemented PDT logic at all — this guard has only ever lived inside the copier</text>
 <rect class="bxr" x="24" y="600" width="1072" height="70" rx="8"/><text x="40" y="620" class="t" style="font-size:11.5px">Every release through v0.2.2 was dead on arrival — fixed in v0.3.1</text><text x="40" y="637" class="s">a relative-import bug in the PyInstaller entry script crashed the packaged .exe instantly, for four releases in a row</text><text x="40" y="654" class="s">a CI smoke test with continue-on-error masked it as flaky Windows behavior instead of a real failure — now a hard, non-bypassable gate</text>
-<rect class="band" x="24" y="682" width="1072" height="87" rx="8"/><text x="40" y="702" class="t" style="font-size:11.5px">Known limits — still open</text><text x="40" y="719" class="s">git bus latency 30–60s: fine for swing, NOT suitable for 0DTE scalps — the transport sits behind an interface, moving to a relay is a config change</text><text x="40" y="736" class="s">no fill-sequencing across subscribers on thin books — the same person is always last to fill · unsigned binaries trigger SmartScreen/Gatekeeper warnings</text><text x="40" y="753" class="s">legal: whether placing signals into someone else's account implicates investment-adviser registration has NOT been answered by a lawyer — gates real-money use</text>
+<rect class="band" x="24" y="682" width="1072" height="87" rx="8"/><text x="40" y="702" class="t" style="font-size:11.5px">Known limits — still open</text><text x="40" y="719" class="s">git bus latency 30–60s: fine for swing, NOT suitable for 0DTE scalps — the transport sits behind an interface, moving to a relay is a config change</text><text x="40" y="736" class="s">external multi-leg v2 receiving, durable child reconciliation, broker qualification and the copier operations PDF are not yet complete in that repo</text><text x="40" y="753" class="s">legal: whether placing signals into someone else's account implicates investment-adviser registration has NOT been answered by a lawyer — gates real-money use</text>
 </svg>
 </div>
 
@@ -1867,7 +1881,8 @@
   // close drawer on Escape / when rotating to a wide viewport
   document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeSide(); });
   window.addEventListener('resize', ()=>{ if(window.innerWidth>820) closeSide(); });
-  render('system_context', false);
+  const requestedView = window.location.hash.slice(1);
+  render(META[requestedView] ? requestedView : 'system_context', false);
 })();
 </script>
 </body>
